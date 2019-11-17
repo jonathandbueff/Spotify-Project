@@ -1,3 +1,9 @@
+# CSE330
+REPLACE-THIS-TEXT-WITH-YOUR-STUDENT-ID
+
+REPLACE-THIS-TEXT-WITH-YOUR-PARTNERS-STUDENT-ID-IF-WORKING-IN-A-GROUP
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
