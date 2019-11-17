@@ -3,9 +3,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
     <title>Spotify Analysis</title>
 </head>
 <body>
-    
+    <div id="headerNav">
+        <ul id="navBar">
+            <li class="leftNav" id="title">Spotify</li>
+            <li class="rightNav" id="dropDownNav">
+                    <div>
+                        <div class="stripe"></div>
+                        <div class="stripe"></div>
+                        <div class="stripe"></div>
+                    </div>
+                </li>
+            <li class="rightNav" id="accountBtn">Account</li>
+        </ul>
+    </div>
+    <div id="registerLoginForm">
+        <h4 class="formHead" id="registerHead" >Register</h4>
+        <h4 class="formHead" id="loginHead">Login</h4>
+        <input type="text" id="usernameInput" placeholder="Username" title="username">
+        <input type="text" id="emailInput" placeholder="email">
+        <input type="text" id="firstNameInput" placeholder="First Name">
+        <input type="text" id="lastNameInput" placeholder="Last Name">
+        <input type="password" id="passwordInput" placeholder="Password">
+        <input type="button" class="submitBtn" id="submitReg" value="Register">
+        <input type="button" class="submitBtn" id="switchToLogin" value="Login">
+        <input type="button" class="submitBtn" id="submitLogin" value="Login">
+    </div>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
