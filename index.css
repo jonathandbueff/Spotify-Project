@@ -1,0 +1,41 @@
+#headerNav{
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    background-color: black;
+}
+#navBar{
+    list-style-type: none;
+    padding:10px;
+}
+.leftNav{
+    /* font-family: Circular, spotify-circular, Helvetica, Arial, sans-serif; */
+    float:left;
+    color:white;
+    text-align: center;
+    padding-bottom:22px;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.rightNav{
+    float:right;
+    color:white;
+    text-align: center;
+    padding-left: 10px;
+    padding-bottom:22px;
+    padding-right: 5px;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.stripe{
+    background-color: white;
+    /* m: 1px; */
+    width:22px;
+    height:4px;
+    margin:3px 3px 3px 3px;
+    border-radius: 2px;
+}
+#dropDownNav{
+    margin-top:3px;
+}
