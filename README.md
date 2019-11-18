@@ -47,5 +47,6 @@ Setup
     npm install --save react react-dom creative
 
 Update package.json
+Checked off by Lisa Liao
 
     
