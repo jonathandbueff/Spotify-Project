@@ -18,12 +18,21 @@ var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/header.
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 var linkStyle = {
-  marginRight: 15
+  // marginRight: 15
+  color: 'white'
 };
 var headerStyle = {
   margin: 20,
   padding: 20,
   border: '1px solid #DDD'
+};
+var headerContainerStyle = {
+  display: 'inline-block',
+  border: '1px solid black',
+  padding: 10,
+  margin: 5,
+  textAlign: 'center',
+  background: 'grey'
 };
 
 var Header = function Header() {
@@ -31,38 +40,52 @@ var Header = function Header() {
     style: headerStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 22
+    },
+    __self: this
+  }, __jsx("div", {
+    style: headerContainerStyle,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 24
     },
     __self: this
   }, __jsx("a", {
     style: linkStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 25
     },
     __self: this
-  }, "Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, "Home"))), __jsx("div", {
+    style: headerContainerStyle,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/about",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 29
     },
     __self: this
   }, __jsx("a", {
     style: linkStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 30
     },
     __self: this
-  }, "About")));
+  }, "About"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);

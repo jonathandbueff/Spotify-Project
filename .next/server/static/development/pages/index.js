@@ -153,50 +153,73 @@ var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/header.
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const linkStyle = {
-  marginRight: 15
+  // marginRight: 15
+  color: 'white'
 };
 const headerStyle = {
   margin: 20,
   padding: 20,
   border: '1px solid #DDD'
 };
+const headerContainerStyle = {
+  display: 'inline-block',
+  border: '1px solid black',
+  padding: 10,
+  margin: 5,
+  textAlign: 'center',
+  background: 'grey'
+};
 
 const Header = () => __jsx("div", {
   style: headerStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 13
+    lineNumber: 22
+  },
+  __self: undefined
+}, __jsx("div", {
+  style: headerContainerStyle,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 23
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: "/",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 14
+    lineNumber: 24
   },
   __self: undefined
 }, __jsx("a", {
   style: linkStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 15
+    lineNumber: 25
   },
   __self: undefined
-}, "Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+}, "Home"))), __jsx("div", {
+  style: headerContainerStyle,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 28
+  },
+  __self: undefined
+}, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: "/about",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 17
+    lineNumber: 29
   },
   __self: undefined
 }, __jsx("a", {
   style: linkStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 18
+    lineNumber: 30
   },
   __self: undefined
-}, "About")));
+}, "About"))));
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
 
@@ -1981,13 +2004,13 @@ const Index = () => __jsx("div", {
     lineNumber: 7
   },
   __self: undefined
-}), __jsx("p", {
+}), __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
     lineNumber: 8
   },
   __self: undefined
-}, "Hello Next.js"), __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_3__["default"], {
+}, "Welcome"), __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_3__["default"], {
   __source: {
     fileName: _jsxFileName,
     lineNumber: 9

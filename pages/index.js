@@ -5,7 +5,7 @@ import OAuthLogin from '../comps/OAuthLogin'
 const Index = () => (
   <div>
 	<Header />
-    <p>Hello Next.js</p>
+    <h2>Welcome</h2>
     <OAuthLogin />	
   </div>
 );
