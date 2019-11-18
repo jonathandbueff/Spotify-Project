@@ -8,21 +8,21 @@
 
 ## Frameoworks
 
-10 Learning and implementing React
+10 Learning and implementing Next.js 
 
 10 Learning and implementing Mongo DB
 
 ## Functionality
 
-10 Points users can login and logout through spotify O-Auth
+10 Points users can login through spotify O-Auth
 
-10 Points user data is stored in database
+10 Points user data is correctly stored in a database
 
-10 Points users can interact with their followers
+10 Points users can view their spotify followers
 
 10 Points users can post playlists
 
-10 Points users can rate playlists
+10 Points users can rate other user's playlists
 
 ## Best Practices
 
