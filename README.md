@@ -57,9 +57,11 @@ https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-f
 https://towardsdatascience.com/a-music-taste-analysis-using-spotify-api-and-python-e52d186db5fc
 
 **Next.JS Tutorial**
+
 https://nextjs.org/learn
 
 **OAuth Guides**
+
 https://www.youtube.com/watch?v=yAXoOolPvjU
 
 https://developer.spotify.com/documentation/general/guides/authorization-guide/
