@@ -49,4 +49,11 @@ Setup
 Update package.json
 Checked off by Lisa Liao
 
+
+
+# Useful Links:
+https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
+
+https://towardsdatascience.com/a-music-taste-analysis-using-spotify-api-and-python-e52d186db5fc
+
     
