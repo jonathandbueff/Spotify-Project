@@ -66,3 +66,9 @@ https://www.youtube.com/watch?v=yAXoOolPvjU
 
 https://developer.spotify.com/documentation/general/guides/authorization-guide/
 
+**Fetch with Next.js via Axios**
+    npm install --save isomorphic-unfetch
+    npm i axios
+
+In files where you would like to fetch data, 
+    const axios = require('axios');
