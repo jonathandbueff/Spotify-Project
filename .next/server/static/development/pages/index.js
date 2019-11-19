@@ -88,10 +88,51 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./comps/Layout.js":
+/*!*************************!*\
+  !*** ./comps/Layout.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./comps/header.js");
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/Layout.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const layoutStyle = {
+  margin: 20,
+  padding: 20 //   border: '1px solid #DDD'
+
+};
+
+const Layout = props => __jsx("div", {
+  style: layoutStyle,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 10
+  },
+  __self: undefined
+}, __jsx(_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 11
+  },
+  __self: undefined
+}), props.children);
+
+/* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
 
 /***/ "./comps/OAuthLogin.js":
 /*!*****************************!*\
@@ -110,14 +151,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 let client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
 let response_type = "code";
 let scopes = "user-follow-read user-read-recently-played user-library-read user-read-playback-state user-library-modify user-read-currently-playing user-modify-playback-state user-follow-modify playlist-read-collaborative streaming playlist-modify-private playlist-modify-public user-read-email playlist-read-private user-top-read user-read-private";
-let redirect_uri = "http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/redirect";
+let redirect_uri = "http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/";
 let loginLink = 'https://accounts.spotify.com/authorize?client_id=' + client_id + '&response_type=' + response_type + '&scopes=' + scopes + '&redirect_uri=' + redirect_uri;
 
 const OAuthLogin = () => __jsx("a", {
   href: loginLink,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 8
   },
   __self: undefined
 }, __jsx("input", {
@@ -126,7 +167,7 @@ const OAuthLogin = () => __jsx("a", {
   value: "Login To Spotify",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 10
+    lineNumber: 9
   },
   __self: undefined
 }));
@@ -157,9 +198,11 @@ const linkStyle = {
   color: 'white'
 };
 const headerStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
+  position: 'relative',
+  left: 0,
+  right: 0,
+  border: '1px solid #DDD' // position: 'sticky'
+
 };
 const headerContainerStyle = {
   display: 'inline-block',
@@ -174,49 +217,49 @@ const Header = () => __jsx("div", {
   style: headerStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 22
+    lineNumber: 25
   },
   __self: undefined
 }, __jsx("div", {
   style: headerContainerStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 23
+    lineNumber: 26
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: "/",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 24
+    lineNumber: 27
   },
   __self: undefined
 }, __jsx("a", {
   style: linkStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 25
+    lineNumber: 28
   },
   __self: undefined
 }, "Home"))), __jsx("div", {
   style: headerContainerStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 28
+    lineNumber: 31
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: "/about",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 29
+    lineNumber: 32
   },
   __self: undefined
 }, __jsx("a", {
   style: linkStyle,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 30
+    lineNumber: 33
   },
   __self: undefined
 }, "About"))));
@@ -1985,6 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _comps_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comps/header */ "./comps/header.js");
 /* harmony import */ var _comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comps/OAuthLogin */ "./comps/OAuthLogin.js");
+/* harmony import */ var _comps_Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comps/Layout */ "./comps/Layout.js");
 var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -1992,37 +2036,50 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+const axios = __webpack_require__(/*! axios */ "axios");
+
+async function createRequest() {
+  axios.get('https://accounts.spotify.com/authorize').then(resp => {
+    alert(resp.data);
+  });
+} // axios.get('http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/').then(resp =>{
+//   // alert("success");
+// })
+
+
 const Index = () => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6
+    lineNumber: 17
   },
   __self: undefined
-}, __jsx(_comps_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+}, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 18
   },
   __self: undefined
-}), __jsx("h2", {
+}, __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 8
+    lineNumber: 19
   },
   __self: undefined
 }, "Welcome"), __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  onClick: createRequest,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 20
   },
   __self: undefined
-}));
+})));
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -2031,6 +2088,17 @@ const Index = () => __jsx("div", {
 
 module.exports = __webpack_require__(/*! /home/joe/public_html/creativeproject-7joe-jon/pages/index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

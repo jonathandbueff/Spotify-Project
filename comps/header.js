@@ -6,9 +6,12 @@ const linkStyle = {
 };
 
 const headerStyle = {
-   margin:20,
-   padding:20,
-   border: '1px solid #DDD'};
+   position: 'relative',
+   left: 0,
+   right: 0,
+   border: '1px solid #DDD',
+  // position: 'sticky'
+  };
 const headerContainerStyle={
   display: 'inline-block',
   border: '1px solid black',
