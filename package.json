@@ -1,0 +1,27 @@
+{
+  "name": "creativeproject-7joe-jon",
+  "version": "1.0.0",
+  "description": "470677 470716",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+  "build": "next build",
+  "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://frazierjoe@github.com/cse330-fall-2019/creativeproject-7joe-jon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse330-fall-2019/creativeproject-7joe-jon/issues"
+  },
+  "homepage": "https://github.com/cse330-fall-2019/creativeproject-7joe-jon#readme",
+  "dependencies": {
+    "next": "^9.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
