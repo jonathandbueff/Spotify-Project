@@ -57,17 +57,17 @@ var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/OAuthLo
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 var client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
-var response_type = "code";
-var scopes = "user-follow-read user-read-recently-played user-library-read user-read-playback-state user-library-modify user-read-currently-playing user-modify-playback-state user-follow-modify playlist-read-collaborative streaming playlist-modify-private playlist-modify-public user-read-email playlist-read-private user-top-read user-read-private";
+var response_type = "code"; // let scopes = "user-library-read user-read-private user-read-email";
+
 var redirect_uri = "http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/home";
-var loginLink = 'https://accounts.spotify.com/authorize?client_id=' + client_id + '&response_type=' + response_type + '&scopes=' + scopes + '&redirect_uri=' + redirect_uri;
+var loginLink = 'https://accounts.spotify.com/authorize?' + 'client_id=' + client_id + '&response_type=' + response_type + '&scope= user-modify-playback-state user-top-read user-library-modify user-follow-modify playlist-read-private playlist-modify-public playlist-modify-private user-read-playback-state user-read-currently-playing user-read-private user-follow-read playlist-read-collaborative user-read-email user-library-read streaming user-read-recently-played' + "&redirect_uri=" + redirect_uri;
 
 var OAuthLogin = function OAuthLogin() {
   return __jsx("a", {
     href: loginLink,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 11
     },
     __self: this
   }, __jsx("input", {
@@ -76,7 +76,7 @@ var OAuthLogin = function OAuthLogin() {
     value: "Login To Spotify",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 12
     },
     __self: this
   }));
@@ -9943,25 +9943,25 @@ var Index = function Index() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 4
+      lineNumber: 7
     },
     __self: this
   }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 8
     },
     __self: this
   }, "Welcome"), __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 9
     },
     __self: this
   }, __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 10
     },
     __self: this
   })));
@@ -9971,7 +9971,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************/
@@ -9994,5 +9994,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

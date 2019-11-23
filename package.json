@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-  "build": "next build",
-  "start": "next start"
+    "build": "next build",
+    "start": "next start"
   },
+  "proxy": "http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/",
   "repository": {
     "type": "git",
     "url": "git+https://frazierjoe@github.com/cse330-fall-2019/creativeproject-7joe-jon.git"
@@ -20,8 +21,13 @@
   },
   "homepage": "https://github.com/cse330-fall-2019/creativeproject-7joe-jon#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "location-href": "^1.0.0",
     "next": "^9.1.4",
+    "next-absolute-url": "^1.1.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "request": "^2.88.0"
   }
 }

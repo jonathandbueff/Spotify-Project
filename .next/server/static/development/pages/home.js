@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1948,37 +1948,83 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _comps_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../comps/Layout */ "./comps/Layout.js");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _comps_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comps/Layout */ "./comps/Layout.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_absolute_url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next-absolute-url */ "next-absolute-url");
+/* harmony import */ var next_absolute_url__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_absolute_url__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! url */ "url");
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_5__);
 var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/pages/home.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-const Home = () => __jsx("div", {
+
+
+ // import url from "url";
+// import location from ('location-href');
+// let location = require('location-href');
+// let urlMod = require('url');
+// let express = require('express')
+// let app = express()
+// let axios = require('axios').default;
+// let qs = require('qs');
+// let fs = require("fs");
+
+const Home = props => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 3
+    lineNumber: 16
   },
   __self: undefined
-}, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+}, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 4
+    lineNumber: 17
   },
   __self: undefined
 }, __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 18
   },
   __self: undefined
-}, "Welcome to your home page")));
+}, "Welcome to your home page"), props.someData)); //   const response = await fetch('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode',
+//   {
+//     mode: "no-cors"
+//   });
+//   const body = await response.json();
+//   if(response .status!== 200){
+//     throw Error(body.message)
+//   }
+//   return body;
+// };
+// Router.events.on('routeChangeComplete', sendCodeToBackend().then(res=> console.log("res")).catch(err=>console.log(err)));
+// .then(res=> alert("HI")).catch(err =>console.log(err))
+
+
+Home.getInitialProps = async function (req) {
+  let code = req.query.code;
+  let hello;
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code=' + code);
+  const data = await res.json().then(function (data) {
+    hello = data.hello;
+    console.log(hello);
+  }); // console.log(JSON.stringify(res.data));
+
+  return {
+    someData: hello
+  };
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!*****************************!*\
   !*** multi ./pages/home.js ***!
   \*****************************/
@@ -2075,6 +2121,39 @@ module.exports = require("core-js/library/fn/promise");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/weak-map");
+
+/***/ }),
+
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
+/***/ "next-absolute-url":
+/*!************************************!*\
+  !*** external "next-absolute-url" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next-absolute-url");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 

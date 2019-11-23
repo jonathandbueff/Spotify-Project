@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -148,16 +148,16 @@ var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/OAuthLo
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 let client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
-let response_type = "code";
-let scopes = "user-follow-read user-read-recently-played user-library-read user-read-playback-state user-library-modify user-read-currently-playing user-modify-playback-state user-follow-modify playlist-read-collaborative streaming playlist-modify-private playlist-modify-public user-read-email playlist-read-private user-top-read user-read-private";
+let response_type = "code"; // let scopes = "user-library-read user-read-private user-read-email";
+
 let redirect_uri = "http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/home";
-let loginLink = 'https://accounts.spotify.com/authorize?client_id=' + client_id + '&response_type=' + response_type + '&scopes=' + scopes + '&redirect_uri=' + redirect_uri;
+let loginLink = 'https://accounts.spotify.com/authorize?' + 'client_id=' + client_id + '&response_type=' + response_type + '&scope= user-modify-playback-state user-top-read user-library-modify user-follow-modify playlist-read-private playlist-modify-public playlist-modify-private user-read-playback-state user-read-currently-playing user-read-private user-follow-read playlist-read-collaborative user-read-email user-library-read streaming user-read-recently-played' + "&redirect_uri=" + redirect_uri;
 
 const OAuthLogin = () => __jsx("a", {
   href: loginLink,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6
+    lineNumber: 11
   },
   __self: undefined
 }, __jsx("input", {
@@ -166,7 +166,7 @@ const OAuthLogin = () => __jsx("a", {
   value: "Login To Spotify",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 12
   },
   __self: undefined
 }));
@@ -2001,25 +2001,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 const Index = () => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 4
+    lineNumber: 7
   },
   __self: undefined
 }, __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 8
   },
   __self: undefined
 }, "Welcome"), __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6
+    lineNumber: 9
   },
   __self: undefined
 }, __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 10
   },
   __self: undefined
 })));
@@ -2028,7 +2028,7 @@ const Index = () => __jsx("div", {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
