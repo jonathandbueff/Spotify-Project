@@ -34,7 +34,6 @@ function getUserSavedTracks(){
 }
 
 async function getToken(theCode){
-    
     // console.log(theCode);
     let options = {
       method: 'POST',
