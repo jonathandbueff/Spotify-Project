@@ -1,8 +1,8 @@
 let client_id ="77cf346e940b41adb5dd26e8c9f05a6b";
 let response_type = "code";
 // let scopes = "user-library-read user-read-private user-read-email";
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com';
-// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //JOE
 
 let redirect_uri = awsinstance + ":3000/home"; 
 let loginLink='https://accounts.spotify.com/authorize?' + 
