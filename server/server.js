@@ -11,6 +11,8 @@ let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let accessToken;
 let refreshToken;
 let my_redirect_uri = awsinstance +':3000/home';
+let playlist_tracks;
+let tracks_metrics;
 
 function getUserProfile(){
     let options = {
@@ -57,8 +59,14 @@ function getPlaylistTracks(playlist){
     };
     request(options, function (error, response, body){
         if (error) throw new Error(error);
+        let track_info = JSON.parse(body);
         console.log(playlist.name)
-        console.log(body)
+        console.log(track_info);
+
+        // //loop through each track in a playlist
+        // for (let x =0; x < body.items.length; x++){
+
+        // }
       });
 }
 
