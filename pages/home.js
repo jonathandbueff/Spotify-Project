@@ -46,7 +46,7 @@ Home.getInitialProps = async function(req){
   let playlists;
   fetch(awsinstance+':3456/getCode?code='+code)
   .then(function(data){
-    playlists = JSON.parse(data);
+    playlists = data;
     console.log(playlists);
     // console.log(JSON.stringify(res.data));
   });
