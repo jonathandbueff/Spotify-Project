@@ -3,8 +3,8 @@ import Layout from '../comps/Layout';
 import Router from 'next/router';
 import absoluteUrl from "next-absolute-url";
 import url from "url";
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com';
-// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 // import url from "url";
 // import location from ('location-href');

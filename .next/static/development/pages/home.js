@@ -12,7 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./comps/header.js");
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/Layout.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/Layout.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -55,7 +59,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/header.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/header.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -4836,10 +4844,17 @@ var assign=Object.assign.bind(Object);function g(){return assign;}Object.defineP
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2FJonathanBueff%2Ffinalproject%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js!./":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2FJonathanBueff%2Ffinalproject%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js ***!
   \****************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js!./":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js ***!
+  \*****************************************************************************************************************************************************************************************/
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9992,7 +10007,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_7__);
 
 
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/home.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/pages/home.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
@@ -10000,6 +10019,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
+<<<<<<< HEAD
 var awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
 // import url from "url";
 // import location from ('location-href');
@@ -10010,23 +10030,34 @@ var awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // 
 // let axios = require('axios').default;
 // let qs = require('qs');
 // let fs = require("fs");
+=======
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var Home = function Home(props) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
+<<<<<<< HEAD
       lineNumber: 19
+=======
+      lineNumber: 8
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
     },
     __self: this
   }, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
+<<<<<<< HEAD
       lineNumber: 20
+=======
+      lineNumber: 9
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
     },
     __self: this
   }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
+<<<<<<< HEAD
       lineNumber: 21
     },
     __self: this
@@ -10044,6 +10075,13 @@ var Home = function Home(props) {
 // Router.events.on('routeChangeComplete', sendCodeToBackend().then(res=> console.log("res")).catch(err=>console.log(err)));
 // .then(res=> alert("HI")).catch(err =>console.log(err))
 
+=======
+      lineNumber: 10
+    },
+    __self: this
+  }, "Welcome to your home page"), props.someData));
+};
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 Home.getInitialProps =
 /*#__PURE__*/
@@ -10058,7 +10096,11 @@ function () {
           case 0:
             code = req.query.code;
             _context.next = 3;
+<<<<<<< HEAD
             return isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()(awsinstance + ':3456/getCode?code=' + code);
+=======
+            return isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code=' + code);
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
           case 3:
             res = _context.sent;
@@ -10092,6 +10134,7 @@ function () {
 /***/ }),
 
 /***/ 2:
+<<<<<<< HEAD
 /*!********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=%2Fhome%2FJonathanBueff%2Ffinalproject%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js ***!
   \********************************************************************************************************************************************************/
@@ -10099,6 +10142,15 @@ function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fhome&absolutePagePath=%2Fhome%2FJonathanBueff%2Ffinalproject%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2FJonathanBueff%2Ffinalproject%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js!./");
+=======
+/*!*********************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js ***!
+  \*********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fhome&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=%2Fhome%2Fjoe%2Fpublic_html%2Fcreativeproject-7joe-jon%2Fpages%2Fhome.js!./");
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 
 /***/ }),

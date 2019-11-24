@@ -105,7 +105,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./comps/header.js");
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/Layout.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/Layout.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -146,7 +150,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/header.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/header.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1957,7 +1965,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_absolute_url__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_absolute_url__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! url */ "url");
 /* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_5__);
+<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/home.js";
+=======
+var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/pages/home.js";
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1965,6 +1977,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+<<<<<<< HEAD
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
 // import url from "url";
 // import location from ('location-href');
@@ -1975,22 +1988,33 @@ let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // 
 // let axios = require('axios').default;
 // let qs = require('qs');
 // let fs = require("fs");
+=======
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 const Home = props => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
+<<<<<<< HEAD
     lineNumber: 19
+=======
+    lineNumber: 8
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
   },
   __self: undefined
 }, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
+<<<<<<< HEAD
     lineNumber: 20
+=======
+    lineNumber: 9
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
   },
   __self: undefined
 }, __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
+<<<<<<< HEAD
     lineNumber: 21
   },
   __self: undefined
@@ -2007,11 +2031,21 @@ const Home = props => __jsx("div", {
 // Router.events.on('routeChangeComplete', sendCodeToBackend().then(res=> console.log("res")).catch(err=>console.log(err)));
 // .then(res=> alert("HI")).catch(err =>console.log(err))
 
+=======
+    lineNumber: 10
+  },
+  __self: undefined
+}, "Welcome to your home page"), props.someData));
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 Home.getInitialProps = async function (req) {
   let code = req.query.code;
   let hello;
+<<<<<<< HEAD
   const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(awsinstance + ':3456/getCode?code=' + code);
+=======
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code=' + code);
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
   const data = await res.json().then(function (data) {
     hello = data.hello;
     console.log(hello);
@@ -2033,7 +2067,11 @@ Home.getInitialProps = async function (req) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/home.js */"./pages/home.js");
+=======
+module.exports = __webpack_require__(/*! /home/joe/public_html/creativeproject-7joe-jon/pages/home.js */"./pages/home.js");
+>>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 
 /***/ }),
