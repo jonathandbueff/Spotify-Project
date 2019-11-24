@@ -42,7 +42,9 @@ function getPlaylists(){
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
-      console.log(playlist_info.items.length)
+      for (let x = 0; x <playlist_info.items.length; x++){
+          console.log(playlist_info.items[x].name)
+      }
     });
 }
 
