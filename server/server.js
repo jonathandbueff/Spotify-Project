@@ -44,7 +44,7 @@ function getPlaylists(){
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
-      getPlaylistTracks(playlist_info.items[0].track.name)
+      getPlaylistTracks(playlist_info.items[0])
     //   for (let x = 0; x <playlist_info.items.length; x++){
     //       getPlaylistTracks(playlist_info.items[x])
     //   }
@@ -61,7 +61,7 @@ function getPlaylistTracks(playlist){
         if (error) throw new Error(error);
         let track_info = JSON.parse(body);
         console.log(playlist.name)
-        console.log(track_info.items[0]);
+        console.log(track_info.items[0].track);
 
         // for (let x = 0; x <track_info.items.length; x++){
         //     console.log(track_info.items[x][12]);
