@@ -3,12 +3,14 @@ const app = express();
 const port = 3456;
 const request = require("request");
 let http = require("http");
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com';
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
 
 let my_client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
 let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let accessToken;
 let refreshToken;
-let my_redirect_uri = 'http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/home';
+let my_redirect_uri = awsinstance +':3000/home';
 
 function getUserProfile(){
     let options = {
