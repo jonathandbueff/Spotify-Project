@@ -86,7 +86,7 @@ request(options, function (error, response, body) {
 //     res.send({hello: "hi"});
 // });
 
-app.get('/getPlaylists', async (req,res)=> {
+app.get('/getCode', async (req,res)=> {
     let theCode = req.query.code;
     getToken(theCode);
     res.send(playlist_info);
