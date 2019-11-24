@@ -45,7 +45,6 @@ function getPlaylists(){
 }
 
 async function getToken(theCode){
-    
     // console.log(theCode);
     let options = {
       method: 'POST',
