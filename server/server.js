@@ -32,6 +32,17 @@ function getUserSavedTracks(){
       
     });
 }
+function getPlaylists(){
+    let options ={
+        method: 'GET',
+        url: 'https://api.spotify.com/v1/me/tracks',
+        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
+    };
+        request(options, function (error, response, body){
+      if (error) throw new Error(error);
+      
+    });
+}
 
 async function getToken(theCode){
     // console.log(theCode);
@@ -55,6 +66,7 @@ request(options, function (error, response, body) {
     refreshToken = jsonBody.refresh_token;
     getUserProfile();
     getUserSavedTracks();
+    getPlaylists();
     // token =accessToken;
     // redirect();
     // console.log("ACCESS TOKEN : " + accessToken);
