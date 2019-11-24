@@ -86,7 +86,7 @@ app.get('/getCode', async (req,res)=> {
     res.send({hello: "hi"});
 });
 
-app.get('/getPlaylist', async (req,res)=> {
+app.get('/getPlaylists', async (req,res)=> {
     let theCode = req.query.code;
     getToken(theCode);
     res.send({playlists: "playlist_info"});
