@@ -17,12 +17,13 @@ const Home = (props) => (
 
 Home.getInitialProps = async function(req){
   let code = req.query.code;
-  let hello;
-  const res = await fetch(awsinstance + ':3456/getCode?code='+code);
+  let playlists;
+  const res = await fetch(awsinstance + ':3456/getPlaylists?code='+code);
   const data = await res.json().then(function(data){
-    hello = data.hello;
-    console.log(hello);
+    playlists = data.playlists;
+    console.log(playlists);
   });
+
   // console.log(JSON.stringify(res.data));
   return{
     someData: hello
