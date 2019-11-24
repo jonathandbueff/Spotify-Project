@@ -58,6 +58,7 @@ function getPlaylistTracks(playlist){
     request(options, function (error, response, body){
         if (error) throw new Error(error);
         console.log(playlist.name)
+        console.log(body)
       });
 }
 
