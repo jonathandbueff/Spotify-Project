@@ -56,8 +56,7 @@ function getPlaylistTracks(playlist){
     };
     request(options, function (error, response, body){
         if (error) throw new Error(error);
-        let name = body.name
-        console.log(name)
+        console.log(body)
       });
 }
 
