@@ -45,7 +45,7 @@ Home.getInitialProps = async function(req){
   let code = req.query.code;
   let playlists;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
-  const data = await res.then(function(data){
+  const data = await res.json().then(function(data){
     playlists = data;
     console.log(playlists);
   });
