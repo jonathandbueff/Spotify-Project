@@ -61,7 +61,7 @@ function getPlaylistTracks(playlist){
         if (error) throw new Error(error);
         let track_info = JSON.parse(body);
         console.log(playlist.name)
-        console.log(track_info.items[0].track);
+        console.log(track_info.items[0].track.length);
 
         // for (let x = 0; x <track_info.items.length; x++){
         //     console.log(track_info.items[x][12]);
