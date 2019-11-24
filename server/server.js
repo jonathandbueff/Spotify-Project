@@ -43,9 +43,22 @@ function getPlaylists(){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
       for (let x = 0; x <playlist_info.items.length; x++){
-          console.log(playlist_info.items[x].name)
+          getPlaylistTracks(playlist_info.items[x])
       }
     });
+}
+
+function getPlaylistTracks(playlist){
+    let options ={
+        method: 'GET',
+        url: playlist.tracks.href,
+        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
+    };
+    request(options, function (error, response, body){
+        if (error) throw new Error(error);
+        let name = body.name
+        console.log(name)
+      });
 }
 
 async function getToken(theCode){
