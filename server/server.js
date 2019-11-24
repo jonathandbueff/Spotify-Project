@@ -35,12 +35,12 @@ function getUserSavedTracks(){
 function getPlaylists(){
     let options ={
         method: 'GET',
-        url: 'https://api.spotify.com/v1/me/tracks',
+        url: 'https://api.spotify.com/v1/me/playlists',
         headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
     };
         request(options, function (error, response, body){
       if (error) throw new Error(error);
-      
+      console.log(body);
     });
 }
 
