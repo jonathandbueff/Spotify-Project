@@ -11,7 +11,6 @@ let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let accessToken;
 let refreshToken;
 let my_redirect_uri = awsinstance +':3000/home';
-let playlist_info;
 
 function getUserProfile(){
     let options = {
@@ -42,9 +41,8 @@ function getPlaylists(){
     };
         request(options, function (error, response, body){
       if (error) throw new Error(error);
-      playlist_info = JSON.parse(body);
-      console.log(playlist_info);
-      console.log(body);
+      let playlist_info = JSON.parse(body);
+      console.log(playlist_info.items)
     });
 }
 
@@ -65,6 +63,7 @@ async function getToken(theCode){
 request(options, function (error, response, body) {
     if(error) throw new Error(error);
     let jsonBody = JSON.parse(body);
+    console.log(body);
     accessToken = jsonBody.access_token;
     refreshToken = jsonBody.refresh_token;
     getPlaylists();
@@ -83,7 +82,7 @@ request(options, function (error, response, body) {
 app.get('/getCode', async (req,res)=> {
     let theCode = req.query.code;
     getToken(theCode);
-    res.send(playlist_info);
+    res.send({hello: "hi"});
 });
 
 
