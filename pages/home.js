@@ -44,7 +44,7 @@ const Home = (props) => (
 Home.getInitialProps = async function(req){
   let code = req.query.code;
   let playlists;
-  const res = await fetch(awsinstance+':3456/getCode?code='+code)
+  fetch(awsinstance+':3456/getCode?code='+code)
   .then(function(data){
     playlists = JSON.parse(data);
     console.log(playlists);
