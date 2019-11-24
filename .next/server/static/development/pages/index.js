@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -105,11 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./comps/header.js");
-<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/Layout.js";
-=======
-var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/Layout.js";
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -137,6 +133,50 @@ const Layout = props => __jsx("div", {
 
 /***/ }),
 
+/***/ "./comps/OAuthLogin.js":
+/*!*****************************!*\
+  !*** ./comps/OAuthLogin.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/OAuthLogin.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+let client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
+let response_type = "code"; // let scopes = "user-library-read user-read-private user-read-email";
+
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
+
+let redirect_uri = awsinstance + ":3000/home";
+let loginLink = 'https://accounts.spotify.com/authorize?' + 'client_id=' + client_id + '&response_type=' + response_type + '&scope= user-modify-playback-state user-top-read user-library-modify user-follow-modify playlist-read-private playlist-modify-public playlist-modify-private user-read-playback-state user-read-currently-playing user-read-private user-follow-read playlist-read-collaborative user-read-email user-library-read streaming user-read-recently-played' + "&redirect_uri=" + redirect_uri;
+
+const OAuthLogin = () => __jsx("a", {
+  href: loginLink,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 14
+  },
+  __self: undefined
+}, __jsx("input", {
+  type: "button",
+  id: "oAuthLoginSubmit",
+  value: "Login To Spotify",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 15
+  },
+  __self: undefined
+}));
+
+/* harmony default export */ __webpack_exports__["default"] = (OAuthLogin);
+
+/***/ }),
+
 /***/ "./comps/header.js":
 /*!*************************!*\
   !*** ./comps/header.js ***!
@@ -150,11 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-<<<<<<< HEAD
 var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/comps/header.js";
-=======
-var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/comps/header.js";
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1945,10 +1981,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/home.js":
-/*!***********************!*\
-  !*** ./pages/home.js ***!
-  \***********************/
+/***/ "./pages/index.js":
+/*!************************!*\
+  !*** ./pages/index.js ***!
+  \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1956,122 +1992,52 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../comps/OAuthLogin */ "./comps/OAuthLogin.js");
 /* harmony import */ var _comps_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comps/Layout */ "./comps/Layout.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_absolute_url__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next-absolute-url */ "next-absolute-url");
-/* harmony import */ var next_absolute_url__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_absolute_url__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! url */ "url");
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_5__);
-<<<<<<< HEAD
-var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/home.js";
-=======
-var _jsxFileName = "/home/joe/public_html/creativeproject-7joe-jon/pages/home.js";
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
+var _jsxFileName = "/home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-
-<<<<<<< HEAD
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
-// import url from "url";
-// import location from ('location-href');
-// let location = require('location-href');
-// let urlMod = require('url');
-// let express = require('express')
-// let app = express()
-// let axios = require('axios').default;
-// let qs = require('qs');
-// let fs = require("fs");
-=======
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
-
-const Home = props => __jsx("div", {
+const Index = () => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
-<<<<<<< HEAD
-    lineNumber: 19
-=======
-    lineNumber: 8
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
-  },
-  __self: undefined
-}, __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-  __source: {
-    fileName: _jsxFileName,
-<<<<<<< HEAD
-    lineNumber: 20
-=======
-    lineNumber: 9
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
+    lineNumber: 7
   },
   __self: undefined
 }, __jsx("h2", {
   __source: {
     fileName: _jsxFileName,
-<<<<<<< HEAD
-    lineNumber: 21
+    lineNumber: 8
   },
   __self: undefined
-}, "Welcome to your home page"), props.someData)); //   const response = await fetch('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode',
-//   {
-//     mode: "no-cors"
-//   });
-//   const body = await response.json();
-//   if(response .status!== 200){
-//     throw Error(body.message)
-//   }
-//   return body;
-// };
-// Router.events.on('routeChangeComplete', sendCodeToBackend().then(res=> console.log("res")).catch(err=>console.log(err)));
-// .then(res=> alert("HI")).catch(err =>console.log(err))
-
-=======
+}, "Welcome"), __jsx(_comps_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, __jsx(_comps_OAuthLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  __source: {
+    fileName: _jsxFileName,
     lineNumber: 10
   },
   __self: undefined
-}, "Welcome to your home page"), props.someData));
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
+})));
 
-Home.getInitialProps = async function (req) {
-  let code = req.query.code;
-  let hello;
-<<<<<<< HEAD
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(awsinstance + ':3456/getCode?code=' + code);
-=======
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code=' + code);
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
-  const data = await res.json().then(function (data) {
-    hello = data.hello;
-    console.log(hello);
-  }); // console.log(JSON.stringify(res.data));
-
-  return {
-    someData: hello
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Home);
+/* harmony default export */ __webpack_exports__["default"] = (Index);
 
 /***/ }),
 
-/***/ 5:
-/*!*****************************!*\
-  !*** multi ./pages/home.js ***!
-  \*****************************/
+/***/ 3:
+/*!******************************!*\
+  !*** multi ./pages/index.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! /home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/home.js */"./pages/home.js");
-=======
-module.exports = __webpack_require__(/*! /home/joe/public_html/creativeproject-7joe-jon/pages/home.js */"./pages/home.js");
->>>>>>> cc927cc1bc228fb8bf1629966e2094c7f9002b86
+module.exports = __webpack_require__(/*! /home/JonathanBueff/finalproject/creativeproject-7joe-jon/pages/index.js */"./pages/index.js");
 
 
 /***/ }),
@@ -2164,39 +2130,6 @@ module.exports = require("core-js/library/fn/weak-map");
 
 /***/ }),
 
-/***/ "isomorphic-unfetch":
-/*!*************************************!*\
-  !*** external "isomorphic-unfetch" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-unfetch");
-
-/***/ }),
-
-/***/ "next-absolute-url":
-/*!************************************!*\
-  !*** external "next-absolute-url" ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next-absolute-url");
-
-/***/ }),
-
-/***/ "next/router":
-/*!******************************!*\
-  !*** external "next/router" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
-
-/***/ }),
-
 /***/ "prop-types":
 /*!*****************************!*\
   !*** external "prop-types" ***!
@@ -2253,4 +2186,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=index.js.map
