@@ -15,15 +15,15 @@ const Home = (props) => (
 
 Home.getInitialProps = async function(req){
   let code = req.query.code;
-  let playlists;
+  let hello;
   const res = await fetch('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code='+code);
   const data = await res.json().then(function(data){
-    playlists = data.items;
-    console.log(playlists);
+    hello = data.hello;
+    console.log(hello);
   });
   // console.log(JSON.stringify(res.data));
   return{
-    someData: playlists
+    someData: hello
   };
 }
 export default Home;
