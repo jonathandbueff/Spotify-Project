@@ -41,7 +41,8 @@ function getPlaylists(){
     };
         request(options, function (error, response, body){
       if (error) throw new Error(error);
-      console.log(body);
+      let playlist_info = JSON.parse(body);
+      console.log(playlist_info.items.name)
     });
 }
 
