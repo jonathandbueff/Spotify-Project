@@ -20,7 +20,6 @@ function getUserProfile(){
     };
     request(options, function (error, response, body){
       if (error) throw new Error(error);
-      console.log(body);
     });
 }
 function getUserSavedTracks(){
@@ -66,8 +65,6 @@ request(options, function (error, response, body) {
     console.log(body);
     accessToken = jsonBody.access_token;
     refreshToken = jsonBody.refresh_token;
-    getUserProfile();
-    getUserSavedTracks();
     getPlaylists();
     // token =accessToken;
     // redirect();
