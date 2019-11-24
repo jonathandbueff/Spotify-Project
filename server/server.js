@@ -89,7 +89,7 @@ request(options, function (error, response, body) {
 app.get('/getCode', async (req,res)=> {
     let theCode = req.query.code;
     getToken(theCode);
-    res.send(JSON.parse(playlist_info));
+    res.send(playlist_info);
 });
 
 
