@@ -43,7 +43,6 @@ function getPlaylists(){
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       playlist_info = body;
-      console.log(playlist_info.length);
     });
 }
 

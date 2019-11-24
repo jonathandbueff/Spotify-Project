@@ -43,15 +43,15 @@ const Home = (props) => (
 // .then(res=> alert("HI")).catch(err =>console.log(err))
 Home.getInitialProps = async function(req){
   let code = req.query.code;
-  let hello;
+  let playlists;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json().then(function(data){
-    hello = data.hello;
-    console.log(hello);
+    playlists = data;
+    console.log(playlists);
   });
   // console.log(JSON.stringify(res.data));
   return{
-    someData: hello
+    someData: playlists
   };
 }
 export default Home;
