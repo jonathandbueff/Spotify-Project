@@ -44,6 +44,7 @@ function getPlaylists(){
       if (error) throw new Error(error);
       playlist_info = JSON.parse(body);
       console.log(playlist_info);
+      console.log(body);
     });
 }
 
