@@ -64,7 +64,6 @@ async function getToken(theCode){
 request(options, function (error, response, body) {
     if(error) throw new Error(error);
     let jsonBody = JSON.parse(body);
-    console.log(body);
     accessToken = jsonBody.access_token;
     refreshToken = jsonBody.refresh_token;
     getPlaylists();
