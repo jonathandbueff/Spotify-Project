@@ -11,6 +11,8 @@ let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let accessToken;
 let refreshToken;
 let my_redirect_uri = awsinstance +':3000/home';
+let playlist_tracks;
+let tracks_metrics;
 
 function getUserProfile(){
     let options = {
@@ -42,8 +44,34 @@ function getPlaylists(){
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
-      console.log(playlist_info.items)
+      getPlaylistTracks(playlist_info.items[0])
+    //   for (let x = 0; x <playlist_info.items.length; x++){
+    //       getPlaylistTracks(playlist_info.items[x])
+    //   }
     });
+}
+
+function getPlaylistTracks(playlist){
+    let options ={
+        method: 'GET',
+        url: playlist.tracks.href,
+        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
+    };
+    request(options, function (error, response, body){
+        if (error) throw new Error(error);
+        let track_info = JSON.parse(body);
+        console.log(playlist.name)
+        let obj = JSON.parse(track_info.items[0].track);
+        console.log(obj);
+
+        // for (let x = 0; x <track_info.items.length; x++){
+        //     console.log(track_info.items[x][12]);
+        // } 
+        // //loop through each track in a playlist
+        // for (let x =0; x < body.items.length; x++){
+
+        // }
+      });
 }
 
 async function getToken(theCode){
