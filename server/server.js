@@ -42,7 +42,7 @@ function getPlaylists(){
     };
         request(options, function (error, response, body){
       if (error) throw new Error(error);
-      playlist_info = JSON.parse(body);
+      playlist_info = body;
 
     });
 }
@@ -80,11 +80,11 @@ request(options, function (error, response, body) {
 }
 
 
-app.get('/getCode', async (req,res)=> {
-    let theCode = req.query.code;
-    getToken(theCode);
-    res.send({hello: "hi"});
-});
+// app.get('/getCode', async (req,res)=> {
+//     let theCode = req.query.code;
+//     getToken(theCode);
+//     res.send({hello: "hi"});
+// });
 
 app.get('/getPlaylists', async (req,res)=> {
     let theCode = req.query.code;
