@@ -3,6 +3,9 @@ import Layout from '../comps/Layout';
 import Router from 'next/router';
 import absoluteUrl from "next-absolute-url";
 import url from "url";
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com';
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com';
+
 // import url from "url";
 // import location from ('location-href');
 // let location = require('location-href');
@@ -41,7 +44,7 @@ const Home = (props) => (
 Home.getInitialProps = async function(req){
   let code = req.query.code;
   let hello;
-  const res = await fetch('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode?code='+code);
+  const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json().then(function(data){
     hello = data.hello;
     console.log(hello);
