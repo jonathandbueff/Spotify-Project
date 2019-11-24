@@ -89,7 +89,7 @@ request(options, function (error, response, body) {
 app.get('/getPlaylists', async (req,res)=> {
     let theCode = req.query.code;
     getToken(theCode);
-    res.send({playlists: playlist_info});
+    res.send(playlist_info);
 });
 
 
