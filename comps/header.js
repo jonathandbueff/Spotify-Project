@@ -68,6 +68,7 @@ const Header = () => (
         margin-bottom: 3px;
         margin-top: 3px;
         border-radius: 3px;
+        // z-index:1000;
       }
       .spanBarBox{
         float:right;

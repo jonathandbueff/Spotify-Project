@@ -5,11 +5,17 @@ import Header from '../comps/header';
 
 
 const bodyStyle= {
-  background: "url('/12.png')"
+  position: "absolute",
+  background: "url('/12.png') no-repeat center fixed",
+  backgroundSize: "cover",
+  left: "0",
+  top: "0",
+  right: "0",
+  height: "100%",
+  width: "100%"
 };
 const Index = () => (
- 
-  <body style={bodyStyle}>
+  <div style={bodyStyle}>
 	<div className="headerBox"><Header/></div>
   <div className="loginBtnBox"><OAuthLogin/></div>
   <style jsx>{`
@@ -21,7 +27,7 @@ const Index = () => (
     }
   `}
   </style>
-  </body>
+  </div>
 
 );
 

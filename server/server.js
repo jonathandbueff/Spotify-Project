@@ -44,7 +44,9 @@ function getPlaylists(){
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
-      getPlaylistTracks(playlist_info.items[0])
+      console.log(playlist_info);
+      if(playlist_info.total != 0){
+      getPlaylistTracks(playlist_info.items[0])}
     //   for (let x = 0; x <playlist_info.items.length; x++){
     //       getPlaylistTracks(playlist_info.items[x])
     //   }
@@ -75,7 +77,6 @@ function getPlaylistTracks(playlist){
 }
 
 async function getToken(theCode){
-    // console.log(theCode);
     let options = {
       method: 'POST',
       url: 'https://accounts.spotify.com/api/token',
@@ -91,16 +92,9 @@ async function getToken(theCode){
 request(options, function (error, response, body) {
     if(error) throw new Error(error);
     let jsonBody = JSON.parse(body);
-    console.log(body);
     accessToken = jsonBody.access_token;
     refreshToken = jsonBody.refresh_token;
     getPlaylists();
-    // token =accessToken;
-    // redirect();
-    // console.log("ACCESS TOKEN : " + accessToken);
-    // console.log("REFRESH TOKEN : " + refreshToken);
-    // goToHome(accessToken, refreshToken);
-    // response.redirect("http://ec2-18-234-109-238.compute-1.amazonaws.com:3000/?access+token=" + accessToken);
   });
   
   
