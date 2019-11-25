@@ -8,12 +8,13 @@ const Header = () => (
       </Link>
       <div className="dropdown">
         <div className="spanBarBox">
-        <span className="spanBar"></span> 
-        <span className="spanBar"></span> 
-        <span className="spanBar"></span>
+        <span className="spanBar one"></span> 
+        <span className="spanBar two"></span> 
+        <span className="spanBar three"></span>
         </div> 
         <div className="dropdownContent">
-          <h2> HI</h2>
+          <p className="dropdownItem">Hi</p>
+          <p className="dropdownItem">Welcome</p>
         </div>
       </div>
     </div>
@@ -40,6 +41,7 @@ const Header = () => (
         color: white;
         text-decoration: none;
         font-family: console, monospace;
+        transition: color 0.4s;
       }
       .dropdown{
         position: absolute;
@@ -55,9 +57,11 @@ const Header = () => (
         position: relative;
         top:15px;
         right: -15px;
-        width: 160px;
+        width: 180px;
         background-color: black;
-        color: #1DB954;
+        color: #FFF;
+        text-align: left;
+        padding-top: 10px;
       }
       .spanBar{
         display: block;
@@ -69,15 +73,41 @@ const Header = () => (
         margin-top: 3px;
         border-radius: 3px;
         // z-index:1000;
+        transition: transform 1s;
       }
       .spanBarBox{
         float:right;
       }
+      .linkStyle:hover {
+        color:#1DB954;
+      }
+      .dropdown:hover .one{
+        transform: rotate(210deg);
+        
+      }
+      .dropdown:hover .two{
+        transform: rotate(-180deg);
+        
+      }
+      .dropdown:hover .three{
+        transform: rotate(150deg);
+        
+      }
       .dropdown:hover .spanBar{
         background-color: #1DB954;
+        -webkit-transition: 0.1s;
+        transition-duration: 0.1s;
       }
       .dropdown:hover .dropdownContent {
         display: block;
+      }
+      .dropdownItem{
+        padding-left: 10px;
+        padding-bottom: 5px;
+        
+      }
+      .dropdownItem:hover {
+        color:#1DB954;
       }
       
       `}

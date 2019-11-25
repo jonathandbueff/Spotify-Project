@@ -24,12 +24,18 @@ const OAuthLogin = () => (
     .loginBtn{
         position: absolute;
         align-self: center;
-        background-color:#1DB954;
+        background:#1DB954;
         color: #FFF;
         font-size: 14px;
         border: none;
         border-radius: 500px;
         padding: 16px 48px 18px;
+        -webkit-transition: background 0.4s;
+      transition-duration: background 0.4s;
+    }
+    .loginBtn:hover {
+      background: black;
+      color: #1DB954;     
     }
   
   `}
