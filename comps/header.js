@@ -13,7 +13,7 @@ const Header = () => (
         <span className="spanBar three"></span>
         </div> 
         <div className="dropdownContent">
-          <p className="dropdownItem">Hi</p>
+          <p className="dropdownItem itemOne">Hi</p>
           <p className="dropdownItem">Welcome</p>
         </div>
       </div>
@@ -61,7 +61,6 @@ const Header = () => (
         background-color: black;
         color: #FFF;
         text-align: left;
-        padding-top: 10px;
       }
       .spanBar{
         display: block;
@@ -101,10 +100,12 @@ const Header = () => (
       .dropdown:hover .dropdownContent {
         display: block;
       }
+      .itemOne{
+        padding-top: 10px;
+      }
       .dropdownItem{
         padding-left: 10px;
-        padding-bottom: 5px;
-        
+        padding-bottom: 10px;        
       }
       .dropdownItem:hover {
         color:#1DB954;
