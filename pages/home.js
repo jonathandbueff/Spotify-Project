@@ -9,6 +9,7 @@ import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+
 const homeStyle ={
   position: "absolute",
   background: "url('/12.png') no-repeat center fixed",
@@ -79,16 +80,19 @@ const Home = (props) => (
 Home.getInitialProps = async function(req){
   let code = req.query.code;
   let username;
+  let image;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json().then(function(data){
     username= data.username;
+    image = data.image;
   });
   // console.log(JSON.stringify(res.data));
   
   // this.document.getElementById("usernameHere").textContent=username;
   return{
     data: {
-      username: username
+      username: username,
+      image: image
     }
   };
 }

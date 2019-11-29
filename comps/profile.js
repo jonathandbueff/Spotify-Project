@@ -8,7 +8,7 @@ let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 const Profile = (props) => (
     <div>
     <div className="profileHead">
-      {/* <img id="profileImageHere">PROFILE IMAGE</img> */}
+      {/* <img id="profileImageHere"></img> */}
       <div className="profileHeadText">
       <h3 id="usernameHere">{props.data.username}</h3>
       <p id="playlistLikesHere">Playlist likes</p>

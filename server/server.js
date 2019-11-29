@@ -4,19 +4,12 @@ const port = 3456;
 const request = require("request");
 const http = require("http");
 const mysql = require('mysql');
-let con = mysql.createConnection({
-    host: "localhost",
-    user: "spotify",
-    password: "wustl",
-    database: "spotify"
-  });
-  con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-  });
+let con = mysql.createConnection({host: "172.31.18.188",user: "spotify",password: "wustl",database: "spotify"});
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //JOE
-
+// CONNECT TO MYSQL DATABASE
+con.connect(function(err) {if (err) console.log(err); console.log("Connected!");});
+//GLOBAL VARIABLES
 let my_client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
 let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let accessToken;
@@ -26,50 +19,30 @@ let playlist_tracks;
 let tracks_metrics;
 let userData;
 
+//USER PROFILE DATA
 async function getUserProfile(){
     return new Promise((resolve, reject)=>{
-        let options = {
-            method: 'GET',
-            url: 'https://api.spotify.com/v1/me',
-            headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
-        };
+        let options = {method: 'GET', url: 'https://api.spotify.com/v1/me', headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}};
         request(options, function (error, response, body){
           if (error) return reject(error)
-          return resolve (response)
-        });
-    })
-
-    
+          return resolve (response)});})
 }
-
+//USER TOP ARTIST
 async function getUserTopArtist(){
     let topArtistImage;
-    let options = {
-        method: 'GET',
-        url: 'https://api.spotify.com/v1/me/top/artists?limit=1&time_range=medium_term',
-        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
-    };
+    let options = {method: 'GET', url: 'https://api.spotify.com/v1/me/top/artists?limit=1&time_range=medium_term', headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}};
     request(options, async function (error, response, body){
-      if (error) throw new Error(error);
-    });
+      if (error) throw new Error(error);});
 }
+//USER SAVED TRACKS
 function getUserSavedTracks(){
-    let options = {
-        method: 'GET',
-        url: 'https://api.spotify.com/v1/me/tracks',
-        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
-    };
+    let options = {method: 'GET', url: 'https://api.spotify.com/v1/me/tracks', headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}};
     request(options, function (error, response, body){
-      if (error) throw new Error(error);
-      
-    });
+      if (error) throw new Error(error); });
 }
+//USER PLAYLISTS
 function getPlaylists(){
-    let options ={
-        method: 'GET',
-        url: 'https://api.spotify.com/v1/me/playlists',
-        headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}
-    };
+    let options ={method: 'GET', url: 'https://api.spotify.com/v1/me/playlists', headers: {'content-type': 'application/json', authorization: 'Bearer ' + accessToken}};
         request(options, function (error, response, body){
       if (error) throw new Error(error);
       let playlist_info = JSON.parse(body);
@@ -81,7 +54,7 @@ function getPlaylists(){
     //   }
     });
 }
-
+//PLAYLIST TRACKS
 function getPlaylistTracks(playlist){
     let options ={
         method: 'GET',
@@ -104,21 +77,11 @@ function getPlaylistTracks(playlist){
         // }
       });
 }
-function awaitTokens (body){
-    return tempRefresh;
-}
+//TOKEN
 async function getToken(theCode){
     let options = {
-      method: 'POST',
-      url: 'https://accounts.spotify.com/api/token',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      form: {
-        grant_type: 'authorization_code',
-        client_id: my_client_id,
-        client_secret: my_client_secret,
-        code: theCode,
-        redirect_uri: my_redirect_uri
-    } 
+      method: 'POST', url: 'https://accounts.spotify.com/api/token', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      form: { grant_type: 'authorization_code', client_id: my_client_id, client_secret: my_client_secret, code: theCode, redirect_uri: my_redirect_uri} 
 }
 return new Promise((resolve,reject)=>{
     request(options, function (error, response, body) {
@@ -127,45 +90,41 @@ return new Promise((resolve,reject)=>{
     refreshToken = jsonBody.refresh_token;
     accessToken =jsonBody.access_token;
     return resolve("complete")
-    // getPlaylists();
-    // getUserTopArtist();
   });})
-
 }
 
-async function getDataHelper(token){
+//CALLED TO GET DATA FOR HOMEPAGE. ASYNC SO HOMEPAGE WILL WAIT FOR DATA BEFORE LOADING
+async function getDataHelper(){
     let userData = await getUserProfile();
     let parsedData = JSON.parse(userData.body);
-    con.connect(function(err) {
-        // if (err) throw err;
-        console.log("Connected!");
-        let username =JSON.stringify(parsedData.id);
-        let image = null;
-        if (parsedData.images != undefined){
-          image = JSON.stringify(parsedData.images[0].url)}
-        console.log(image);
-        let sql = "INSERT INTO users (username, image, accessToken, refreshToken) VALUES ("+username+","+image+","+accessToken+","+ refreshToken+")";
-        con.query(sql, function (err, result) {
-          
-          console.log("1 record inserted");
-        });
-      });
-    return userData;
-
+    let username =JSON.stringify(parsedData.id);
+    // let image = null;
+    parsedData["image"] = null;
+    if (parsedData.images != undefined){
+      image = JSON.stringify(parsedData.images[0].url)
+      parsedData["image"] = image}
+    let sql = "replace INTO users (username, image, accessToken, refreshToken) VALUES ("+username+","+image+",'"+accessToken+"','"+ refreshToken+"')";
+    con.query(sql, function (err, result) {
+      if(err) console.log(err);
+      console.log("1 record inserted");
+    });
+    return parsedData;
 }
+
+//CALLED ON LOGIN. WAITS FOR TOKEN THEN CALLS getDATAHELPER TO GET HOME PAGE DATA
 app.get('/getCode', async (req,res)=> {
     let theCode = req.query.code;
     try{
         const token = await getToken(theCode)
-        const userData = await getDataHelper(accessToken)
-        let userName = JSON.parse(userData.body).display_name;
-        res.send({username: userName});
+        const parsedUserData = await getDataHelper()
+        let pUser = parsedUserData;
+        console.log(pUser.image);
+        res.send({username: pUser.id, image: pUser.image});
     }
     catch(err){console.log(err)}
-    
 });
 
-
+//START SERVER
 app.listen(port, () => 
 // res.send("HELLO THIS IS YOUR SERVER"),
 console.log(`Example app listening on port ${port}!`));
