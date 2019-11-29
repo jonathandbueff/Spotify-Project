@@ -22,13 +22,15 @@ const Header = () => (
     <style jsx>
       {`
       .headerStyle{
-        position: absolute;
+        font-family: console, monospace;
+        position: fixed;
         background: black;
         height: 50px;
         top: -1px;
         left: -1px;
         right: -1px;
         border: 1px solid #DDD;
+        z-index:100;
       }
       .headerContainer{
         display: inline-block;

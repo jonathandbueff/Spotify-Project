@@ -25,6 +25,7 @@ const OAuthLogin = () => (
         position: absolute;
         align-self: center;
         background:#1DB954;
+        font-family: console, monospace;
         color: #FFF;
         font-size: 14px;
         border: none;

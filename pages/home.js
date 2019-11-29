@@ -3,24 +3,59 @@ import Layout from '../comps/Layout';
 import Router from 'next/router';
 import absoluteUrl from "next-absolute-url";
 import url from "url";
+import Profile from '../comps/profile';
+import Header from '../comps/header';
+import SideBar from '../comps/sideBar';
+import Footer from '../comps/footer';
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+const homeStyle ={
+  position: "absolute",
+  background: "url('/12.png') no-repeat center fixed",
+  backgroundSize: "cover",
+  left: "0",
+  top: "0",
+  right: "0",
+  height: "100%",
+  width: "100%"
+}
 
-// import url from "url";
-// import location from ('location-href');
-// let location = require('location-href');
-// let urlMod = require('url');
-// let express = require('express')
-// let app = express()
-// let axios = require('axios').default;
-// let qs = require('qs');
-// let fs = require("fs");
 const Home = (props) => (
-  <div>
-	<Layout>
-    <h2>Welcome to your home page</h2>
-  {props.someData}
-  </Layout>	
+  <div style={homeStyle}>
+	<Header className="homeHeader"/>	
+  <ul className ="mainProfileBox">
+  <li className="homeProfile" ><Profile {...props} /></li>
+  <li className = "sideBarProfile" ><SideBar ></SideBar></li>
+  </ul>
+  <Footer className="homeFooter"/>
+  <style jsx>{`
+  .mainProfileBox{
+    margin:0;
+    list-style-type: none;
+  }
+  .homeHeader{
+    margin:0;
+    position:fixed;
+  }
+  .homeProfile{
+    margin:0;
+    display: inline-block;
+  }
+  .sideBarProfile{
+    display: inline-block;
+    width: 25vw;
+    position:fixed;
+    right: 0;
+    top: 51px;
+  }
+  .homefooter{
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width:100vw;
+  }
+  `}
+  </style>
   </div>
 );
 
@@ -43,15 +78,18 @@ const Home = (props) => (
 // .then(res=> alert("HI")).catch(err =>console.log(err))
 Home.getInitialProps = async function(req){
   let code = req.query.code;
-  let hello;
+  let username;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json().then(function(data){
-    hello = data.hello;
-    console.log(hello);
+    username= data.username;
   });
   // console.log(JSON.stringify(res.data));
+  
+  // this.document.getElementById("usernameHere").textContent=username;
   return{
-    someData: hello
+    data: {
+      username: username
+    }
   };
 }
 export default Home;
