@@ -7,6 +7,7 @@ import Profile from '../comps/profile';
 import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
+
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
@@ -23,13 +24,29 @@ const homeStyle ={
 
 const Home = (props) => (
   <div style={homeStyle}>
-	<Header className="homeHeader"/>	
+	<Header className="homeHeader"/>
   <ul className ="mainProfileBox">
+  <img className="profileImage" src={props.data.image.substring(1,props.data.image.length-1)} alt="profileimage"/>
+  <img className="artistImage" src={props.data.topArtistImage} alt="profileimage"/>
   <li className="homeProfile" ><Profile {...props} /></li>
-  <li className = "sideBarProfile" ><SideBar ></SideBar></li>
+  <li className = "sideBarProfile" ><SideBar {...props}></SideBar></li>
   </ul>
   <Footer className="homeFooter"/>
   <style jsx>{`
+  .profileImage{
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    max-width: calc( 75vw /2 );
+    max-height: 35vh;
+  }
+  .artistImage{
+    position: absolute;
+    top: 50px;
+    right: 25vw;
+    max-width: calc( 75vw /2 );
+    max-height: 35vh;
+  }
   .mainProfileBox{
     margin:0;
     list-style-type: none;
@@ -60,40 +77,29 @@ const Home = (props) => (
   </div>
 );
 
-
-//   const response = await fetch('http://ec2-18-234-109-238.compute-1.amazonaws.com:3456/getCode',
-//   {
-//     mode: "no-cors"
-//   });
-//   const body = await response.json();
-//   if(response .status!== 200){
-//     throw Error(body.message)
-//   }
-//   return body;
-// };
-
-
-
-
-// Router.events.on('routeChangeComplete', sendCodeToBackend().then(res=> console.log("res")).catch(err=>console.log(err)));
-// .then(res=> alert("HI")).catch(err =>console.log(err))
 Home.getInitialProps = async function(req){
   let code = req.query.code;
   let username;
   let image;
+  let topTracks;
+  let topArtist;
+  let topArtistImage;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json().then(function(data){
     username= data.username;
     image = data.image;
+    topTracks = data.topTracks;
+    topArtistImage = data.topArtistImage;
+
   });
-  // console.log(JSON.stringify(res.data));
-  
-  // this.document.getElementById("usernameHere").textContent=username;
   return{
     data: {
       username: username,
-      image: image
+      image: image,
+      topTracks: topTracks,
+      topArtistImage: topArtistImage
     }
   };
 }
 export default Home;
+

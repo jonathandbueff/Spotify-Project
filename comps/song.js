@@ -1,21 +1,24 @@
-const Song = props => (
+const Song = (props) => (
     <div className="songMain">
     <div className="container songBoxTop">
-        <p className="titleHere">TITLE</p>
-        <p className="artistHere">Artist</p>
-        <p className="listensHere">Listens</p>
+        <p className="titleHere">{props.title}</p>
+        <p className="artistHere">{props.artist}</p>
+        <p className="popularityHere">{props.popularity}</p>
     </div>
     <style jsx>{`
     .titleHere{
       display: inline-block;
+      font-size: 16px;
     }
     .artistHere{
+      font-size: 14px;
       margin:0;
       padding:0;
       display: inline-block;
       padding-left: 15px;
+      color: #1DB954;
     }
-    .listensHere{
+    .popularityHere{
       margin:0;
       padding:0;
       float:right;
@@ -35,5 +38,4 @@ const Song = props => (
     </div>
     
   );
-  
   export default Song;
