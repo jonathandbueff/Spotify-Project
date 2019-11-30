@@ -1,16 +1,18 @@
 import Search from '../comps/search';
+import UserLink from '../comps/userLink';
 const SideBar = props => (
   <div>
     <div className="sideBarBox">
         <h3>Search</h3>
         <Search className="seachBarMain"/>
-        <h3>Friends</h3>
+        <h3>Other Users</h3>
+        <UserLink {...props}/>
+        <UserLink {...props}/>
     </div>
 
     <style jsx>{`
     .searchBarMain{
       position:fixed;
-      
     }
     .sideBarBox{
     padding: 0;

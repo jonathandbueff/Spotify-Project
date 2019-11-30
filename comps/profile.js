@@ -18,11 +18,11 @@ const Profile = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Recently Most Played</h4>
       <ol className = "songList">
-        <li className = "songListItem"><Song></Song></li>
-        <li className = "songListItem"><Song></Song></li>
-        <li className = "songListItem"><Song></Song></li>
-        <li className = "songListItem"><Song></Song></li>
-        <li className = "songListItem"><Song></Song></li>
+        <li className = "songListItem"><Song {...props.data.topTracks[0]}/></li>
+        <li className = "songListItem"><Song {...props.data.topTracks[1]}/></li>
+        <li className = "songListItem"><Song {...props.data.topTracks[2]}/></li>
+        <li className = "songListItem"><Song {...props.data.topTracks[3]}/></li>
+        <li className = "songListItem"><Song {...props.data.topTracks[4]}/></li>
       </ol>
       </div> 
       <div className="playlistContainer">
@@ -102,7 +102,9 @@ const Profile = (props) => (
       padding: 0px;
       text-align: center;
       position: relative;
+      color: white;
       top: calc( 35vh - 155px);
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
     .songList{
       margin: 0px;
@@ -124,5 +126,5 @@ const Profile = (props) => (
   </style>
     </div>
   );
-
+    
   export default Profile;

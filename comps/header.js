@@ -13,8 +13,8 @@ const Header = () => (
         <span className="spanBar three"></span>
         </div> 
         <div className="dropdownContent">
-          <p className="dropdownItem itemOne">Hi</p>
-          <p className="dropdownItem">Welcome</p>
+          <p className="dropdownItem itemOne">Welcome</p>
+          <p className="dropdownItem"></p>
         </div>
       </div>
     </div>
