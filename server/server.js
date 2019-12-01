@@ -256,7 +256,7 @@ async function getDataHelper() {
   let userTopArtist = await getUserTopArtist();
   currentUsername = username;
   let topTracks = await getTopTracks(); // [{title: string, popularity: int, artist: string}]
-  let playlists = await getPlaylists(); // undefined still
+  let allPlaylists = await getPlaylists(); // undefined still
   parsedUserData["image"] = null;
   if (parsedUserData.images != undefined) {
     image = JSON.stringify(parsedUserData.images[0].url);
@@ -285,7 +285,7 @@ async function getDataHelper() {
     username: parsedUserData.id,
     image: parsedUserData.image,
     topTracks: topTracks,
-    playlists: playlists,
+    allPlaylists: allPlaylists,
     topArtist: userTopArtist.topArtist,
     topArtistImage: userTopArtist.topArtistImage
   };
