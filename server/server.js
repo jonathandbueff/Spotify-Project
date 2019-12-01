@@ -164,10 +164,11 @@ function getPlaylistHelper(playlists) {
   parsedPlaylists.forEach(playlist => {
     let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
-    listOfPlaylists[index] = {
-      title: playlistName,
-      image: playlistImage
-    };
+    console.log(playlistName);
+    // listOfPlaylists[index] = {
+    //   title: playlistName,
+    //   image: playlistImage
+    // };
     // let sql =
     //   "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
     //   currentUsername +
@@ -197,8 +198,7 @@ function getPlaylistHelper(playlists) {
     // });
     index++;
   });
-  console.log(listOfPlaylists);
-  return listOfPlaylists;
+  return parsedPlaylists;
 }
 
 
