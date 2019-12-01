@@ -24,22 +24,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[0]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[1]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[2]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[3]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[4]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[5]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[6]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[7]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[8]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[9]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[10]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[11]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[12]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[13]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[14]}/> </li>
-          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[15]}/> </li>
+          {props.data.allPlaylists.map(p => (<li className = "playlistListItem" key={p.name}><Playlist {...p}/></li>))}
         </ol>
       </div>
 
