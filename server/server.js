@@ -80,7 +80,6 @@ async function getTopTracks() {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body);
       let returnValue = topTracksHelper(response);
       return resolve(returnValue);
     });
@@ -156,53 +155,49 @@ async function getPlaylists() {
   });
 }
 
-function getPlaylistHelper(topTracks) {
-  let parsedTopTracks = JSON.parse(topTracks.body).items;
-  let tracks = [];
+function getPlaylistHelper(playlists) {
+  let parsedPlaylists = JSON.parse(playlists.body).items;
+  let playlists = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
-  parsedTopTracks.forEach(track => {
-    let trackArtists = "L";
-    let trackJSON = JSON.stringify(track);
-    track.artists.forEach(artist => {
-      trackArtists += artist.name + ", ";
-    });
-    trackArtists = trackArtists.substring(1, trackArtists.length - 2);
-    tracks[index] = {
-      title: track.name,
-      popularity: track.popularity,
-      artist: trackArtists
+  parsedPlaylists.forEach(playlist => {
+    let playlistImage = playlist.image.url;
+    let playlistName = playlist.name;
+    playlists[index] = {
+      title: playlistName,
+      image: playlistImage
     };
-    let sql =
-      "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
-      currentUsername +
-      "," +
-      index +
-      ",'" +
-      track.name +
-      "'," +
-      track.popularity +
-      ",'" +
-      trackArtists +
-      "','" +
-      trackJSON +
-      "') ON DUPLICATE KEY UPDATE rank = " +
-      index +
-      ", title = '" +
-      track.name +
-      "', popularity=" +
-      track.popularity +
-      ", artist='" +
-      trackArtists +
-      "', track='" +
-      trackJSON +
-      "'";
-    con.query(sql, function(err, result) {
-      if (err) console.log(err);
-    });
+    console.log(playlistName);
+    // let sql =
+    //   "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
+    //   currentUsername +
+    //   "," +
+    //   index +
+    //   ",'" +
+    //   track.name +
+    //   "'," +
+    //   track.popularity +
+    //   ",'" +
+    //   trackArtists +
+    //   "','" +
+    //   trackJSON +
+    //   "') ON DUPLICATE KEY UPDATE rank = " +
+    //   index +
+    //   ", title = '" +
+    //   track.name +
+    //   "', popularity=" +
+    //   track.popularity +
+    //   ", artist='" +
+    //   trackArtists +
+    //   "', track='" +
+    //   trackJSON +
+    //   "'";
+    // con.query(sql, function(err, result) {
+    //   if (err) console.log(err);
+    // });
     index++;
   });
-  return tracks;
+  return playlists;
 }
 
 
