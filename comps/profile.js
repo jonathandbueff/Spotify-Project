@@ -28,17 +28,14 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
-        props.data.allPlaylists.forEach(element => {
-          console.log(element)
-          // <li className = "playlistListItem"><Playlist {...element}/> </li>
-        });
-          {/* <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[0]}/> </li>
+          <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[30]}/> </li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li> */}
+          <li className = "playlistListItem"><Playlist></Playlist></li>
         </ol>
       </div>
+
       <style jsx>{`
       .playlistListTitle{
         margin:0;
