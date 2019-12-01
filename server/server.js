@@ -167,7 +167,6 @@ function getPlaylistHelper(playlists) {
       title: playlistName,
       image: playlistImage
     };
-    console.log(playlistName);
     // let sql =
     //   "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
     //   currentUsername +
@@ -197,6 +196,7 @@ function getPlaylistHelper(playlists) {
     // });
     index++;
   });
+  console.log(listOfPlaylists);
   return listOfPlaylists;
 }
 

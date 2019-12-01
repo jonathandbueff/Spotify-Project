@@ -82,7 +82,6 @@ Home.getInitialProps = async function(req){
   let username;
   let image;
   let topTracks;
-  let playlists;
   let topArtist;
   let topArtistImage;
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
@@ -90,7 +89,6 @@ Home.getInitialProps = async function(req){
     username= data.username;
     image = data.image;
     topTracks = data.topTracks;
-    // playlists = data.playlists;
     topArtistImage = data.topArtistImage;
 
   });
@@ -99,7 +97,6 @@ Home.getInitialProps = async function(req){
       username: username,
       image: image,
       topTracks: topTracks,
-      // playlists: playlists,
       topArtistImage: topArtistImage
     }
   };
