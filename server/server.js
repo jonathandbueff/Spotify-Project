@@ -147,27 +147,79 @@ function getUserSavedTracks() {
     if (error) throw new Error(error);
   });
 }
-//USER PLAYLISTS
-function getPlaylists() {
-  let options = {
-    method: "GET",
-    url: "https://api.spotify.com/v1/me/playlists",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + accessToken
-    }
-  };
-  request(options, function(error, response, body) {
-    if (error) throw new Error(error);
-    let playlist_info = JSON.parse(body);
-    //   console.log(playlist_info);
-    //   if(playlist_info.total != 0){
-    //   getPlaylistTracks(playlist_info.items[0])}
-    //   for (let x = 0; x <playlist_info.items.length; x++){
-    //       getPlaylistTracks(playlist_info.items[x])
-    //   }
+
+// gets users playlist
+async function getPlaylists() {
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/me/playlists",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      console.log(body);
+      // let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
+    });
   });
 }
+
+function getPlaylistHelper(topTracks) {
+  let parsedTopTracks = JSON.parse(topTracks.body).items;
+  let tracks = [];
+  let index = 0;
+  //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
+  parsedTopTracks.forEach(track => {
+    let trackArtists = "L";
+    let trackJSON = JSON.stringify(track);
+    track.artists.forEach(artist => {
+      trackArtists += artist.name + ", ";
+    });
+    trackArtists = trackArtists.substring(1, trackArtists.length - 2);
+    tracks[index] = {
+      title: track.name,
+      popularity: track.popularity,
+      artist: trackArtists
+    };
+    let sql =
+      "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
+      currentUsername +
+      "," +
+      index +
+      ",'" +
+      track.name +
+      "'," +
+      track.popularity +
+      ",'" +
+      trackArtists +
+      "','" +
+      trackJSON +
+      "') ON DUPLICATE KEY UPDATE rank = " +
+      index +
+      ", title = '" +
+      track.name +
+      "', popularity=" +
+      track.popularity +
+      ", artist='" +
+      trackArtists +
+      "', track='" +
+      trackJSON +
+      "'";
+    con.query(sql, function(err, result) {
+      if (err) console.log(err);
+    });
+    index++;
+  });
+  return tracks;
+}
+
+
+
 //PLAYLIST TRACKS
 function getPlaylistTracks(playlist) {
   let options = {
