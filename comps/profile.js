@@ -28,7 +28,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
-          <li className = "playlistListItem"><Playlist></Playlist></li>
+          <li className = "playlistListItem"><Playlist> {...props.data.allPlaylists[0]}</Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
