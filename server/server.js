@@ -157,7 +157,6 @@ async function getPlaylists() {
 
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
-  console.log(parsedPlaylists);
   let listOfPlaylists = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
