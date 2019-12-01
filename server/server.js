@@ -164,7 +164,7 @@ async function getPlaylists() {
       if (error) return reject(error);
       console.log(body);
       // let returnValue = getPlaylistHelper(response);
-      return resolve(returnValue);
+      // return resolve(returnValue);
     });
   });
 }
