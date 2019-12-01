@@ -99,7 +99,7 @@ Home.getInitialProps = async function(req){
       username: username,
       image: image,
       topTracks: topTracks,
-      allPlaylists = data.allPlaylists,
+      allPlaylists: data.allPlaylists,
       topArtistImage: topArtistImage
     }
   };
