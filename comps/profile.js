@@ -29,7 +29,8 @@ const Profile = (props) => (
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
         props.data.allPlaylists.forEach(element => {
-          <li className = "playlistListItem"><Playlist {...element}/> </li>
+          console.log(element)
+          // <li className = "playlistListItem"><Playlist {...element}/> </li>
         });
           {/* <li className = "playlistListItem"><Playlist {...props.data.allPlaylists[0]}/> </li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
