@@ -157,13 +157,13 @@ async function getPlaylists() {
 
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
-  let playlists = [];
+  let listOfPlaylists = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
   parsedPlaylists.forEach(playlist => {
     let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
-    playlists[index] = {
+    listOfPlaylists[index] = {
       title: playlistName,
       image: playlistImage
     };
@@ -197,7 +197,7 @@ function getPlaylistHelper(playlists) {
     // });
     index++;
   });
-  return playlists;
+  return listOfPlaylists;
 }
 
 
