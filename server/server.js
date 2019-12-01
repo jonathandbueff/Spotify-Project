@@ -286,6 +286,7 @@ async function getDataHelper() {
     username: parsedUserData.id,
     image: parsedUserData.image,
     topTracks: topTracks,
+    allPlaylists: allPlaylists,
     topArtist: userTopArtist.topArtist,
     topArtistImage: userTopArtist.topArtistImage
   };
