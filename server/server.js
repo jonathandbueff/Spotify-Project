@@ -164,11 +164,13 @@ function getPlaylistHelper(playlists) {
   parsedPlaylists.forEach(playlist => {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
+    let owner = playlist.owner.display_name
     console.log(playlistName);
-    // listOfPlaylists[index] = {
-    //   title: playlistName,
-    //   image: playlistImage
-    // };
+    console.log(owner);
+    listOfPlaylists[index] = {
+      title: playlistName,
+      creator: owner
+    };
     // let sql =
     //   "insert INTO topSongs(username, rank, title, popularity, artist, track) VALUES (" +
     //   currentUsername +
@@ -257,7 +259,7 @@ async function getDataHelper() {
   let userTopArtist = await getUserTopArtist();
   currentUsername = username;
   let topTracks = await getTopTracks(); // [{title: string, popularity: int, artist: string}]
-  let allPlaylists = await getPlaylists(); // [{title: string, image: url link}]
+  let allPlaylists = await getPlaylists(); // [{title: string, creator: string}]
   parsedUserData["image"] = null;
   if (parsedUserData.images != undefined) {
     image = JSON.stringify(parsedUserData.images[0].url);
