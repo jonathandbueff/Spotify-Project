@@ -157,6 +157,7 @@ async function getPlaylists() {
 
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
+  console.log(parsedPlaylists);
   let listOfPlaylists = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
@@ -256,7 +257,7 @@ async function getDataHelper() {
   let userTopArtist = await getUserTopArtist();
   currentUsername = username;
   let topTracks = await getTopTracks(); // [{title: string, popularity: int, artist: string}]
-  // let allPlaylists = await getPlaylists(); // [{title: string, image: url link}]
+  let allPlaylists = await getPlaylists(); // [{title: string, image: url link}]
   parsedUserData["image"] = null;
   if (parsedUserData.images != undefined) {
     image = JSON.stringify(parsedUserData.images[0].url);
