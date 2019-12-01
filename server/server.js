@@ -80,6 +80,7 @@ async function getTopTracks() {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
+      console.log(body);
       let returnValue = topTracksHelper(response);
       return resolve(returnValue);
     });
@@ -133,20 +134,7 @@ function topTracksHelper(topTracks) {
   });
   return tracks;
 }
-//USER SAVED TRACKS
-function getUserSavedTracks() {
-  let options = {
-    method: "GET",
-    url: "https://api.spotify.com/v1/me/tracks",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + accessToken
-    }
-  };
-  request(options, function(error, response, body) {
-    if (error) throw new Error(error);
-  });
-}
+
 
 // gets users playlist
 async function getPlaylists() {
@@ -162,9 +150,8 @@ async function getPlaylists() {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body);
-      // let returnValue = getPlaylistHelper(response);
-      // return resolve(returnValue);
+      let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
     });
   });
 }
