@@ -5,7 +5,7 @@
 const UserLink = props => (
   <div>
     <div className="userLinkBox">
-    <img className="profilePic" src={props.data.image.substring(1,props.data.image.length-1)}></img>
+    <img className="profilePic" src={props.data.image}></img>
     <div className="userInfo">
         <p className="userLinkusername">USERNAME</p>
     </div>

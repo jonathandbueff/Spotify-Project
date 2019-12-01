@@ -1,8 +1,8 @@
 const Song = (props) => (
     <div className="songMain">
     <div className="container songBoxTop">
-        <p className="titleHere">{props.title}</p>
-        <p className="artistHere">{props.artist}</p>
+        <p className="titleHere">{props.name}</p>
+        <p className="artistHere">{props.artists[0].name}</p>
         <p className="popularityHere">{props.popularity}</p>
     </div>
     <style jsx>{`
