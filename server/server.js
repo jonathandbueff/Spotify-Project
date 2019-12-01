@@ -165,8 +165,6 @@ function getPlaylistHelper(playlists) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name
-    console.log(playlistName);
-    console.log(owner);
     listOfPlaylists[index] = {
       title: playlistName,
       creator: owner
@@ -200,7 +198,7 @@ function getPlaylistHelper(playlists) {
     // });
     index++;
   });
-  return parsedPlaylists;
+  return listOfPlaylists;
 }
 
 
