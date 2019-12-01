@@ -185,11 +185,6 @@ function getPlaylistTracks(playlist) {
     let obj = JSON.parse(track_info.items[0].track);
     // console.log(obj);
 
-    // for (let x = 0; x <track_info.items.length; x++){
-    //     console.log(track_info.items[x][12]);
-    // }
-    // //loop through each track in a playlist
-    // for (let x =0; x < body.items.length; x++){
 
     // }
   });
