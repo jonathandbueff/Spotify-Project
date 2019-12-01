@@ -162,7 +162,7 @@ function getPlaylistHelper(playlists) {
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
   parsedPlaylists.forEach(playlist => {
-    let playlistImage = playlist.image.url;
+    // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     console.log(playlistName);
     // listOfPlaylists[index] = {
