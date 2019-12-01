@@ -90,7 +90,7 @@ Home.getInitialProps = async function(req){
     username= data.username;
     image = data.image;
     topTracks = data.topTracks;
-    allPlaylists = data.allPlaylists;
+    // allPlaylists = data.allPlaylists;
     topArtistImage = data.topArtistImage;
 
   });
@@ -99,7 +99,7 @@ Home.getInitialProps = async function(req){
       username: username,
       image: image,
       topTracks: topTracks,
-      allPlaylists: data.allPlaylists,
+      // allPlaylists: data.allPlaylists,
       topArtistImage: topArtistImage
     }
   };
