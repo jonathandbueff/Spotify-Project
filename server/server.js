@@ -28,7 +28,6 @@ app.use(function (req,res ,next){
 let my_client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
 let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let my_redirect_uri = awsinstance + ":3000/home";
-let playlist_tracks;
 let tracks_metrics;
 
 //USER PROFILE DATA
@@ -108,17 +107,17 @@ async function getPlaylists(accessToken) {
     });
   });
 }
+
 function getPlaylistHelper(playlists,accessToken) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
   let index = 0;
-  //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
+
   parsedPlaylists.forEach(playlist => {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
     let playlistTracksHref = playlist.tracks.href;
-    getPlaylistTracks(playlistName, playlistTracksHref,accessToken);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -131,8 +130,50 @@ function getPlaylistHelper(playlists,accessToken) {
   return JSON.stringify(listOfPlaylists);
 }
 
-// Call this function for each playlist in parsedPlaylist and retrieve tracks
-function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
+//PLAYLIST TRACKS
+async function getPlaylistTracks(accessToken) {
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/me/playlists",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      let returnValue = getPlaylistTracksHelper(response,accessToken);
+      return resolve(returnValue);
+    });
+  });
+}
+
+function getPlaylistTracksHelper(playlists,accessToken) {
+  let parsedPlaylists = JSON.parse(playlists.body).items;
+  let playlist_tracks = [];
+  let index = 0;
+  //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
+  parsedPlaylists.forEach(playlist => {
+    // let playlistImage = playlist.image.url;
+    let playlistName = playlist.name;
+    let tracks_JSON = getTracksOfPlaylist(playlistTracksHref,accessToken);
+    // let linkToTracks = playlist.tracks.href;
+    // console.log(linkToTracks);
+    playlist_tracks[index] = {
+      title: playlistName,
+      tracks: track_JSON
+    };
+    index++;
+  });
+  return JSON.stringify(playlist_tracks);
+}
+
+
+
+// // Call this function for each playlist in parsedPlaylist and retrieve tracks
+function getTracksOfPlaylist(playlistTracksHref,accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -145,7 +186,6 @@ function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body);
       return resolve(body);
     });
   });
@@ -200,6 +240,8 @@ async function insertDataHelper(jsonToken) {
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
+  let userPlaylist_tracks = await getPlaylistTracks(accessToken);
+  console.log(userPlaylist_tracks);
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
