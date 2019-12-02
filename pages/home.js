@@ -88,6 +88,7 @@ Home.getInitialProps = async function(req){
   let topTracks;
   let topArtist;
   let topArtistImage;
+  let allPlaylists;
   if (count == 0){
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json();
@@ -105,7 +106,8 @@ Home.getInitialProps = async function(req){
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
-    allUsers: allUsers
+    allUsers: allUsers,
+    allPlaylists: JSON.parse(dataAll[0].playlists)
   }};
 }
 export default Home;

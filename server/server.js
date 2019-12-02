@@ -116,13 +116,35 @@ function getPlaylistHelper(playlists) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
+    // let linkToTracks = playlist.tracks.href;
+    // console.log(linkToTracks);
     listOfPlaylists[index] = {
       title: playlistName,
       creator: owner
+      // tracks: linkToTracks
     };
     index++;
   });
-  return listOfPlaylists;
+  return JSON.stringify(listOfPlaylists);
+}
+// Call this function for each playlist in parsedPlaylist and retrieve tracks
+async function getPlaylistTracks(accessToken) {
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/me/playlists",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
+    });
+  });
 }
 
 //TOKEN
@@ -161,7 +183,6 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   let refreshToken = data.refreshToken;
   let userTopTracks = data.userTopTracks;
   let userAllPlaylists = data.userAllPlaylists;
-  console.log(userAllPlaylists);
   let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+"','"+ userAllPlaylists+"') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', playlists ='"+userAllPlaylists+"'";
   con.query(sqlUsers, function (err, result) {
     if (err) console.log(err);
