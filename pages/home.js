@@ -88,6 +88,7 @@ Home.getInitialProps = async function(req){
   let topTracks;
   let topArtist;
   let topArtistImage;
+  let allPlaylists;
   if (count == 0){
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
   const data = await res.json();
@@ -96,6 +97,7 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
+  console.log(dataAll.playlists);
   // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   // const otherUsers = await result2.json();
   // console.log(otherUsers);
@@ -103,7 +105,8 @@ Home.getInitialProps = async function(req){
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
-    topTracks: JSON.parse(dataAll[0].topTracks).items
+    topTracks: JSON.parse(dataAll[0].topTracks).items,
+    // allPlaylists: dataAll.playlists
   }};
 }
 export default Home;
