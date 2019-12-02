@@ -7,6 +7,9 @@ import Profile from '../comps/profile';
 import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
+import nextCookie from 'next-cookies';
+
+
 
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
@@ -26,8 +29,8 @@ const Home = (props) => (
   <div style={homeStyle}>
 	<Header className="homeHeader"/>
   <ul className ="mainProfileBox">
-  <img className="profileImage" src={props.data.image.substring(1,props.data.image.length-1)} alt="profileimage"/>
-  <img className="artistImage" src={props.data.topArtistImage} alt="profileimage"/>
+  <img className="profileImage" src={props.data.image} alt="profileimage"/>
+  <img className="artistImage" src={props.data.topArtistUrl} alt="profileimage"/>
   <li className="homeProfile" ><Profile {...props} /></li>
   <li className = "sideBarProfile" ><SideBar {...props}></SideBar></li>
   </ul>
@@ -76,33 +79,30 @@ const Home = (props) => (
   </style>
   </div>
 );
-
+let count = 0;
+let accessToken;
+let username;
 Home.getInitialProps = async function(req){
   let code = req.query.code;
-  let username;
   let image;
   let topTracks;
   let allPlaylists;
   let topArtist;
   let topArtistImage;
+  if (count == 0){
   const res = await fetch(awsinstance+':3456/getCode?code='+code);
-  const data = await res.json().then(function(data){
-    username= data.username;
-    image = data.image;
-    topTracks = data.topTracks;
-    allPlaylists = data.allPlaylists;
-    topArtistImage = data.topArtistImage;
+  const data = await res.json();
+  accessToken=data.accessToken; 
+  username = data.username;
+}
 
-  });
-  return{
-    data: {
-      username: username,
-      image: image,
-      topTracks: topTracks,
-      allPlaylists: allPlaylists,
-      topArtistImage: topArtistImage
-    }
-  };
+  const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
+  const dataAll = await result.json();
+  return{data: {
+    image: dataAll[0].image,
+    topArtistUrl: dataAll[0].topArtistUrl,
+    topTracks: JSON.parse(dataAll[0].topTracks).items
+  }};
 }
 export default Home;
 
