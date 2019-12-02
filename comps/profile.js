@@ -18,7 +18,7 @@ const Profile = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Recently Most Played</h4>
       <ol className = "songList">
-        {props.data.topTracks.map(p => (<li className = "songListItem" key={p.name}><Song {...p}/></li>))}
+        {props.data.topTracks.map(p => (<li className ="songListItem" key={p.name}><Song {...p}/></li>))}
       </ol>
       </div> 
       <div className="playlistContainer">
