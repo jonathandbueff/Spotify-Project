@@ -24,11 +24,13 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
+        {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.name}><Playlist {...p}/></li>))}
+
+          {/* <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
           <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
+          <li className = "playlistListItem"><Playlist></Playlist></li> */}
         </ol>
       </div>
       <style jsx>{`
