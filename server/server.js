@@ -5,7 +5,7 @@ const request = require("request");
 const http = require("http");
 const mysql = require("mysql");
 let con = mysql.createConnection({
-  host: "localhost",
+  host: "172.31.18.188",
   user: "spotify",
   password: "wustl",
   database: "spotify"
