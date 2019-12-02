@@ -6,8 +6,8 @@ const http = require("http");
 const mysql = require("mysql");
 let con = mysql.createConnection({
   host: "localhost",
-  user: "spotify",
-  password: "wustl",
+  user: "JonathanBueff",
+  password: "Jdbvb21!",
   database: "spotify"
 });
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
