@@ -118,7 +118,7 @@ function getPlaylistHelper(playlists,accessToken) {
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
     let playlistTracksHref = playlist.tracks.href;
-    getPlaylistTracks(playlistTracksHref,accessToken);
+    getPlaylistTracks(playlistName, playlistTracksHref,accessToken);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -132,7 +132,7 @@ function getPlaylistHelper(playlists,accessToken) {
 }
 
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-function getPlaylistTracks(playlistTracksHref,accessToken) {
+function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -143,9 +143,10 @@ function getPlaylistTracks(playlistTracksHref,accessToken) {
         authorization: "Bearer " + accessToken
       }
     };
+    let parsedPlaylist = JSON.parse(body).items;
+    console.log(parsedPlaylist);
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body);
       return resolve(body);
     });
   });
