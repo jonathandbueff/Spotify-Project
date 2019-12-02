@@ -97,7 +97,7 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  console.log(JSON.parse(dataAll[0].topTracks).items)
+  console.log(JSON.parse(dataAll[0].playlists))
   // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   // const otherUsers = await result2.json();
   // console.log(otherUsers);
