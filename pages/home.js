@@ -97,7 +97,14 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  console.log(username);
+
+  let getPlaylists ="select playlists from users where username ='"+username+"'";
+  con.query(getPlaylists, async function(err,result, fields){
+    if(err){console.log(err)};
+    return callback(result);
+  });
+  
+  console.log(getPlaylists);
   // console.log(dataAll[0].playlists);
   // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   // const otherUsers = await result2.json();
