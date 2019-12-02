@@ -86,7 +86,6 @@ Home.getInitialProps = async function(req){
   let code = req.query.code;
   let image;
   let topTracks;
-  let allPlaylists;
   let topArtist;
   let topArtistImage;
   if (count == 0){
@@ -97,9 +96,9 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
-  const otherUsers = await result2.json();
-  console.log(otherUsers);
+  // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
+  // const otherUsers = await result2.json();
+  // console.log(otherUsers);
 
   return{data: {
     image: dataAll[0].image,
