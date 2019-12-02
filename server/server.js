@@ -110,8 +110,8 @@ async function getPlaylists(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      // let returnValue = getPlaylistHelper(response);
-      return resolve(body);
+      let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
     });
   });
 }
@@ -216,7 +216,7 @@ async function insertDataHelper(jsonToken) {
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
-  console.log(userAllPlaylists);
+  // console.log(userAllPlaylists);
   let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, userAllPlaylists: userAllPlaylists, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
