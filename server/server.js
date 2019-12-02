@@ -108,7 +108,7 @@ async function getPlaylists(accessToken) {
   });
 }
 
-function getPlaylistHelper(playlists,accessToken) {
+function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
   let index = 0;
