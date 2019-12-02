@@ -10,10 +10,12 @@ const Playlist = props => (
       display: inline-block;
     }
     .creatorHere{
+      font-size: 14px;
       margin:0;
       padding:0;
       display: inline-block;
       padding-left: 15px;
+      color: #1DB954;
     }
     .ratingHere{
       margin:0;
