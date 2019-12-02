@@ -202,7 +202,7 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   let refreshToken = data.refreshToken;
   let userTopTracks = data.userTopTracks;
   let userAllPlaylists = data.userAllPlaylists;
-  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "','"+ userAllPlaylists + "') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', allPlaylists = '"+userAllPlaylists+"' ";
+  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "','"+ userAllPlaylists + "') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', playlists = '"+userAllPlaylists+"' ";
   con.query(sqlUsers, function (err, result) {
     if (err) console.log(err);
   });
