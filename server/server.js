@@ -103,12 +103,12 @@ async function getPlaylists(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let returnValue = getPlaylistHelper(response);
+      let returnValue = getPlaylistHelper(response,accessToken);
       return resolve(returnValue);
     });
   });
 }
-function getPlaylistHelper(playlists) {
+function getPlaylistHelper(playlists,accessToken) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
   let index = 0;
@@ -118,7 +118,7 @@ function getPlaylistHelper(playlists) {
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
     let playlistTracksHref = playlist.tracks.href;
-    getPlaylistTracks(playlistTracksHref);
+    getPlaylistTracks(playlistTracksHref,accessToken);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -132,7 +132,7 @@ function getPlaylistHelper(playlists) {
 }
 
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-function getPlaylistTracks(playlistTracksHref) {
+function getPlaylistTracks(playlistTracksHref,accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
