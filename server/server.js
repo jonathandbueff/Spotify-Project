@@ -110,8 +110,8 @@ async function getPlaylists(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let returnValue = getPlaylistHelper(response);
-      return resolve(returnValue);
+      // let returnValue = getPlaylistHelper(response);
+      return resolve(body);
     });
   });
 }
