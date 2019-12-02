@@ -120,8 +120,6 @@ function getPlaylistHelper(playlists,accessToken) {
     let owner = playlist.owner.display_name;
     let playlistTracksHref = playlist.tracks.href;
 
-    let tracks_JSON = getPlaylistTracks(playlistName, playlistTracksHref,accessToken);
-    console.log(tracks_JSON);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -206,6 +204,11 @@ async function insertDataHelper(jsonToken) {
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
+  
+  // get tracks for each playlist
+  console.log(userAllPlaylists);
+
+  
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
