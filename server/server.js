@@ -5,7 +5,7 @@ const request = require("request");
 const http = require("http");
 const mysql = require("mysql");
 let con = mysql.createConnection({
-  host: "172.31.18.188",
+  host: "localhost",
   user: "spotify",
   password: "wustl",
   database: "spotify"
@@ -110,13 +110,35 @@ function getPlaylistHelper(playlists) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
+    // let linkToTracks = playlist.tracks.href;
+    // console.log(linkToTracks);
     listOfPlaylists[index] = {
       title: playlistName,
-      creator: owner
+      creator: owner,
+      // tracks: linkToTracks
     };
     index++;
   });
   return listOfPlaylists;
+}
+// Call this function for each playlist in parsedPlaylist and retrieve tracks
+async function getPlaylistTracks(accessToken) {
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/me/playlists",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
+    });
+  });
 }
 
 //TOKEN
