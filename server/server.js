@@ -10,6 +10,7 @@ let con = mysql.createConnection({
   password: "wustl",
   database: "spotify"
 });
+
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
 // let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 // CONNECT TO MYSQL DATABASE
@@ -110,6 +111,8 @@ function getPlaylistHelper(playlists) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
+    let playlistTracksHref = playlist.tracks.href;
+    getPlaylistTracks(playlistTracksHref);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -121,13 +124,14 @@ function getPlaylistHelper(playlists) {
   });
   return JSON.stringify(listOfPlaylists);
 }
+
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-async function getPlaylistTracks(accessToken) {
+async function getPlaylistTracks(playlistTracksHref) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
       url: 
-        "https://api.spotify.com/v1/me/playlists",
+        playlistTracksHref,
       headers: {
         "content-type": "application/json",
         authorization: "Bearer " + accessToken
@@ -135,8 +139,8 @@ async function getPlaylistTracks(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let returnValue = getPlaylistHelper(response);
-      return resolve(returnValue);
+      console.log(body);
+      return resolve(body);
     });
   });
 }

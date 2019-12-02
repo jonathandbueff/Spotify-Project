@@ -5,6 +5,11 @@ import Playlist from './playlist';
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
+
+// Playlist Pages Redirect
+let redirect_uri = awsinstance + ":3000/playlistInfo";
+
+
 const Profile = (props) => (
     <div>
     <div className="profileHead">
@@ -23,15 +28,11 @@ const Profile = (props) => (
       </div> 
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
+        {/* <a href = {redirect_uri} > */}
         <ol className="playlist">
-        {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.name}><Playlist {...p}/></li>))}
-
-          {/* <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li> */}
+          {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.name}><Playlist {...p}/></li>))}
         </ol>
+        {/* </a> */}
       </div>
       <style jsx>{`
       .playlistListTitle{
