@@ -201,20 +201,22 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   let accessToken = data.accessToken;
   let refreshToken = data.refreshToken;
   let userTopTracks = data.userTopTracks;
-  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+"') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"'";
+  let userAllPlaylists = data.userAllPlaylists;
+  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "','"+ userAllPlaylists + "') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', allPlaylists = '"+userAllPlaylists+"' ";
   con.query(sqlUsers, function (err, result) {
     if (err) console.log(err);
   });
   return ({username: username});
 }
+
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
   let refreshToken = jsonToken.refresh;
   let profileData = await getUserProfile(accessToken);
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
-  let allPlaylists = await getPlaylists(accessToken);
-  let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, allPlaylists: allPlaylists, accessToken: accessToken, refreshToken: refreshToken };
+  let userAllPlaylists = await getPlaylists(accessToken);
+  let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, userAllPlaylists: userAllPlaylists, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
 }
