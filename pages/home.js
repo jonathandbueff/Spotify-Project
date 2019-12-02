@@ -94,10 +94,12 @@ Home.getInitialProps = async function(req){
   accessToken=data.accessToken; 
   username = data.username;
 }
-
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  // console.log(dataAll);
+  const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
+  const otherUsers = await result2.json();
+  console.log(otherUsers);
+
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,

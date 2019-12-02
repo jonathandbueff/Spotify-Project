@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const port = 3456;
@@ -208,7 +207,6 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   });
   return ({username: username});
 }
-
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
   let refreshToken = jsonToken.refresh;
@@ -255,7 +253,21 @@ app.get("/getData", async (req, res) => {
   });
 });
 
-
+async function getOtherUserData(usernameToken, callback){
+  let username = usernameToken.username;
+  let sql = "select username, image from users";
+  con.query(sql, async function(err,result, fields){
+    if(err){console.log(err)};
+    return callback(result);
+  })
+}
+app.get("/getOtherUsers", async (req, res) => {
+  let accessToken = req.query.token;
+  let username = req.query.username;
+  getOtherUserData({accessToken: accessToken, username: username}, function(result){
+    res.send(result);
+  });
+});
 
 //START SERVER
 app.listen(port, () =>
