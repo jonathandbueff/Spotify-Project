@@ -106,7 +106,7 @@ Home.getInitialProps = async function(req){
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
-    // allPlaylists: dataAll.playlists
+    allPlaylists: dataAll[0].playlists
   }};
 }
 export default Home;
