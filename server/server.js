@@ -188,7 +188,6 @@ function getTracksOfPlaylist(playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body);
       return resolve(body);
     });
   });
