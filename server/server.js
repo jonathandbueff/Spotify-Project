@@ -111,6 +111,7 @@ async function getPlaylists(accessToken) {
 function getPlaylistHelper(playlists,accessToken) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
+  let playlist_tracks = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
   parsedPlaylists.forEach(playlist => {
@@ -118,7 +119,9 @@ function getPlaylistHelper(playlists,accessToken) {
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
     let playlistTracksHref = playlist.tracks.href;
-    getPlaylistTracks(playlistName, playlistTracksHref,accessToken);
+
+    let tracks_JSON = getPlaylistTracks(playlistName, playlistTracksHref,accessToken);
+    console.log(tracks_JSON);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -126,6 +129,7 @@ function getPlaylistHelper(playlists,accessToken) {
       creator: owner
       // tracks: linkToTracks
     };
+
     index++;
   });
   return JSON.stringify(listOfPlaylists);
@@ -148,7 +152,6 @@ function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      console.log(body)
       return resolve(body);
     });
   });
