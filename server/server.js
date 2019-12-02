@@ -143,10 +143,10 @@ function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
         authorization: "Bearer " + accessToken
       }
     };
-    let parsedPlaylist = JSON.parse(body).items;
-    console.log(parsedPlaylist);
     request(options, function(error, response, body) {
       if (error) return reject(error);
+      let parsedPlaylist = JSON.parse(body).items;
+      console.log(parsedPlaylist);
       return resolve(body);
     });
   });
