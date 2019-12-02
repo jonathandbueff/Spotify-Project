@@ -160,7 +160,6 @@ function getPlaylistTracksHelper(playlists,accessToken) {
     let playlistTracksHref = playlist.tracks.href;
 
     let tracks_JSON = getTracksOfPlaylist(playlistTracksHref,accessToken);
-    console.log(tracks_JSON);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     playlist_tracks[index] = {
@@ -169,6 +168,7 @@ function getPlaylistTracksHelper(playlists,accessToken) {
     };
     index++;
   });
+  console.log(JSON.stringify(playlist_tracks));
   return JSON.stringify(playlist_tracks);
 }
 
@@ -188,6 +188,7 @@ function getTracksOfPlaylist(playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
+      console.log(body);
       return resolve(body);
     });
   });
