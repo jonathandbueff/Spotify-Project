@@ -1,11 +1,8 @@
-// constructor(props){
-//     let userImage=props.data.image;
-//     console.log(userImage);
-// }
 import Link from "next/link";
 const UserLink = props => (
   <div>
-    <Link href = {"/friendProfile?user="+props.username}>
+    <div className="linkBox">
+    <Link href = {"/friendProfile?user="+ props.username} >
     <div className="userLinkBox">
     <img className="profilePic" src={props.image}></img>
     <div className="userInfo">
@@ -13,9 +10,9 @@ const UserLink = props => (
     </div>
     </div>
     </Link>
-
+    </div>
     <style jsx>{`
-
+    
     .profilePic{
         display: inline-block;
         width: 50px;
@@ -30,15 +27,17 @@ const UserLink = props => (
         display: inline-block;
     }
     .userLinkBox{
+        font-family: console, monospace;
         padding-left: 2px;
         padding-top: 1px;
         padding-bottom: 2px;
         margin-bottom: 2px;
         color: white;
-        width: calc(100% - 22px);
-        text-align: right;
+        width: calc(100% - 28px);
+        text-align: center;
         border: 1px solid #1DB954;
     }
+    
     `}
     </style>
   </div>
