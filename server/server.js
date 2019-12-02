@@ -10,8 +10,8 @@ let con = mysql.createConnection({
   password: "wustl",
   database: "spotify"
 });
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
-// let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
+let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
   if (err) console.log(err);
@@ -79,6 +79,22 @@ async function getUserTopTracks(accessToken) {
     });
   });
 }
+//PLAYLIST TRACKS
+function getPlaylistTracks(playlist) {
+  let options = {
+    method: "GET",
+    url: playlist.tracks.href,
+    headers: {
+      "content-type": "application/json",
+      authorization: "Bearer " + accessToken
+    }
+  };
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    let track_info = JSON.parse(body);
+    // console.log(playlist.name)
+    let obj = JSON.parse(track_info.items[0].track);
+    // console.log(obj);
 
 // //USER SAVED TRACKS
 // function getUserSavedTracks() {
@@ -160,7 +176,30 @@ function getPlaylistTracks(playlist) {
     // }
   });
 }
+//CALLED ON LOGIN. WAITS FOR TOKEN THEN CALLS getDATAHELPER TO GET HOME PAGE DATA
+app.get("/getCode", async (req, res) => {
+  let theCode = req.query.code;
+  try {
+    let token = await getToken(theCode);
+    let tempToken = JSON.parse(JSON.stringify(token));
+    let accessToken = tempToken.accessToken;
+    let refreshToken = tempToken.refreshToken;
+    let jsonToken = { access: accessToken, refresh: refreshToken };
+    let dataInserted = await insertDataHelper(jsonToken);
+    res.send({accessToken: accessToken, username: dataInserted.username});
+  } catch (err) {
+    console.log(err);
+  }
+});
 
+async function getSQLData(usernameToken, callback){
+  let username = usernameToken.username;
+  let sql = "select * from users where username ='"+username+"'";
+  con.query(sql, async function(err,result, fields){
+    if(err){console.log(err)};
+    return callback(result);
+  })
+}
 
 //TOKEN
 async function getToken(theCode) {
