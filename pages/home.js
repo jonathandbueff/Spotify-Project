@@ -97,15 +97,17 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
-  // const otherUsers = await result2.json();
-  // console.log(otherUsers);
+  const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
+  const allUsers = await result2.json();
+  // console.log(allUsers);
+
 
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allPlaylists: JSON.parse(dataAll[0].playlists)
+    allUsers: allUsers
   }};
 }
 export default Home;
