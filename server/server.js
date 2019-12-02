@@ -201,7 +201,7 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   let refreshToken = data.refreshToken;
   let userTopTracks = data.userTopTracks;
   let userAllPlaylists = data.userAllPlaylists;
-  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "','"+ userAllPlaylists + "') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', playlists = '"+userAllPlaylists+"' ";
+  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "',') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"' ";
   con.query(sqlUsers, function (err, result) {
     if (err) console.log(err);
   });
@@ -215,7 +215,7 @@ async function insertDataHelper(jsonToken) {
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
   // console.log(userAllPlaylists);
-  let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, userAllPlaylists: userAllPlaylists, accessToken: accessToken, refreshToken: refreshToken };
+  let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
 }
