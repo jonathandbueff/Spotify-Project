@@ -86,6 +86,7 @@ Home.getInitialProps = async function(req){
   let code = req.query.code;
   let image;
   let topTracks;
+  let allPlaylists;
   let topArtist;
   let topArtistImage;
   if (count == 0){
