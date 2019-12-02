@@ -132,7 +132,7 @@ function getPlaylistHelper(playlists) {
 }
 
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-async function getPlaylistTracks(playlistTracksHref) {
+function getPlaylistTracks(playlistTracksHref) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
