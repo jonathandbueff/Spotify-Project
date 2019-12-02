@@ -124,7 +124,8 @@ function getPlaylistHelper(playlists,accessToken) {
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
       title: playlistName,
-      creator: owner
+      creator: owner,
+      href: playlistTracksHref
       // tracks: linkToTracks
     };
 
@@ -137,7 +138,7 @@ function getPlaylistHelper(playlists,accessToken) {
 
 
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-async function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
+async function getPlaylistTracks(playlistTracksHref,accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -206,10 +207,19 @@ async function insertDataHelper(jsonToken) {
   let userAllPlaylists = await getPlaylists(accessToken);
   
   // get tracks for each playlist
+
+
   let playlists_parsed = JSON.parse(userAllPlaylists);
+  let playlist_tracks = [];
+  let index =0;
   playlists_parsed.forEach(playlist => {
-    console.log(playlist.title);
+    playlist_tracks[index] ={
+      title: playlist.title,
+      tracks: await getPlaylistTracks(playlist.href, accessToken)
+    }
+    index++
   });
+  console.log(playlist_tracks);
 
 
 
