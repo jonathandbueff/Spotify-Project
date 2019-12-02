@@ -10,6 +10,7 @@ import Footer from '../comps/footer';
 
 
 
+
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
@@ -85,7 +86,6 @@ Home.getInitialProps = async function(req){
   let code = req.query.code;
   let image;
   let topTracks;
-  let allPlaylists;
   let topArtist;
   let topArtistImage;
   if (count == 0){
@@ -96,14 +96,14 @@ Home.getInitialProps = async function(req){
 }
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
-  const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
-  const otherUsers = await result2.json();
-  console.log(otherUsers);
+  // const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
+  // const otherUsers = await result2.json();
+  // console.log(otherUsers);
 
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
-    topTracks: JSON.parse(dataAll[0].topTracks).items,
+    topTracks: JSON.parse(dataAll[0].topTracks).items
   }};
 }
 export default Home;

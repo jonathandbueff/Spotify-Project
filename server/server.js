@@ -80,22 +80,9 @@ async function getUserTopTracks(accessToken) {
   });
 }
 
-// //USER SAVED TRACKS
-// function getUserSavedTracks() {
-//   let options = {
-//     method: "GET",
-//     url: "https://api.spotify.com/v1/me/tracks",
-//     headers: {
-//       "content-type": "application/json",
-//       authorization: "Bearer " + accessToken
-//     }
-//   };
-//   request(options, function (error, response, body) {
-//     if (error) throw new Error(error);
-//   });
-// }
 
-// USER PLAYLISTS
+
+//USER PLAYLISTS
 async function getPlaylists(accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
@@ -114,7 +101,6 @@ async function getPlaylists(accessToken) {
     });
   });
 }
-
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
@@ -123,7 +109,7 @@ function getPlaylistHelper(playlists) {
   parsedPlaylists.forEach(playlist => {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
-    let owner = playlist.owner.display_name
+    let owner = playlist.owner.display_name;
     listOfPlaylists[index] = {
       title: playlistName,
       creator: owner
@@ -132,35 +118,6 @@ function getPlaylistHelper(playlists) {
   });
   return listOfPlaylists;
 }
-
-
-//PLAYLIST TRACKS
-function getPlaylistTracks(playlist) {
-  let options = {
-    method: "GET",
-    url: playlist.tracks.href,
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + accessToken
-    }
-  };
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    let track_info = JSON.parse(body);
-    // console.log(playlist.name)
-    let obj = JSON.parse(track_info.items[0].track);
-    // console.log(obj);
-
-    // for (let x = 0; x <track_info.items.length; x++){
-    //     console.log(track_info.items[x][12]);
-    // }
-    // //loop through each track in a playlist
-    // for (let x =0; x < body.items.length; x++){
-
-    // }
-  });
-}
-
 
 //TOKEN
 async function getToken(theCode) {
@@ -194,14 +151,12 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
     image = JSON.parse(data.profileData).images[0].url;
   }
   let userTopArtistUrl = JSON.parse(data.userTopArtist).items[0].images[0].url;
-  // let tempData=JSON.parse(body).items[0]
-      // let topArtist = tempData.name;
-      // let topArtistImage = tempData.images[0].url;
   let accessToken = data.accessToken;
   let refreshToken = data.refreshToken;
   let userTopTracks = data.userTopTracks;
   let userAllPlaylists = data.userAllPlaylists;
-  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+ "',') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"' ";
+  console.log(userAllPlaylists);
+  let sqlUsers ="insert INTO users (username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists) VALUES ('" + username + "','" + image + "','" + accessToken + "','" + refreshToken + "','" + userTopArtistUrl + "','"+ userTopTracks+"','"+ userAllPlaylists+"') ON DUPLICATE KEY UPDATE image = '" + image + "', accessToken = '" + accessToken + "', refreshToken ='" + refreshToken + "', topArtistUrl ='"+userTopArtistUrl +"', topTracks ='"+userTopTracks+"', playlists ='"+userAllPlaylists+"'";
   con.query(sqlUsers, function (err, result) {
     if (err) console.log(err);
   });
@@ -215,7 +170,7 @@ async function insertDataHelper(jsonToken) {
   let userTopTracks = await getUserTopTracks(accessToken);
   // let userAllPlaylists = await getPlaylists(accessToken);
   // console.log(userAllPlaylists);
-  let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
+  let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
 }
@@ -247,7 +202,6 @@ async function getSQLData(usernameToken, callback){
 app.get("/getData", async (req, res) => {
   let accessToken = req.query.token;
   let username = req.query.username;
-  let returnData;
   getSQLData({accessToken: accessToken, username: username}, function(result){
     res.send(result);
   });
