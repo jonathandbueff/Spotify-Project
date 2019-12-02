@@ -117,7 +117,6 @@ function getPlaylistHelper(playlists,accessToken) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
-    let playlistTracksHref = playlist.tracks.href;
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
@@ -158,6 +157,8 @@ function getPlaylistTracksHelper(playlists,accessToken) {
   parsedPlaylists.forEach(playlist => {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
+    let playlistTracksHref = playlist.tracks.href;
+
     let tracks_JSON = getTracksOfPlaylist(playlistTracksHref,accessToken);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
