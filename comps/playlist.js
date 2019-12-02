@@ -1,8 +1,8 @@
 const Playlist = props => (
     <div className="playlistMain">
     <div className="container playlistBox">
-        <p className="titleHere">TITLE</p>
-        <p className="creatorHere">CreatedBy</p>
+        <p className="titleHere">{props.title}</p>
+        <p className="creatorHere">{props.creator}</p>
         <p className="ratingHere">Rating</p>
     </div>
     <style jsx>{`

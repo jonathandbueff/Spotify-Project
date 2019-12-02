@@ -10,9 +10,8 @@ import Footer from '../comps/footer';
 
 
 
-
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 const homeStyle ={
   position: "absolute",
@@ -86,6 +85,7 @@ Home.getInitialProps = async function(req){
   let code = req.query.code;
   let image;
   let topTracks;
+  let allPlaylists;
   let topArtist;
   let topArtistImage;
   if (count == 0){
@@ -103,7 +103,7 @@ Home.getInitialProps = async function(req){
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
-    topTracks: JSON.parse(dataAll[0].topTracks).items
+    topTracks: JSON.parse(dataAll[0].topTracks).items,
   }};
 }
 export default Home;
