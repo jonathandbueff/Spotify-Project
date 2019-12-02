@@ -216,6 +216,7 @@ async function insertDataHelper(jsonToken) {
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
+  console.log(userAllPlaylists);
   let sendToSQLData = { profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, userAllPlaylists: userAllPlaylists, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
