@@ -7,7 +7,6 @@ import Profile from '../comps/profile';
 import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
-import nextCookie from 'next-cookies';
 
 
 
