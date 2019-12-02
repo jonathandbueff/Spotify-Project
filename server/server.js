@@ -164,7 +164,7 @@ function getPlaylistTracksHelper(playlists,accessToken) {
     // console.log(linkToTracks);
     playlist_tracks[index] = {
       title: playlistName,
-      tracks: track_JSON
+      tracks: tracks_JSON
     };
     index++;
   });
