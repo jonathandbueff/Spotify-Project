@@ -159,13 +159,9 @@ function getPlaylistTracksHelper(playlists,accessToken) {
     let playlistName = playlist.name;
     let playlistTracksHref = playlist.tracks.href;
 
-    let tracks_JSON = getTracksOfPlaylist(playlistTracksHref,accessToken);
+    let tracks_JSON = getTracksOfPlaylist(index, playlistName, playlistTracksHref,accessToken, playlist_tracks);
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
-    playlist_tracks[index] = {
-      title: playlistName,
-      tracks: tracks_JSON
-    };
     index++;
   });
   console.log(JSON.stringify(playlist_tracks));
@@ -175,7 +171,7 @@ function getPlaylistTracksHelper(playlists,accessToken) {
 
 
 // // Call this function for each playlist in parsedPlaylist and retrieve tracks
-function getTracksOfPlaylist(playlistTracksHref,accessToken) {
+function getTracksOfPlaylist(index, playlistName, playlistTracksHref,accessToken, playlist_tracks) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -188,7 +184,11 @@ function getTracksOfPlaylist(playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      return resolve(body);
+      playlist_tracks[index] = {
+        title: playlistName,
+        tracks: body
+      };
+      return resolve(playlist_tracks);
     });
   });
 }
