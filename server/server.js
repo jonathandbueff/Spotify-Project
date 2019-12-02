@@ -145,7 +145,7 @@ function getPlaylistTracks(playlistName, playlistTracksHref,accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let parsedPlaylist = JSON.parse(body).items;
+      let parsedPlaylist = JSON.parse(response);
       console.log(parsedPlaylist);
       return resolve(body);
     });
