@@ -18,11 +18,7 @@ const Profile = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Recently Most Played</h4>
       <ol className = "songList">
-        <li className = "songListItem"><Song {...props.data.topTracks[0]}/></li>
-        <li className = "songListItem"><Song {...props.data.topTracks[1]}/></li>
-        <li className = "songListItem"><Song {...props.data.topTracks[2]}/></li>
-        <li className = "songListItem"><Song {...props.data.topTracks[3]}/></li>
-        <li className = "songListItem"><Song {...props.data.topTracks[4]}/></li>
+        {props.data.topTracks.map(p => (<li className ="songListItem" key={p.name}><Song {...p}/></li>))}
       </ol>
       </div> 
       <div className="playlistContainer">
