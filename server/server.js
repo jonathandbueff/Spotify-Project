@@ -108,7 +108,7 @@ async function getPlaylists(accessToken) {
   });
 }
 
-function getPlaylistHelper(playlists,accessToken) {
+async function getPlaylistHelper(playlists,accessToken) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
   let playlist_tracks = [];
@@ -210,19 +210,19 @@ async function insertDataHelper(jsonToken) {
   // get tracks for each playlist
 
 
-  let playlists_parsed = JSON.parse(userAllPlaylists);
-  let playlist_tracks = [];
-  let index =0;
-  playlists_parsed.forEach(playlist => {
-    let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-    console.log(tracks_JSON);
-    // playlist_tracks[index] ={
-    //   title: playlist.title,
-    //   tracks: await getPlaylistTracks(playlist.href, accessToken)
-    // }
-    // index++
-  });
-  console.log(playlist_tracks);
+  // let playlists_parsed = JSON.parse(userAllPlaylists);
+  // let playlist_tracks = [];
+  // let index =0;
+  // playlists_parsed.forEach(playlist => {
+  //   let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
+  //   console.log(tracks_JSON);
+  //   // playlist_tracks[index] ={
+  //   //   title: playlist.title,
+  //   //   tracks: await getPlaylistTracks(playlist.href, accessToken)
+  //   // }
+  //   // index++
+  // });
+  // console.log(playlist_tracks);
 
 
 
