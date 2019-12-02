@@ -208,7 +208,7 @@ async function insertDataHelper(jsonToken) {
   // get tracks for each playlist
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(playlist => {
-    console.log(userAllPlaylists.title);
+    console.log(playlist.title);
   });
 
 
