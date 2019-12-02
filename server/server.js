@@ -96,31 +96,31 @@ async function getPlaylists(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      // let returnValue = getPlaylistHelper(response);
-      return resolve(body);
+      let returnValue = getPlaylistHelper(response);
+      return resolve(returnValue);
     });
   });
 }
-// function getPlaylistHelper(playlists) {
-//   let parsedPlaylists = JSON.parse(playlists.body).items;
-//   let listOfPlaylists = [];
-//   let index = 0;
-//   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
-//   parsedPlaylists.forEach(playlist => {
-//     // let playlistImage = playlist.image.url;
-//     let playlistName = playlist.name;
-//     let owner = playlist.owner.display_name;
-//     // let linkToTracks = playlist.tracks.href;
-//     // console.log(linkToTracks);
-//     listOfPlaylists[index] = {
-//       title: playlistName,
-//       creator: owner,
-//       // tracks: linkToTracks
-//     };
-//     index++;
-//   });
-//   return listOfPlaylists;
-// }
+function getPlaylistHelper(playlists) {
+  let parsedPlaylists = JSON.parse(playlists.body).items;
+  let listOfPlaylists = [];
+  let index = 0;
+  //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
+  parsedPlaylists.forEach(playlist => {
+    // let playlistImage = playlist.image.url;
+    let playlistName = playlist.name;
+    let owner = playlist.owner.display_name;
+    // let linkToTracks = playlist.tracks.href;
+    // console.log(linkToTracks);
+    listOfPlaylists[index] = {
+      title: playlistName,
+      creator: owner,
+      // tracks: linkToTracks
+    };
+    index++;
+  });
+  return listOfPlaylists;
+}
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
 async function getPlaylistTracks(accessToken) {
   return new Promise((resolve, reject) => {
