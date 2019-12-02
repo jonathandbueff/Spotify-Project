@@ -113,13 +113,13 @@ function getPlaylistHelper(playlists) {
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
-      title: JSON.stringify(playlistName),
-      creator: JSON.stringify(owner),
+      title: playlistName,
+      creator: owner
       // tracks: linkToTracks
     };
     index++;
   });
-  return listOfPlaylists;
+  return JSON.stringify(listOfPlaylists);
 }
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
 async function getPlaylistTracks(accessToken) {
