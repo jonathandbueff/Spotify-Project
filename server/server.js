@@ -5,7 +5,7 @@ const request = require("request");
 const http = require("http");
 const mysql = require("mysql");
 let con = mysql.createConnection({
-  host: "172.31.18.188",
+  host: "localhost",
   user: "spotify",
   password: "wustl",
   database: "spotify"
@@ -16,6 +16,12 @@ let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 con.connect(function (err) {
   if (err) console.log(err);
   console.log("Connected!");
+});
+app.use(function (req,res ,next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  next();
 });
 //GLOBAL VARIABLES
 let my_client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
@@ -207,8 +213,8 @@ app.get("/getData", async (req, res) => {
   });
 });
 
-async function getOtherUserData(usernameToken, callback){
-  let username = usernameToken.username;
+async function getOtherUserData(blank, callback){
+  // let username = usernameToken.username;
   let sql = "select username, image from users";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
@@ -216,12 +222,31 @@ async function getOtherUserData(usernameToken, callback){
   })
 }
 app.get("/getOtherUsers", async (req, res) => {
-  let accessToken = req.query.token;
-  let username = req.query.username;
-  getOtherUserData({accessToken: accessToken, username: username}, function(result){
+  // let accessToken = req.query.token;
+  // let username = req.query.username;
+  let blank = "none";
+  getOtherUserData(blank, function(result){
     res.send(result);
   });
 });
+
+
+async function getFriendData(usernameObject, callback){
+  let username = usernameObject.username;
+  let sql = "select * from users where username ='"+username+"'";
+  con.query(sql, async function(err,result, fields){
+    if(err){console.log(err)};
+    return callback(result);
+  })
+}
+
+app.get("/getFriendData", async (req,res)=> {
+  let friendUsername = req.query.friendUsername;
+  getFriendData({username: friendUsername}, function(result){
+    res.send(result);
+  });
+})
+
 
 //START SERVER
 app.listen(port, () =>

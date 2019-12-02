@@ -13,7 +13,9 @@ const Header = () => (
         <span className="spanBar three"></span>
         </div> 
         <div className="dropdownContent">
-          <p className="dropdownItem itemOne">Welcome</p>
+          <Link href="/">
+          <p className="dropdownItem itemOne">Login</p>
+          </Link>
           <p className="dropdownItem"></p>
         </div>
       </div>

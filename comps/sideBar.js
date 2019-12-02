@@ -1,13 +1,15 @@
 import Search from '../comps/search';
 import UserLink from '../comps/userLink';
+import Link from "next/link";
 const SideBar = props => (
   <div>
     <div className="sideBarBox">
         <h3>Search</h3>
         <Search className="seachBarMain"/>
         <h3>Other Users</h3>
-        <UserLink {...props}/>
-        <UserLink {...props}/>
+        <ul className="otherUsersList">
+        {props.data.allUsers.map(p => (<li className ="userListItem" key={p.username}><UserLink {...p}/></li>))}
+        </ul>
     </div>
 
     <style jsx>{`
