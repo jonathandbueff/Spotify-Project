@@ -206,9 +206,14 @@ async function insertDataHelper(jsonToken) {
   let userAllPlaylists = await getPlaylists(accessToken);
   
   // get tracks for each playlist
-  console.log(userAllPlaylists);
+  let playlists_parsed = JSON.parse(userAllPlaylists);
+  console.log(playlists_parsed);
+  // playlists_parsed.forEach(playlist => {
+  //   console.log(playlists_parsed.title);
+  // });
 
-  
+
+
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
