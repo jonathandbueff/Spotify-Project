@@ -113,8 +113,8 @@ function getPlaylistHelper(playlists) {
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
-      title: playlistName,
-      creator: owner,
+      title: JSON.stringify(playlistName),
+      creator: JSON.stringify(owner),
       // tracks: linkToTracks
     };
     index++;
