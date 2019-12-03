@@ -216,18 +216,22 @@ async function listOfTracks(JSON_file){
   return result;
 }
 
-function getPlaylistImageURL(playlistID){
-  let options = {
-    method: "GET",
-    url: 
-      "https://api.spotify.com/v1/playlists/" + playlistID + "/images"
-  };
-  request(options, function(error, response, body) {
-    if (error) return reject(error);
-    console.log(body);
-    return resolve(body);
+async function getPlaylistImageURL(playlistID, accessToken){
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/playlists/" + playlistID + "/images",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      return resolve(body);
+    });
   });
-
 }
 
 async function insertDataHelper(jsonToken) {
@@ -245,7 +249,8 @@ async function insertDataHelper(jsonToken) {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     let tracksInPlaylist = await listOfTracks(tracks_JSON);
     let playlistName = playlist.title;
-    let img_url = getPlaylistImageURL(playlist.id);
+    let img_url = await getPlaylistImageURL(playlist.id, accessToken);
+    console.log(img_url);
     let sqlPlaylist ="insert INTO playlists (playlist, username, tracks) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + " ', tracks = '" + tracksInPlaylist +"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
