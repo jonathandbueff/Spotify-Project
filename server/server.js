@@ -211,11 +211,12 @@ async function insertDataHelper(jsonToken) {
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
+    console.log(tracks_JSON);
     let playlistName = playlist.title;
     let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + playlistName + "','" + tracks_JSON +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', tracks = '" + tracks_JSON +"'";
-    con.query(sqlPlaylist, function (err, result) {
-      if (err) console.log(err);
-    });
+    // con.query(sqlPlaylist, function (err, result) {
+    //   if (err) console.log(err);
+    // });
   })
 
 
