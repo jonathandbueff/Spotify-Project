@@ -202,7 +202,7 @@ async function listOfTracks(JSON_file){
   track_array = [];
   index=0;
   tracks_parsed.forEach(track => {
-    let name = track.name;
+    let name = track.track.name;
     console.log(name);
     let id = track.id;
     track_array[index] = {
