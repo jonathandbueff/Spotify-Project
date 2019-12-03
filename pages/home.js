@@ -11,8 +11,8 @@ import Footer from '../comps/footer';
 
 
 
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 const homeStyle ={
   position: "absolute",
@@ -101,7 +101,7 @@ Home.getInitialProps = async function(req){
   const dataAll = await result.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   const allUsers = await result2.json();
-  console.log(JSON.parse(dataAll[0].playlists)[0]);
+  // console.log(JSON.parse(dataAll[0].playlists)[0]);
   // console.log(allUsers);
 
 

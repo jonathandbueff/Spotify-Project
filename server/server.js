@@ -10,8 +10,10 @@ let con = mysql.createConnection({
   password: "wustl",
   database: "spotify"
 });
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
-let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
+// let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
   if (err) console.log(err);
@@ -27,7 +29,6 @@ app.use(function (req,res ,next){
 let my_client_id = "77cf346e940b41adb5dd26e8c9f05a6b";
 let my_client_secret = "564d8983f9b34a2b848bdb4bef25c9fc";
 let my_redirect_uri = awsinstance + ":3000/home";
-let playlist_tracks;
 let tracks_metrics;
 
 //USER PROFILE DATA
@@ -102,11 +103,12 @@ async function getPlaylists(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let returnValue = getPlaylistHelper(response);
+      let returnValue = getPlaylistHelper(response,accessToken);
       return resolve(returnValue);
     });
   });
 }
+
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
@@ -116,24 +118,31 @@ function getPlaylistHelper(playlists) {
     // let playlistImage = playlist.image.url;
     let playlistName = playlist.name;
     let owner = playlist.owner.display_name;
+    let playlistTracksHref = playlist.tracks.href;
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
     listOfPlaylists[index] = {
       title: playlistName,
-      creator: owner
+      creator: owner,
+      href: playlistTracksHref
       // tracks: linkToTracks
     };
+
     index++;
   });
   return JSON.stringify(listOfPlaylists);
 }
+
+
+
+
 // Call this function for each playlist in parsedPlaylist and retrieve tracks
-async function getPlaylistTracks(accessToken) {
+async function getPlaylistTracks(playlistTracksHref,accessToken) {
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
       url: 
-        "https://api.spotify.com/v1/me/playlists",
+        playlistTracksHref,
       headers: {
         "content-type": "application/json",
         authorization: "Bearer " + accessToken
@@ -141,8 +150,7 @@ async function getPlaylistTracks(accessToken) {
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      let returnValue = getPlaylistHelper(response);
-      return resolve(returnValue);
+      return resolve(body);
     });
   });
 }
@@ -189,6 +197,25 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   });
   return ({username: username});
 }
+
+async function listOfTracks(JSON_file){
+  let tracks_parsed = JSON.parse(JSON_file).items;
+  track_array = [];
+  index=0;
+  tracks_parsed.forEach(song => {
+    let name = song.track.name;
+    let id = song.track.id;
+    track_array[index] = {
+      name: name,
+      id: id
+    }
+    index++
+  })
+  let result = JSON.stringify(track_array).replace(/&/, "&amp;").replace(/'/g, "\\'");
+
+  return result;
+}
+
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
   let refreshToken = jsonToken.refresh;
@@ -196,7 +223,29 @@ async function insertDataHelper(jsonToken) {
   let userTopArtist = await getUserTopArtist(accessToken);
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
-  // console.log(userAllPlaylists);
+  
+  // get tracks for each playlist
+
+  let playlists_parsed = JSON.parse(userAllPlaylists);
+  playlists_parsed.forEach(async playlist => {
+    let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
+    let tracksInPlaylist = await listOfTracks(tracks_JSON);
+    let playlistName = playlist.title;
+    let sqlPlaylist ="insert INTO playlists (playlist, username, tracks) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + " ', tracks = '" + tracksInPlaylist +"'";
+    con.query(sqlPlaylist, function (err, result) {
+      if (err) console.log(err);
+    });
+
+    // for each playlist, fill sql track table with track info
+    let blah = JSON.parse(JSON.stringify(tracksInPlaylist));
+    // tracksInPlaylist.forEach(song => {
+    //   let songID = song.id;
+    //   console.log(songID);
+    //   // let song_JSON = await getTrackInfo();
+    // })
+  })
+
+
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
