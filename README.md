@@ -1,6 +1,8 @@
 470677
 470716
 
+Verified by Dom Bottom 12/3/2019
+
 # Spotify Analytics Rubric NEW
 
 5 Points Rubric
