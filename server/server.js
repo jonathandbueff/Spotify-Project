@@ -109,7 +109,8 @@ async function getPlaylists(accessToken) {
   });
 }
 
-function getPlaylistHelper(playlists) {
+function getPlaylistHelper(playlists, accessToken) { //TODO
+  
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
   let index = 0;
@@ -198,24 +199,50 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   return ({username: username});
 }
 
+async function getMetricsData(idAccessToken){
+  let ids = idAccessToken.ids;
+  let accessToken = idAccessToken.accessToken;
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: "https://api.spotify.com/v1/audio-features/?ids="+ids,
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      return resolve(body);
+    });
+  });
+}
+async function getMetrics(trackAccess){
+  let accessToken=trackAccess.accessToken;
+  let track_array=trackAccess.tracks;
+  let ids="";
+  // console.log(track_array.length);
+  track_array.forEach((song, index) => {
+    let id = song.track.id;
+    ids= ids + id+ ",";
+  });
+  let metrics = await getMetricsData({ids: ids, accessToken: accessToken})
+  return metrics;
+}
+
 async function listOfTracks(JSON_file){
-  let tracks_parsed = JSON.parse(JSON_file).items;
+  let tracks_parsed = JSON.parse(JSON_file.tracks_JSON).items;
+  let accessToken = JSON_file.accessToken;
   track_array = [];
   index=0;
   tracks_parsed.forEach(song => {
-    // console.log(song.track);
-    let name = song.track.name;
-    let id = song.track.id;
-    let artist = song.track.artists[0].name;
-    let popularity = song.track.popularity;
     track_array[index] = {
-      track: song.track
+      track: song.track,
     }
     index++
   })
-  let result = JSON.stringify(track_array).replace(/&/, "&amp;").replace(/'/g, "\\'");
-
-  return result;
+  let result = await JSON.stringify(track_array).replace(/&/, "&amp;").replace(/'/g, "\\'");
+  return {result: result, array: track_array};
 }
 
 async function insertDataHelper(jsonToken) {
@@ -226,14 +253,17 @@ async function insertDataHelper(jsonToken) {
   let userTopTracks = await getUserTopTracks(accessToken);
   let userAllPlaylists = await getPlaylists(accessToken);
   
-  // get tracks for each playlist
-
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-    let tracksInPlaylist = await listOfTracks(tracks_JSON);
+    let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
+    let tracksInPlaylist = tracksInPlaylistTemp.result;
+    let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
+    // console.log(JSON.parse(metrics).audio_features[0]);
+    // let songData = {tracks: tracksInPlaylist, metrics: metrics};
+    // console.log(typeof JSON.parse(songData));
     let playlistName = playlist.title;
-    let sqlPlaylist ="insert INTO playlists (playlist, username, tracks) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + " ', tracks = '" + tracksInPlaylist +"'";
+    let sqlPlaylist ="insert INTO playlists (playlist, username, tracks, metrics) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
@@ -246,8 +276,6 @@ async function insertDataHelper(jsonToken) {
     //   // let song_JSON = await getTrackInfo();
     // })
   })
-
-
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
   return (sentToSQL);
@@ -293,6 +321,9 @@ async function getPlaylistData(usernameObject, callback){
     if(err){console.log(err)};
     // let returnValue = playlists.title[playlist];
     // console.log(returnValue);
+    // console.log(JSON.parse(result[0].tracks)[0]);
+    // console.log(JSON.parse(result[0].metrics).audio_features[index]) //GIVES ARRAY OF METRICS OF ALL SONGS
+
     return callback(result[0]);
   })
 }
@@ -301,7 +332,7 @@ app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist});
+    res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
 

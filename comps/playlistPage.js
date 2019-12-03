@@ -16,7 +16,7 @@ const PlaylistPage = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Tracks</h4>
       <ol className = "songList">
-        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p.track}/></li>))}
+        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p}/></li>))}
       </ol>
       </div> 
       {/* <div className="playlistContainer">
