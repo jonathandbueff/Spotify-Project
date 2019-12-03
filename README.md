@@ -1,8 +1,47 @@
 470677
 470716
 
+# Spotify Analytics Rubric NEW
 
-# Spotify Analytics Rubric
+5 Points Rubric
+
+## Frameoworks
+
+10 Learning and implementing Next.js 
+
+0 Node.js/express backend
+
+0 Mysql database
+
+## Functionality
+5 Points Connecting To Spotify API
+
+10 Points users can login using thier spotify account through OAuth
+
+10 Points user data is correctly stored in MYSQL database
+
+10 Points users can view other registered users homepage
+
+10 Points users can rate other user's playlists
+
+5 Points users spotify profile image and their top artist image are displayed on their homepage
+
+5 Points users top songs are displayed on their homepage
+
+5 Points users can view the songs in playlists
+
+## Best Practices
+
+3 Points Code is readable and well formatted
+
+2 Points All pages pass html validator
+
+## Creative
+
+20 Points
+
+
+# Spotify Analytics Rubric OLD
 
 5 Points Rubric
 
