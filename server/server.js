@@ -219,8 +219,9 @@ async function insertDataHelper(jsonToken) {
       tracks: tracks_JSON
     }
     index++
-  });
-  console.log(playlist_tracks);
+    console.log(playlist_tracks);
+  })
+  // console.log(playlist_tracks);
 
 
 
