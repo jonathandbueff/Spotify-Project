@@ -198,19 +198,19 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 }
 
 async function sendPlaylistToSQL(data) { //{profileData: profileData, playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken }
-  let username = JSON.parse(data.profileData).id;
-  let image = null;
-  if (JSON.parse(data.profileData).images != undefined) {
-    image = JSON.parse(data.profileData).images[0].url;
-  }
+  // let username = JSON.parse(data.profileData).id;
+  // let image = null;
+  // if (JSON.parse(data.profileData).images != undefined) {
+  //   image = JSON.parse(data.profileData).images[0].url;
+  // }
   let userPlaylist = data.playlist;
-  let playlistTracks = data.tracks;
+  // let playlistTracks = data.tracks;
   console.log (userPlaylist);
   // let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + userPlaylist + "','" + playlistTracks +"') ON DUPLICATE KEY UPDATE playlist = '" + userPlaylist + "', tracks = '" + playlistTracks +"'";
   // con.query(sqlPlaylist, function (err, result) {
   //   if (err) console.log(err);
   // });
-  return ({username: username});
+  return ({userPlaylist: userPlaylist});
 }
 
 
