@@ -231,14 +231,16 @@ async function insertDataHelper(jsonToken) {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     let tracksInPlaylist = await listOfTracks(tracks_JSON);
     let playlistName = playlist.title;
+    console.log(playlist);
+    // let img_url = getPlaylistImageURL(playlist);
     let sqlPlaylist ="insert INTO playlists (playlist, username, tracks) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + " ', tracks = '" + tracksInPlaylist +"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
 
-    // for each playlist, fill sql track table with track info
-    let tracks_parsed = JSON.parse(JSON.stringify(tracksInPlaylist));
-    console.log(tracks_parsed);
+    // // for each playlist, fill sql track table with track info
+    // let tracks_parsed = JSON.parse(JSON.stringify(tracksInPlaylist));
+    // console.log(tracks_parsed);
     // tracks_parsed.forEach(async song => {
     //   console.log(song);
     //   // let song_JSON = await getTrackInfo();
