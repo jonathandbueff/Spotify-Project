@@ -201,10 +201,9 @@ async function listOfTracks(JSON_file){
   let tracks_parsed = JSON.parse(JSON_file).items;
   track_array = [];
   index=0;
-  tracks_parsed.forEach(track => {
-    let name = track.track.name;
-    console.log(name);
-    let id = track.id;
+  tracks_parsed.forEach(song => {
+    let name = song.track.name;
+    let id = song.track.id;
     track_array[index] = {
       name: name,
       id: id
@@ -228,7 +227,7 @@ async function insertDataHelper(jsonToken) {
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     let tracksInPlaylist = await listOfTracks(tracks_JSON);
-    // console.log(tracksInPlaylist);
+    console.log(tracksInPlaylist);
     let playlistName = playlist.title;
     let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + playlistName + "','" + tracks_JSON +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', tracks = '" + tracks_JSON +"'";
     // con.query(sqlPlaylist, function (err, result) {
