@@ -226,20 +226,10 @@ async function insertDataHelper(jsonToken) {
   // get tracks for each playlist
 
   let playlists_parsed = JSON.parse(userAllPlaylists);
-
-  const playlist_tracks = async () => {
-    await asyncForEach(playlists_parsed, async (playlist) => {
-      let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-      sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
-    });
-  }
-  playlist_tracks();
-
-  // let playlists_parsed = JSON.parse(userAllPlaylists);
-  // playlists_parsed.asyncForEach(async playlist => {
-  //   let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-  //   sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
-  // })
+  playlists_parsed.forEach(async playlist => {
+    let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
+    sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
+  })
 
 
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
