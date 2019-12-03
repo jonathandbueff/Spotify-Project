@@ -203,14 +203,13 @@ async function sendToSQL(data) { //{profileData: profileData, playlist: playlist
   if (JSON.parse(data.profileData).images != undefined) {
     image = JSON.parse(data.profileData).images[0].url;
   }
-  let accessToken = data.accessToken;
-  let refreshToken = data.refreshToken;
   let userPlaylist = data.playlist;
   let playlistTracks = data.tracks;
-  let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + userPlaylist + "','" + playlistTracks +"') ON DUPLICATE KEY UPDATE playlist = '" + userPlaylist + "', tracks = '" + playlistTracks +"'";
-  con.query(sqlPlaylist, function (err, result) {
-    if (err) console.log(err);
-  });
+  console.log (userPlaylist);
+  // let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + userPlaylist + "','" + playlistTracks +"') ON DUPLICATE KEY UPDATE playlist = '" + userPlaylist + "', tracks = '" + playlistTracks +"'";
+  // con.query(sqlPlaylist, function (err, result) {
+  //   if (err) console.log(err);
+  // });
   return ({username: username});
 }
 
