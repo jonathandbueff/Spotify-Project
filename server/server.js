@@ -199,17 +199,18 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 
 async function listOfTracks(JSON_file){
   let tracks_parsed = JSON.parse(JSON_file).items;
+  console.log(tracks_parsed);
   track_array = [];
-  index=0;
-  tracks_parsed.foreach(track => {
-    let name = track.name;
-    let id = track.id;
-    track_array[index] = {
-      name: name,
-      id: id
-    }
-    index++
-  })
+  // index=0;
+  // tracks_parsed.forEach(track => {
+  //   let name = track.name;
+  //   let id = track.id;
+  //   track_array[index] = {
+  //     name: name,
+  //     id: id
+  //   }
+  //   index++
+  // })
   return track_array;
 }
 
