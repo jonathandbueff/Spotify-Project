@@ -197,7 +197,7 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   return ({username: username});
 }
 
-async function sendToSQL(data) { //{profileData: profileData, playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken }
+async function sendPlaylistToSQL(data) { //{profileData: profileData, playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken }
   let username = JSON.parse(data.profileData).id;
   let image = null;
   if (JSON.parse(data.profileData).images != undefined) {
