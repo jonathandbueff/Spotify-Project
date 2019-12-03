@@ -229,7 +229,7 @@ async function getPlaylistImageURL(playlistID, accessToken){
     };
     request(options, function(error, response, body) {
       if (error) return reject(error);
-      return resolve(body.url);
+      return resolve(body[0].url);
     });
   });
 }
