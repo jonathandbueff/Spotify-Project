@@ -11,8 +11,8 @@ import Footer from '../comps/footer';
 
 
 
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joes
 
 const homeStyle ={
   position: "absolute",
