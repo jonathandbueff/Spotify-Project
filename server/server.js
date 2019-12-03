@@ -111,7 +111,6 @@ async function getPlaylists(accessToken) {
 function getPlaylistHelper(playlists) {
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
-  let playlist_tracks = [];
   let index = 0;
   //GET THE TITLE, ARTIST, LISTENS OF TOP 5 TRACKS, PLACE IN TRACKS[] AS JSON OBJ
   parsedPlaylists.forEach(playlist => {
@@ -222,7 +221,7 @@ async function insertDataHelper(jsonToken) {
     }
     index++
   });
-  // console.log(playlist_tracks);
+  console.log(playlist_tracks);
 
 
 
