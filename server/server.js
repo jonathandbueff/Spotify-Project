@@ -213,7 +213,6 @@ async function insertDataHelper(jsonToken) {
   let index =0;
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken).then(function(result){
-      console.log(result);
       return result;
     });
     playlist_tracks[index] ={
