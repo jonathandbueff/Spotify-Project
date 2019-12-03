@@ -232,7 +232,7 @@ async function insertDataHelper(jsonToken) {
     });
     }
 
-  // let playlists_parsed = JSON.parse(userAllPlaylists);
+  let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.asyncForEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
