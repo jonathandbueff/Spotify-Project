@@ -46,11 +46,12 @@ const Home = (props) => (
   .artistImage{
     position: absolute;
     top: 50px;
-    right: 25vw;
+    right: 25%;
     max-width: calc( 75vw /2 );
     max-height: 35vh;
   }
   .mainProfileBox{
+    max-width: 75%;
     margin:0;
     list-style-type: none;
   }
@@ -64,10 +65,11 @@ const Home = (props) => (
   }
   .sideBarProfile{
     display: inline-block;
-    width: 25vw;
+    width: 25%;
     position:fixed;
     right: 0;
     top: 51px;
+    padding:0;
   }
   .homefooter{
     position: fixed;
@@ -99,6 +101,7 @@ Home.getInitialProps = async function(req){
   const dataAll = await result.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   const allUsers = await result2.json();
+  console.log(JSON.parse(dataAll[0].playlists)[0]);
   // console.log(allUsers);
 
 
@@ -107,7 +110,8 @@ Home.getInitialProps = async function(req){
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allUsers: allUsers,
-    allPlaylists: JSON.parse(dataAll[0].playlists)
+    allPlaylists: JSON.parse(dataAll[0].playlists),
+    user: username
   }};
 }
 export default Home;

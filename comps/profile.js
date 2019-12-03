@@ -2,8 +2,12 @@ import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 import Song from './song';
 import Playlist from './playlist';
+import Search from './search';
+
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+
+
 
 const Profile = (props) => (
     <div>
@@ -12,7 +16,7 @@ const Profile = (props) => (
       <div className="profileHeadText">
       <h3 id="usernameHere">{props.data.username}</h3>
       <p id="playlistLikesHere">Playlist likes</p>
-      <input type="button" className="createBtn" value="Create Playlist" />
+      <button className="createBtn">Create Playlist</button>
     </div>
     </div>
     <div className="recentlyMostPlayed">
@@ -24,12 +28,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         <ol className="playlist">
-          {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.name}><Playlist {...p}/></li>))}
-          {/* <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li>
-          <li className = "playlistListItem"><Playlist></Playlist></li> */}
+          {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.title+"PlaylistItem"}> <Playlist className={p.title} {...p}/></li>))}
         </ol>
       </div>
       <style jsx>{`
@@ -44,7 +43,7 @@ const Profile = (props) => (
       font-family: console, monospace;
       margin: 0px;
       background: black;
-      width: 75vw;
+      width: 75%;
       left: 0;
       position:absolute;
       top: calc(35vh + 230.4px);
@@ -67,7 +66,8 @@ const Profile = (props) => (
     .recentlyMostPlayed{
       background: black;
       color: #1DB954;
-      width:75vw;
+      // min-width:75v;
+      width: 75%;
       position: absolute;
       top: calc(35vh + 50px);
       left:0;
@@ -118,6 +118,13 @@ const Profile = (props) => (
     .createBtn:hover {
       background: black;
       color: #1DB954;     
+    }
+    .playlist{
+      margin:0px;
+      padding-bottom: 10px;
+      // padding: 8px 0px 8px  10px;
+      color: white;
+      // border: 1px solid grey;
     }
   `}
   </style>

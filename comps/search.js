@@ -1,9 +1,14 @@
 const Search = props => (
     <div>
+        <div className="searchBox">
         <input type="text" className="searchBar" placeholder="Search"></input>
         <input type="button" className="searchBarBtn" value="Search"></input>
-  
+        </div>
       <style jsx>{`
+      .searchBox{
+        max-width: 25vw;
+
+      }
       .searchBarBtn{
         position: relative;
         font-family: console, monospace;
