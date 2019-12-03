@@ -196,7 +196,25 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   });
   return ({username: username});
 }
-let playlist_tracks = [];
+
+async function sendToSQL(data) { //{profileData: profileData, playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken }
+  let username = JSON.parse(data.profileData).id;
+  let image = null;
+  if (JSON.parse(data.profileData).images != undefined) {
+    image = JSON.parse(data.profileData).images[0].url;
+  }
+  let accessToken = data.accessToken;
+  let refreshToken = data.refreshToken;
+  let userPlaylist = data.playlist;
+  let playlistTracks = data.tracks;
+  let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + userPlaylist + "','" + playlistTracks +"') ON DUPLICATE KEY UPDATE playlist = '" + userPlaylist + "', tracks = '" + playlistTracks +"'";
+  con.query(sqlPlaylist, function (err, result) {
+    if (err) console.log(err);
+  });
+  return ({username: username});
+}
+
+
 
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
@@ -210,14 +228,10 @@ async function insertDataHelper(jsonToken) {
 
 
   let playlists_parsed = JSON.parse(userAllPlaylists);
-  let x= 0;
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-    x = tracks_JSON;
+    sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
   })
-  console.log(x);
-
-
 
 
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
