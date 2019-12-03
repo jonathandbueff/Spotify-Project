@@ -197,6 +197,21 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   return ({username: username});
 }
 
+function listOfTracks(JSON_file){
+  let tracks_parsed = JSON.parse(JSON_file).items;
+  track_array = [];
+  index=0;
+  tracks_parsed.foreach(track => {
+    let name = track.name;
+    let id = track.id;
+    track_array[index] = {
+      name: name,
+      id: id
+    }
+    index++
+  })
+  return track_array;
+}
 
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
@@ -211,7 +226,8 @@ async function insertDataHelper(jsonToken) {
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-    console.log(tracks_JSON);
+    let tracksInPlaylist = listOfTracks(tracks_JSON);
+    console.log(tracksInPlaylist);
     let playlistName = playlist.title;
     let sqlPlaylist ="insert INTO playlist (playlist, tracks) VALUES ('" + playlistName + "','" + tracks_JSON +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', tracks = '" + tracks_JSON +"'";
     // con.query(sqlPlaylist, function (err, result) {
