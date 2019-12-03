@@ -216,14 +216,13 @@ async function insertDataHelper(jsonToken) {
       console.log(result);
       return result;
     });
-    console.log(tracks_JSON);
-    // playlist_tracks[index] ={
-    //   title: playlist.title,
-    //   tracks: result
-    // }
-    // index++
+    playlist_tracks[index] ={
+      title: playlist.title,
+      tracks: tracks_JSON
+    }
+    index++
   });
-  console.log(playlist_tracks);
+  console.log(playlist_tracks[0]);
 
 
 
