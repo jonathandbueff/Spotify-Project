@@ -121,6 +121,7 @@ function getPlaylistHelper(playlists) {
     let playlistTracksHref = playlist.tracks.href;
     // let linkToTracks = playlist.tracks.href;
     // console.log(linkToTracks);
+    console.log(playlist);
     listOfPlaylists[index] = {
       title: playlistName,
       creator: owner,
@@ -231,7 +232,6 @@ async function insertDataHelper(jsonToken) {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     let tracksInPlaylist = await listOfTracks(tracks_JSON);
     let playlistName = playlist.title;
-    console.log(playlist);
     // let img_url = getPlaylistImageURL(playlist);
     let sqlPlaylist ="insert INTO playlists (playlist, username, tracks) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + " ', tracks = '" + tracksInPlaylist +"'";
     con.query(sqlPlaylist, function (err, result) {
