@@ -125,8 +125,8 @@ function getPlaylistHelper(playlists, accessToken) { //TODO
     listOfPlaylists[index] = {
       title: playlistName,
       creator: owner,
-      href: playlistTracksHref
-      // tracks: linkToTracks
+      href: playlistTracksHref,
+      id: playlist.id
     };
 
     index++;
@@ -245,6 +245,24 @@ async function listOfTracks(JSON_file){
   return {result: result, array: track_array};
 }
 
+async function getPlaylistImageURL(playlistID, accessToken){
+  return new Promise((resolve, reject) => {
+    let options = {
+      method: "GET",
+      url: 
+        "https://api.spotify.com/v1/playlists/" + playlistID + "/images",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + accessToken
+      }
+    };
+    request(options, function(error, response, body) {
+      if (error) return reject(error);
+      return resolve(body);
+    });
+  });
+}
+
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
   let refreshToken = jsonToken.refresh;
@@ -263,6 +281,7 @@ async function insertDataHelper(jsonToken) {
     // let songData = {tracks: tracksInPlaylist, metrics: metrics};
     // console.log(typeof JSON.parse(songData));
     let playlistName = playlist.title;
+
     let sqlPlaylist ="insert INTO playlists (playlist, username, tracks, metrics) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
@@ -275,6 +294,7 @@ async function insertDataHelper(jsonToken) {
     //   console.log(songID);
     //   // let song_JSON = await getTrackInfo();
     // })
+
   })
   let sendToSQLData = { profileData: profileData, userAllPlaylists: userAllPlaylists, userTopArtist: userTopArtist, userTopTracks: userTopTracks, accessToken: accessToken, refreshToken: refreshToken };
   let sentToSQL = sendToSQL(sendToSQLData);
