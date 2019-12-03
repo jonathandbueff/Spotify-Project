@@ -215,6 +215,7 @@ async function insertDataHelper(jsonToken) {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken).then(function(result){
       return result;
     });
+    return tracks_JSON
   })
   console.log(playlistInfo);
 
