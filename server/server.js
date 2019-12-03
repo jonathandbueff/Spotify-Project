@@ -210,7 +210,9 @@ async function listOfTracks(JSON_file){
     }
     index++
   })
-  return JSON.stringify(track_array);
+  let result = JSON.stringify(track_array).replace(/&/, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "\\'");
+
+  return result;
 }
 
 async function insertDataHelper(jsonToken) {
