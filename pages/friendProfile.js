@@ -91,12 +91,15 @@ FriendProfile.getInitialProps = async function(req){
   const allUsers = await result2.json();
 //   console.log(friendData[0].image);
 
+// console.log(JSON.parse(dataAll[0].playlists));s
+
 
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
-    allUsers: allUsers
+    allUsers: allUsers,
+    allPlaylists: JSON.parse(dataAll[0].playlists)
   }};
 }
 export default FriendProfile;

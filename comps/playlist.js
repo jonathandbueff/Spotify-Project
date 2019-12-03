@@ -1,10 +1,13 @@
+import Link from "next/link";
 const Playlist = props => (
     <div className="playlistMain">
+    <Link href={"/playlistDisplay?playlist="+props.title+"&creator="+props.creator}>
     <div className="container playlistBox">
         <p className="titleHere">{props.title}</p>
         <p className="creatorHere">{props.creator}</p>
         <p className="ratingHere">Rating</p>
     </div>
+    </Link>
     <style jsx>{`
     .titleHere{
       display: inline-block;

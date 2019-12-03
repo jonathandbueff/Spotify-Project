@@ -13,6 +13,7 @@ let con = mysql.createConnection({
 
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
 // let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
   if (err) console.log(err);
@@ -278,6 +279,34 @@ app.get("/getData", async (req, res) => {
   });
 });
 
+async function getPlaylistData(usernameObject, callback){
+  let username = usernameObject.username;
+  let playlist = usernameObject.playlist;
+  let sql = "select * from users where username ='"+username+"'";
+  con.query(sql, async function(err,result, fields){
+    if(err){console.log(err)};
+    // let returnValue = playlists.title[playlist];
+    // console.log(returnValue);
+    return callback(result);
+  })
+}
+
+app.get("/getPlaylistData", async (req, res) => {
+  let playlist = req.query.title;
+  let username = req.query.username;
+  
+  getPlaylistData({username: username, playlist: playlist}, function(result){
+    let playlists = JSON.parse(result[0].playlists);
+    let returnValue;
+    playlists.forEach(item =>{
+      if (item.title == playlist){
+        returnValue =item;
+      };
+    });
+    res.send({image: result[0].image, playlist: returnValue});
+  });
+});
+
 async function getOtherUserData(blank, callback){
   // let username = usernameToken.username;
   let sql = "select username, image from users";
@@ -312,6 +341,12 @@ app.get("/getFriendData", async (req,res)=> {
   });
 })
 
+// app.get("/getCurrentSong", async (req,res)=> {
+//   let friendUsername = req.query.friendUsername;
+//   getFriendData({username: friendUsername}, function(result){
+//     res.send(result);
+//   });
+// })
 
 //START SERVER
 app.listen(port, () =>
