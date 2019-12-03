@@ -25,6 +25,9 @@ const PlaylistDisplay = props => (
 	<Header className="homeHeader"/>
   <ul className ="mainPlaylistBox">
   <img className="playlistImage" src={props.data.image} alt="playlistimage"/>
+  <div>
+    <h2>{console.log(props.data.metrics)}</h2>
+  </div>
   {/* <img className="artistImage" src={props.data.topArtistUrl} alt="profileimage"/> */}
   <li className="playlistPage" ><PlaylistPage {...props} /></li>
   <li className = "sideBarProfile" ><SideBar {...props}></SideBar></li>
@@ -87,9 +90,10 @@ const PlaylistDisplay = props => (
     const allUsers = await result2.json();
     // console.log(JSON.parse(dataAll.metrics));
     let metricsArray = JSON.parse(dataAll.metrics).audio_features;
-    let image = dataAll.image;
+    let imageArray = dataAll.image;
     let playlistTitle = dataAll.playlist;
     let tracksArray = JSON.parse(dataAll.tracks);
+    let image = JSON.parse(imageArray)[0].url;
     // console.log(tracksArray[1]);
     // console.log(image);
     // console.log(metricsArray);
