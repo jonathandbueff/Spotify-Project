@@ -202,8 +202,8 @@ async function listOfTracks(JSON_file){
   track_array = [];
   index=0;
   tracks_parsed.forEach(song => {
-    let name = JSON.stringify(song.track.name);
-    let id = JSON.stringify(song.track.id);
+    let name = String(song.track.name);
+    let id = String(song.track.id);
     track_array[index] = {
       name: name,
       id: id
