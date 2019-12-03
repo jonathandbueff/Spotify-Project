@@ -1,5 +1,6 @@
 import Search from '../comps/search';
 import UserLink from '../comps/userLink';
+
 // import Link from "next/link";
 const SideBar = props => (
   <div>

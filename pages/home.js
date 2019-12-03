@@ -101,7 +101,7 @@ Home.getInitialProps = async function(req){
   const dataAll = await result.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   const allUsers = await result2.json();
-  // console.log(JSON.parse(dataAll[0].playlists));
+  console.log(JSON.parse(dataAll[0].playlists)[0]);
   // console.log(allUsers);
 
 
@@ -110,7 +110,8 @@ Home.getInitialProps = async function(req){
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allUsers: allUsers,
-    allPlaylists: JSON.parse(dataAll[0].playlists)
+    allPlaylists: JSON.parse(dataAll[0].playlists),
+    user: username
   }};
 }
 export default Home;
