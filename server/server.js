@@ -196,6 +196,8 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
   });
   return ({username: username});
 }
+let playlist_tracks = [];
+
 async function insertDataHelper(jsonToken) {
   let accessToken = jsonToken.access;
   let refreshToken = jsonToken.refresh;
@@ -208,7 +210,6 @@ async function insertDataHelper(jsonToken) {
 
 
   let playlists_parsed = JSON.parse(userAllPlaylists);
-  let playlist_tracks = [];
   let index =0;
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken).then(function(result){
