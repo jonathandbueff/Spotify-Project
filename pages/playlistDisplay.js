@@ -85,13 +85,23 @@ const PlaylistDisplay = props => (
     const dataAll = await result.json();
     const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
     const allUsers = await result2.json();
+    // console.log(JSON.parse(dataAll.metrics));
+    let metricsArray = JSON.parse(dataAll.metrics).audio_features;
+    let image = dataAll.image;
+    let playlistTitle = dataAll.playlist;
+    let tracksArray = JSON.parse(dataAll.tracks);
+    // console.log(tracksArray[1]);
+    // console.log(image);
+    // console.log(metricsArray);
     // console.log(dataAll.tracks);
     return {data:{
-    image: dataAll.image,
+    image: image,
     allUsers: allUsers,
-    playlist: dataAll.playlist,
+    playlist: playlistTitle,
     creator: dataAll.creator,
-    tracks: JSON.parse(dataAll.tracks)
+    tracks: tracksArray,
+    metrics: metricsArray
+    // tracks: JSON.parse(dataAll.tracks)
     }};
     // return data 
   }
