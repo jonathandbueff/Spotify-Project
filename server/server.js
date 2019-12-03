@@ -227,12 +227,13 @@ async function insertDataHelper(jsonToken) {
 
   let playlists_parsed = JSON.parse(userAllPlaylists);
 
-  let playlist_tracks = async () => {
+  const playlist_tracks = async () => {
     await asyncForEach(playlists_parsed, async (playlist) => {
       let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
       sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
     });
   }
+  playlist_tracks();
 
   // let playlists_parsed = JSON.parse(userAllPlaylists);
   // playlists_parsed.asyncForEach(async playlist => {
