@@ -255,14 +255,6 @@ async function insertDataHelper(jsonToken) {
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
-
-    // // for each playlist, fill sql track table with track info
-    // let tracks_parsed = JSON.parse(JSON.stringify(tracksInPlaylist));
-    // console.log(tracks_parsed);
-    // tracks_parsed.forEach(async song => {
-    //   console.log(song);
-    //   // let song_JSON = await getTrackInfo();
-    // })
   })
 
 
