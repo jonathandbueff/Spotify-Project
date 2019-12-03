@@ -7,6 +7,7 @@ import Profile from '../comps/profile';
 import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
+import PlaylistPage from '../comps/playlistPage';
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 const homeStyle ={
@@ -22,21 +23,15 @@ const homeStyle ={
 const PlaylistDisplay = props => (
   <div style={homeStyle}>
 	<Header className="homeHeader"/>
-  <ul className ="mainProfileBox">
-  <img className="profileImage" src={props.data.image} alt="profileimage"/>
+  <ul className ="mainPlaylistBox">
+  <img className="playlistImage" src={props.data.image} alt="playlistimage"/>
   {/* <img className="artistImage" src={props.data.topArtistUrl} alt="profileimage"/> */}
-  {/* <li className="homeProfile" ><Playlist/></li> */}
-  {/* <h3>{props.}</h3> */}
+  <li className="playlistPage" ><PlaylistPage {...props} /></li>
   <li className = "sideBarProfile" ><SideBar {...props}></SideBar></li>
   </ul>
   <Footer className="homeFooter"/>
   <style jsx>{`
-  .playlistTitle{
-    text-align: center;
-    z-index: 1000000;
-    color: white;
-  }
-  .profileImage{
+  .playlistImage{
     position: absolute;
     top: 50px;
     left: 0px;
@@ -50,7 +45,7 @@ const PlaylistDisplay = props => (
     max-width: calc( 75vw /2 );
     max-height: 35vh;
   }
-  .mainProfileBox{
+  .mainPlaylistBox{
     max-width: 75%;
     margin:0;
     list-style-type: none;
@@ -59,7 +54,7 @@ const PlaylistDisplay = props => (
     margin:0;
     position:fixed;
   }
-  .homeProfile{
+  .playlistPage{
     margin:0;
     display: inline-block;
   }
@@ -88,16 +83,15 @@ const PlaylistDisplay = props => (
     let accessToken="none";
     const result = await fetch(awsinstance+':3456/getPlaylistData?username='+username+'&title='+playlist);
     const dataAll = await result.json();
-    console.log(dataAll.playlist.title);
     const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
     const allUsers = await result2.json();
-    
-
+    // console.log(dataAll.tracks);
     return {data:{
     image: dataAll.image,
     allUsers: allUsers,
-    title: dataAll.playlist.title,
-    user: username
+    playlist: dataAll.playlist,
+    creator: dataAll.creator,
+    tracks: JSON.parse(dataAll.tracks)
     }};
     // return data 
   }

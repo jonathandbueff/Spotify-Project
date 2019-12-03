@@ -11,8 +11,8 @@ let con = mysql.createConnection({
   database: "spotify"
 });
 
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
-// let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
+let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
@@ -203,11 +203,13 @@ async function listOfTracks(JSON_file){
   track_array = [];
   index=0;
   tracks_parsed.forEach(song => {
+    // console.log(song.track);
     let name = song.track.name;
     let id = song.track.id;
+    let artist = song.track.artists[0].name;
+    let popularity = song.track.popularity;
     track_array[index] = {
-      name: name,
-      id: id
+      track: song.track
     }
     index++
   })
@@ -237,7 +239,7 @@ async function insertDataHelper(jsonToken) {
     });
 
     // for each playlist, fill sql track table with track info
-    let blah = JSON.parse(JSON.stringify(tracksInPlaylist));
+    // let blah = JSON.parse(JSON.stringify(tracksInPlaylist));
     // tracksInPlaylist.forEach(song => {
     //   let songID = song.id;
     //   console.log(songID);
@@ -286,28 +288,20 @@ app.get("/getData", async (req, res) => {
 async function getPlaylistData(usernameObject, callback){
   let username = usernameObject.username;
   let playlist = usernameObject.playlist;
-  let sql = "select * from users where username ='"+username+"'";
+  let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
     // let returnValue = playlists.title[playlist];
     // console.log(returnValue);
-    return callback(result);
+    return callback(result[0]);
   })
 }
 
 app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
-  
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    let playlists = JSON.parse(result[0].playlists);
-    let returnValue;
-    playlists.forEach(item =>{
-      if (item.title == playlist){
-        returnValue =item;
-      };
-    });
-    res.send({image: result[0].image, playlist: returnValue});
+    res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist});
   });
 });
 
