@@ -237,7 +237,11 @@ async function insertDataHelper(jsonToken) {
     });
 
     // for each playlist, fill sql track table with track info
-    console.log(tracksInPlaylist.name);
+    tracksInPlaylist.forEach(async song => {
+      let songID = song.id;
+      console.log(songID);
+      // let song_JSON = await getTrackInfo();
+    })
   })
 
 
