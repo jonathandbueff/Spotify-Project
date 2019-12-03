@@ -245,7 +245,9 @@ async function listOfTracks(JSON_file){
   return {result: result, array: track_array};
 }
 
-async function getPlaylistImageURL(playlistID, accessToken){
+async function getPlaylistImageURL(idToken){
+  let playlistID = idToken.id;
+  let accessToken = idToken.accessToken; 
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -273,16 +275,15 @@ async function insertDataHelper(jsonToken) {
   
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(async playlist => {
+
+    let id = playlist.id;
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
     let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
     let tracksInPlaylist = tracksInPlaylistTemp.result;
+    let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
     let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
-    // console.log(JSON.parse(metrics).audio_features[0]);
-    // let songData = {tracks: tracksInPlaylist, metrics: metrics};
-    // console.log(typeof JSON.parse(songData));
     let playlistName = playlist.title;
-
-    let sqlPlaylist ="insert INTO playlists (playlist, username, tracks, metrics) VALUES ('" + playlistName + "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
+    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
@@ -343,7 +344,6 @@ async function getPlaylistData(usernameObject, callback){
     // console.log(returnValue);
     // console.log(JSON.parse(result[0].tracks)[0]);
     // console.log(JSON.parse(result[0].metrics).audio_features[index]) //GIVES ARRAY OF METRICS OF ALL SONGS
-
     return callback(result[0]);
   })
 }

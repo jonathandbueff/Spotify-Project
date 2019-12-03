@@ -1,9 +1,9 @@
 const Song = (props) => (
     <div className="songMain">
     <div className="container songBoxTop">
-        <p className="titleHere">{props.track.name}</p>
-        <p className="artistHere">{props.track.artists[0].name}</p>
-        <p className="popularityHere">{props.track.popularity}</p>
+        <p className="titleHere">{props.name}</p>
+        <p className="artistHere">{props.artists[0].name}</p>
+        <p className="popularityHere">{props.popularity}</p>
     </div>
     <style jsx>{`
     .titleHere{
@@ -27,6 +27,21 @@ const Song = (props) => (
     .container{
       padding:0;
       margin:0;
+      border-radius: 10px;
+      padding-left: 2px;
+    }
+    .container:hover{
+      background-color: #1DB954;
+    }
+    .container:hover .titleHere{
+      color: black;
+    }
+    .container:hover .artistHere{
+      color: white;
+      
+    }
+    .container:hover .popularityHere{
+      color: black;
     }
     .titleHere{
       padding: 0;
