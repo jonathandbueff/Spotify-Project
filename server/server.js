@@ -228,7 +228,8 @@ async function insertDataHelper(jsonToken) {
   let playlists_parsed = JSON.parse(userAllPlaylists);
   playlists_parsed.forEach(async playlist => {
     let tracks_JSON = await getPlaylistTracks(playlist.href, accessToken);
-    sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
+    console.log(tracks_JSON);
+    // sendPlaylistToSQL({playlist: playlist.name, tracks: tracks_JSON, accessToken: accessToken, refreshToken: refreshToken });
   })
 
 
