@@ -29,10 +29,25 @@ const Playlist = props => (
     .container{
       padding:0;
       margin:0;
+      border-radius: 10px;
+      padding-left: 2px;
     }
     .titleHere{
       padding: 0;
       margin: 0;
+    }
+    .container:hover{
+      background-color: #1DB954;
+    }
+    .container:hover .titleHere{
+      color: black;
+    }
+    .container:hover .creatorHere{
+      color: white;
+      
+    }
+    .container:hover .ratingHere{
+      color: black;
     }
     .playlistBox{
         font-family: console, monospace;

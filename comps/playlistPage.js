@@ -16,7 +16,7 @@ const PlaylistPage = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Tracks</h4>
       <ol className = "songList">
-        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p}/></li>))}
+        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p.track}/></li>))}
       </ol>
       </div> 
       {/* <div className="playlistContainer">
@@ -79,7 +79,7 @@ const PlaylistPage = (props) => (
     .createBtn{
         position: absolute;
         font-family: console, monospace;
-        left: calc( 37.5vw - 211.46px / 2);
+        left: calc( 37.5vw - 142.19px / 2);
         // top: calc( 35vh - 55px);
         background:#1DB954;
         color: #FFF;
