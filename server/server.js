@@ -210,7 +210,7 @@ async function listOfTracks(JSON_file){
     }
     index++
   })
-  return track_array;
+  return JSON.stringify(track_array);
 }
 
 async function insertDataHelper(jsonToken) {
