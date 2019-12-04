@@ -55,12 +55,6 @@ const MetricsChart = (props) => {
     pointHoverRadius: 10,
 
             data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness],
-            options:{
-              labels: {
-                fontSize: 18,
-                fontColor: "#A9A9A9"
-              },
-            }
           }
         ],
         options: {
@@ -84,6 +78,9 @@ const MetricsChart = (props) => {
             display: true,
             color: '#A9A9A9'
         },
+        legend: {
+          display:false
+        }
         }
       }
     return (
