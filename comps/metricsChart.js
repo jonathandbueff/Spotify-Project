@@ -25,7 +25,7 @@ const MetricsChart = (props) => {
         instrumentalness+=song.instrumentalness;
         speechiness+=song.speechiness;
     });
-    danceability = danceability/numSongs;
+    danceability = 0;
     energy=energy/numSongs;
     liveness=liveness/numSongs;
     loudness=loudness/numSongs;
