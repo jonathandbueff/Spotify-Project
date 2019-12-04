@@ -4,8 +4,8 @@ import Song from './song';
 import Playlist from './playlist';
 import Search from './search';
 
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 
 
@@ -15,7 +15,6 @@ const Profile = (props) => (
       {/* <img id="profileImageHere"></img> */}
       <div className="profileHeadText">
       <h3 id="usernameHere">{props.data.user}</h3>
-      <p id="playlistLikesHere">{"Total Playlist Likes: " +props.data.totalLikes }</p>
       {/* <button className="createBtn">Create Playlist</button> */}
     </div>
     </div>
@@ -28,7 +27,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         {/* <a href = {redirect_uri} > */}
-        <ol className="playlist"> {console.log(props.data.allPlaylists[0].playlist)}
+        <ol className="playlist">
           {props.data.allPlaylists.map((p,index) => (<li className ="playlistListItem" key={p.playlist.title+"PlaylistItem"+index}> <Playlist className={p.playlist.title + index} {...p}/></li>))}
         </ol>
         {/* </a> */}
@@ -63,7 +62,6 @@ const Profile = (props) => (
       left:0;
       top: 50px;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayed{
       background: black;
@@ -74,7 +72,6 @@ const Profile = (props) => (
       top: calc(35vh + 50px);
       left:0;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayedHead{
       margin: 0;
@@ -123,7 +120,7 @@ const Profile = (props) => (
     }
     .playlist{
       margin:0px;
-      padding-bottom: 10px;
+      padding-bottom: 20px;
       // padding: 8px 0px 8px  10px;
       color: white;
       // border: 1px solid grey;

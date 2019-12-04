@@ -97,31 +97,31 @@ Home.getInitialProps = async function(req){
   accessToken=data.accessToken; 
   username = data.username;
 }
+
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   const allUsers = await result2.json();
-  const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+username);
-  const ratings = await ratingsData.json();
+  // const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+username);
+  // const ratings = await ratingsData.json();
   let sum=0;
-  // console.log(ratings);
-  // console.log(JSON.parse(dataAll[0].playlists));
-  // console.log(JSON.parse(dataAll[0].playlists)[0]);
-  // console.log(allUsers);
+
   let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
-    sum = sum +ratings[index].rating;
-    playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    // console.log(playlist);
+    // sum = sum +ratings[index].rating;
+    // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    playlistObject.push({playlist: playlist, accessToken: accessToken});
   });
 
 
-  // console.log(playlistObject);
 
   return{data: {
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allUsers: allUsers,
+    accessToken: accessToken,
     // allPlaylists: JSON.parse(dataAll[0].playlists),
     allPlaylists: playlistObject,
     user: username,
@@ -129,4 +129,3 @@ Home.getInitialProps = async function(req){
   }};
 }
 export default Home;
-

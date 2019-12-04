@@ -2,8 +2,6 @@ import OAuthLogin from '../comps/OAuthLogin';
 // import Layout from '../comps/Layout';
 import Header from '../comps/header';
 
-
-
 const bodyStyle= {
   position: "absolute",
   background: "url('/12.png') no-repeat center fixed",

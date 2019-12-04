@@ -3,21 +3,35 @@ import Router from 'next/router';
 import Song from './song';
 import Playlist from './playlist';
 import Search from './search';
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
+export default function PlaylistPage (props)  {
+  
+  // const followPlaylist = async () =>{
+  //   // console.log(props.data.id);
+  //   // console.log(props.data.accessToken);
+  //   const result = await fetch(encodeURI(awsinstance+':3456/followPlaylist?playlistID='+props.data.id+'&accessToken='+props.data.accessToken));
+  //   const success = await result.json();
+  // }
 
-const PlaylistPage = (props) => (
+ return ( 
     <div>
     <div className="playlistHead">
       <div className="playlistHeadText">
       <h3 id="playlistHere">{props.data.playlist}</h3>
       <p id="playlistCreator">{props.data.creator}</p>
-      <button className="createBtn">Follow</button>
+ {/* <button className="createBtn">Follow</button> */}
     </div>
     </div>
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Tracks</h4>
       <ol className = "songList">
-        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p.track}/></li>))}
+        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}> <Song {...p.track}/> 
+        <div className ="hiddenMetrics">
+        Danceability: {props.data.metrics[i].danceability}   Energy: {props.data.metrics[i].energy}   Loudness: {props.data.metrics[i].loudness}   Speechiness: {props.data.metrics[i].speechiness}   Acousticness: {props.data.metrics[i].acousticness}
+        </div>
+        </li>))}
       </ol>
       </div> 
       {/* <div className="playlistContainer">
@@ -29,6 +43,18 @@ const PlaylistPage = (props) => (
         {/* </a> */}
       {/* </div> */}
       <style jsx>{`
+      .hiddenMetrics{
+        color: black;
+        display: block;
+      }
+
+      .hiddenMetrics:hover {
+        color: #1DB954;
+      }
+      .songListItem:hover .hiddenMetrics{
+        color: #1DB954;
+      }
+
       .playlistListTitle{
         margin:0;
         padding-bottom: 5px;
@@ -124,6 +150,17 @@ const PlaylistPage = (props) => (
   `}
   </style>
     </div>
-  );
-    
-  export default PlaylistPage;
+ )
+  }
+  // );
+  // document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='block';
+  // });
+
+  // document.getElementsByClassName("songListItem").addEventListener("mouseout", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='none';
+  // });
+
+
+
+  // export default PlaylistPage;

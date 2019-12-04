@@ -218,11 +218,14 @@ async function getMetricsData(idAccessToken){
   });
 }
 async function getMetrics(trackAccess){
+
   let accessToken=trackAccess.accessToken;
   let track_array=trackAccess.tracks;
+  let arrayOfIDs
   let ids="";
-  // console.log(track_array.length);
-  track_array.forEach((song, index) => {
+  let track_array_iterable = JSON.parse(track_array).items;
+
+  track_array_iterable.forEach((song, index) => {
     let id = song.track.id;
     ids= ids + id+ ",";
   });
@@ -281,9 +284,9 @@ async function insertDataHelper(jsonToken) {
     let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
     let tracksInPlaylist = tracksInPlaylistTemp.result;
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
-    let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
+    let metrics = await getMetrics({tracks: tracks_JSON, accessToken: accessToken});
     let playlistName = playlist.title;
-    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
+    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" + playlist.creator +"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" + playlist.creator + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
@@ -344,10 +347,7 @@ async function getPlaylistData(usernameObject, callback){
   let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
-    // let returnValue = playlists.title[playlist];
-    // console.log(returnValue);
-    // console.log(JSON.parse(result[0].tracks)[0]);
-    // console.log(JSON.parse(result[0].metrics).audio_features[index]) //GIVES ARRAY OF METRICS OF ALL SONGS
+
     return callback(result[0]);
   })
 }
@@ -355,9 +355,7 @@ async function getPlaylistData(usernameObject, callback){
 app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
-  console.log(playlist +username);
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    // console.log(result);
     res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
@@ -379,21 +377,21 @@ app.get("/getOtherUsers", async (req, res) => {
   });
 });
 
-async function getRatings(username, callback){
-  let sql = "select rating from playlists where username ='"+username+"'";
-  con.query(sql, async function(err,result, fields){
-    if(err){console.log(err)};
-    return callback(result);
-  })
-}
+// async function getRatings(username, callback){
+//   let sql = "select rating from playlists where username ='"+username+"'";
+//   con.query(sql, async function(err,result, fields){
+//     if(err){console.log(err)};
+//     return callback(result);
+//   })
+// }
 
-app.get("/getRatings", async (req, res) => {
-  // let accessToken = req.query.token;
-  let username = req.query.username;
-  getRatings(username, function(result){
-    res.send(result);
-  });
-});
+// app.get("/getRatings", async (req, res) => {
+//   // let accessToken = req.query.token;
+//   let username = req.query.username;
+//   getRatings(username, function(result){
+//     res.send(result);
+//   });
+// });
 
 
 async function getFriendData(usernameObject, callback){
@@ -412,12 +410,41 @@ app.get("/getFriendData", async (req,res)=> {
   });
 })
 
-// app.get("/getCurrentSong", async (req,res)=> {
-//   let friendUsername = req.query.friendUsername;
-//   getFriendData({username: friendUsername}, function(result){
+
+// //FOLLOW PLAYList
+// async function followPlaylist(object) {
+//   let accessToken = object.accessToken;
+//   let id = object.id;
+//   console.log(id);
+//   console.log(accessToken);
+//   return new Promise((resolve, reject) => {
+//     let options = {
+//       method: "PUT",
+//       url: 
+//         "https://api.spotify.com/v1/playlists/"+id+"/followers",
+//       headers: {
+//         "content-type": "application/json",
+//         authorization: "Bearer " + accessToken
+//       }
+//     };
+//     request(options, function(error, response, body) {
+//       if (error) return reject(error);
+//       let returnValue = {success: "true"}
+//       return resolve(returnValue);
+//     });
+//   });
+// }
+
+// app.get("/followPlaylist", async (req,res)=> {
+//   let playlistID = req.query.playlistID;
+//   let accessToken = req.query.accessToken;
+  
+//   console.log(accessToken);
+//   followPlaylist({id: playlistID, accessToken: accessToken}, function(result){
 //     res.send(result);
 //   });
 // })
+
 
 //START SERVER
 app.listen(port, () =>
