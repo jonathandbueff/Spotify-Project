@@ -130,16 +130,16 @@ const PlaylistPage = (props) => (
       // border: 1px solid grey;
     }
   `}
-    document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
-    document.getElementsByClassName("hiddenMetrics").style.display='block'
-  });
-
-  document.getElementsByClassName("songListItem").addEventListener("mouseout", function(){
-    document.getElementsByClassName("hiddenMetrics").style.display='none'
-  });
   </style>
     </div>
   );
+  // document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='block';
+  // });
+
+  // document.getElementsByClassName("songListItem").addEventListener("mouseout", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='none';
+  // });
 
     
   export default PlaylistPage;
