@@ -378,21 +378,21 @@ app.get("/getOtherUsers", async (req, res) => {
   });
 });
 
-async function getRatings(username, callback){
-  let sql = "select rating from playlists where username ='"+username+"'";
-  con.query(sql, async function(err,result, fields){
-    if(err){console.log(err)};
-    return callback(result);
-  })
-}
+// async function getRatings(username, callback){
+//   let sql = "select rating from playlists where username ='"+username+"'";
+//   con.query(sql, async function(err,result, fields){
+//     if(err){console.log(err)};
+//     return callback(result);
+//   })
+// }
 
-app.get("/getRatings", async (req, res) => {
-  // let accessToken = req.query.token;
-  let username = req.query.username;
-  getRatings(username, function(result){
-    res.send(result);
-  });
-});
+// app.get("/getRatings", async (req, res) => {
+//   // let accessToken = req.query.token;
+//   let username = req.query.username;
+//   getRatings(username, function(result){
+//     res.send(result);
+//   });
+// });
 
 
 async function getFriendData(usernameObject, callback){
