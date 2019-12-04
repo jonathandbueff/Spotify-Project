@@ -229,8 +229,8 @@ async function getMetrics(trackAccess){
     let metrics = await getMetricsData({song_id: song.track.id, accessToken: accessToken});
     arrayOfMetrics[index] = metrics;
   });
-  let metrics = await getMetricsData({arrayOfIDs: arrayOfIDs, accessToken: accessToken})
-  return metrics;
+  console.log(arrayOfMetrics)
+  return arrayOfMetrics;
 }
 
 async function listOfTracks(JSON_file){
