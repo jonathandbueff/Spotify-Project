@@ -37,6 +37,11 @@ const PlaylistPage = (props) => (
         color: black;
         display: block;
       }
+
+      .hiddenMetrics:hover {
+        color: #1DB954;
+      }
+
       .playlistListTitle{
         margin:0;
         padding-bottom: 5px;
@@ -141,6 +146,6 @@ const PlaylistPage = (props) => (
   //   document.getElementsByClassName("hiddenMetrics").style.display='none';
   // });
 
-  // color: #1DB954;
+
 
   export default PlaylistPage;
