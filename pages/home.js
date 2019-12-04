@@ -11,8 +11,8 @@ import Footer from '../comps/footer';
 
 
 
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joes
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joes
 
 const homeStyle ={
   position: "absolute",
@@ -97,25 +97,23 @@ Home.getInitialProps = async function(req){
   accessToken=data.accessToken; 
   username = data.username;
 }
+
   const result = await fetch(awsinstance+':3456/getData?token='+accessToken+'&username='+username);
   const dataAll = await result.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
   const allUsers = await result2.json();
-  const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+username);
-  const ratings = await ratingsData.json();
+  // const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+username);
+  // const ratings = await ratingsData.json();
   let sum=0;
-  // console.log(ratings);
-  // console.log(JSON.parse(dataAll[0].playlists));
-  // console.log(JSON.parse(dataAll[0].playlists)[0]);
-  // console.log(allUsers);
+
   let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
-    sum = sum +ratings[index].rating;
-    playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    // sum = sum +ratings[index].rating;
+    // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    playlistObject.push({playlist: playlist});
   });
 
 
-  // console.log(playlistObject);
 
   return{data: {
     image: dataAll[0].image,
@@ -129,4 +127,3 @@ Home.getInitialProps = async function(req){
   }};
 }
 export default Home;
-

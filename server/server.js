@@ -11,8 +11,8 @@ let con = mysql.createConnection({
   database: "spotify"
 });
 
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
-let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
+// let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
@@ -218,11 +218,14 @@ async function getMetricsData(idAccessToken){
   });
 }
 async function getMetrics(trackAccess){
+
   let accessToken=trackAccess.accessToken;
   let track_array=trackAccess.tracks;
+  let arrayOfIDs
   let ids="";
-  // console.log(track_array.length);
-  track_array.forEach((song, index) => {
+  let track_array_iterable = JSON.parse(track_array).items;
+
+  track_array_iterable.forEach((song, index) => {
     let id = song.track.id;
     ids= ids + id+ ",";
   });
@@ -281,9 +284,9 @@ async function insertDataHelper(jsonToken) {
     let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
     let tracksInPlaylist = tracksInPlaylistTemp.result;
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
-    let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
+    let metrics = await getMetrics({tracks: tracks_JSON, accessToken: accessToken});
     let playlistName = playlist.title;
-    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
+    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" + playlist.creator +"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" + playlist.creator + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
@@ -344,10 +347,7 @@ async function getPlaylistData(usernameObject, callback){
   let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
-    // let returnValue = playlists.title[playlist];
-    // console.log(returnValue);
-    // console.log(JSON.parse(result[0].tracks)[0]);
-    // console.log(JSON.parse(result[0].metrics).audio_features[index]) //GIVES ARRAY OF METRICS OF ALL SONGS
+
     return callback(result[0]);
   })
 }
@@ -355,9 +355,7 @@ async function getPlaylistData(usernameObject, callback){
 app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
-  console.log(playlist +username);
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    // console.log(result);
     res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
@@ -379,21 +377,21 @@ app.get("/getOtherUsers", async (req, res) => {
   });
 });
 
-async function getRatings(username, callback){
-  let sql = "select rating from playlists where username ='"+username+"'";
-  con.query(sql, async function(err,result, fields){
-    if(err){console.log(err)};
-    return callback(result);
-  })
-}
+// async function getRatings(username, callback){
+//   let sql = "select rating from playlists where username ='"+username+"'";
+//   con.query(sql, async function(err,result, fields){
+//     if(err){console.log(err)};
+//     return callback(result);
+//   })
+// }
 
-app.get("/getRatings", async (req, res) => {
-  // let accessToken = req.query.token;
-  let username = req.query.username;
-  getRatings(username, function(result){
-    res.send(result);
-  });
-});
+// app.get("/getRatings", async (req, res) => {
+//   // let accessToken = req.query.token;
+//   let username = req.query.username;
+//   getRatings(username, function(result){
+//     res.send(result);
+//   });
+// });
 
 
 async function getFriendData(usernameObject, callback){

@@ -28,7 +28,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         {/* <a href = {redirect_uri} > */}
-        <ol className="playlist"> {console.log(props.data.allPlaylists[0].playlist)}
+        <ol className="playlist">
           {props.data.allPlaylists.map((p,index) => (<li className ="playlistListItem" key={p.playlist.title+"PlaylistItem"+index}> <Playlist className={p.playlist.title + index} {...p}/></li>))}
         </ol>
         {/* </a> */}
@@ -63,7 +63,6 @@ const Profile = (props) => (
       left:0;
       top: 50px;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayed{
       background: black;
@@ -74,7 +73,6 @@ const Profile = (props) => (
       top: calc(35vh + 50px);
       left:0;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayedHead{
       margin: 0;

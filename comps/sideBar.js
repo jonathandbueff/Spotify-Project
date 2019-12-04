@@ -37,7 +37,6 @@ const SideBar = props => (
     position: fixed;
     width: 25vw;
     padding-left: 5px;
-
   }
     `}
     </style>

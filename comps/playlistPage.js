@@ -17,7 +17,11 @@ const PlaylistPage = (props) => (
     <div className="recentlyMostPlayed">
         <h4 className="recentlyMostPlayedHead">Tracks</h4>
       <ol className = "songList">
-        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}><Song {...p.track}/></li>))}
+        {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}> <Song {...p.track}/> 
+        <div className ="hiddenMetrics">
+        Danceability: {props.data.metrics[i].danceability}   Energy: {props.data.metrics[i].energy}   Loudness: {props.data.metrics[i].loudness}   Speechiness: {props.data.metrics[i].speechiness}   Acousticness: {props.data.metrics[i].acousticness}
+        </div>
+        </li>))}
       </ol>
       </div> 
       {/* <div className="playlistContainer">
@@ -29,6 +33,15 @@ const PlaylistPage = (props) => (
         {/* </a> */}
       {/* </div> */}
       <style jsx>{`
+      .hiddenMetrics{
+        color: black;
+        display: block;
+      }
+
+      .hiddenMetrics:hover {
+        color: #1DB954;
+      }
+
       .playlistListTitle{
         margin:0;
         padding-bottom: 5px;
@@ -125,5 +138,14 @@ const PlaylistPage = (props) => (
   </style>
     </div>
   );
-    
+  // document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='block';
+  // });
+
+  // document.getElementsByClassName("songListItem").addEventListener("mouseout", function(){
+  //   document.getElementsByClassName("hiddenMetrics").style.display='none';
+  // });
+
+
+
   export default PlaylistPage;

@@ -8,8 +8,8 @@ import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
 
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 const homeStyle ={
   position: "absolute",
@@ -82,7 +82,6 @@ let count = 0;
 let accessToken;
 FriendProfile.getInitialProps = async function(req){
   let friendUsername = req.query.user;
-  console.log(friendUsername);
   let image;
   let topTracks;
   let topArtist;
@@ -91,14 +90,16 @@ FriendProfile.getInitialProps = async function(req){
   const dataAll = await res.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers');
   const allUsers = await result2.json();
-  const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+friendUsername);
-  const ratings = await ratingsData.json();
+  // const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+friendUsername);
+  // const ratings = await ratingsData.json();
   let sum=0;
 //   console.log(friendData[0].image);
 let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
-    sum = sum +ratings[index].rating;
-    playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    // sum = sum +ratings[index].rating;
+    // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    playlistObject.push({playlist: playlist});
+
   });
 // console.log(JSON.parse(dataAll[0].playlists));s
 

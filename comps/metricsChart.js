@@ -2,7 +2,7 @@ import React from "react";
 import {Radar} from "react-chartjs-2";
 
 const MetricsChart = (props) => {
-    // console.log(props.data.metrics);//ARRAY OF SONG METRICS
+
     let danceability=0;
     let energy=0;
     let liveness=0;
@@ -13,7 +13,6 @@ const MetricsChart = (props) => {
     let instrumentalness=0;
     let speechiness=0;
     let numSongs = props.data.metrics.length;
-    console.log(numSongs);
     props.data.metrics.forEach((song, index) => {
         danceability += song.danceability;
         energy += song.energy;
@@ -34,18 +33,26 @@ const MetricsChart = (props) => {
     acousticness=acousticness/numSongs;
     instrumentalness=instrumentalness/numSongs;
     speechiness=speechiness/numSongs;
-    console.log(props.data.playlist);
+
     const radarData = {
-        labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acouticness', 'Instrumentalness', 'Speechiness'],
+        labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acoutiscness', 'Instrumentalness', 'Speechiness'],
         datasets: [
           {
             
-            backgroundColor: 'rgba(255, 255, 153, 0.2)',
-            borderColor:  '#1DB954',
-            pointBorderColor: 'rgba(255, 255, 153, 1)',
-            // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
-            pointRadius: 1,
-            data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness]
+            backgroundColor: 'rgba(30, 215, 96, 0.4)',
+            borderColor:  'white',
+            // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
+            // pointRadius: 1,
+            // spanGaps: true,
+            label: "Playlist Analysis",
+    radius: 6,
+    pointRadius: 6,
+    pointBorderWidth: 3,
+    pointBackgroundColor: "#1DB954",
+    pointBorderColor: "white",
+    pointHoverRadius: 10,
+
+            data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness],
           }
         ],
         options: {
@@ -53,9 +60,31 @@ const MetricsChart = (props) => {
             responsive: true,
         }
       }
+      var chartOptions = {
+        scale: {
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 1,
+            stepSize: 0.2,
+            fontSize: 12
+          },
+          pointLabels: {
+            fontSize: 18,
+            fontColor: "#A9A9A9"
+          },
+          gridLines: {
+            display: true,
+            color: '#A9A9A9'
+        },
+        legend: {
+          display:false
+        }
+        }
+      }
     return (
       <div>
-          <Radar data={radarData} />
+          <Radar data={radarData} options = {chartOptions}/>
       </div>
     )
   }
