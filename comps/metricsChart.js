@@ -76,7 +76,7 @@ const MetricsChart = (props) => {
             fontSize: 18
           },
           angleLines: {
-            display: false,
+            display: true,
             color: 'white'
         },
         }
