@@ -202,7 +202,7 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 async function getMetricsData(idAccessToken){
   let arrayOfIDs = idAccessToken.arrayOfIDs;
   let accessToken = idAccessToken.accessToken;
-  arrayOfIDs.forEach*
+  // arrayOfIDs.forEach*
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
