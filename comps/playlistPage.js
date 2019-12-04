@@ -129,10 +129,7 @@ const PlaylistPage = (props) => (
   </style>
     </div>
   );
-  document.getElementById("songListItem").addEventListener("mouseover",displayMetrics);
-  function displayMetrics(){
 
-  }
 
     
   export default PlaylistPage;
