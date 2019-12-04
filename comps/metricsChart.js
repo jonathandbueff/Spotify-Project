@@ -2,7 +2,7 @@ import React from "react";
 import {Radar} from "react-chartjs-2";
 
 const MetricsChart = (props) => {
-    console.log(props.data);//ARRAY OF SONG METRICS
+    console.log(props.data.metrics);//ARRAY OF SONG METRICS
     let danceability=0;
     let energy=0;
     let liveness=0;
@@ -13,7 +13,6 @@ const MetricsChart = (props) => {
     let instrumentalness=0;
     let speechiness=0;
     let numSongs = props.data.metrics.length;
-    // let songsInPlaylist = props.
     props.data.metrics.forEach((song, index) => {
         danceability += song.danceability;
         energy += song.energy;
@@ -34,7 +33,7 @@ const MetricsChart = (props) => {
     acousticness=acousticness/numSongs;
     instrumentalness=instrumentalness/numSongs;
     speechiness=speechiness/numSongs;
-    // console.log(props.data.playlist);
+
     const radarData = {
         labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acoutiscness', 'Instrumentalness', 'Speechiness'],
         datasets: [
