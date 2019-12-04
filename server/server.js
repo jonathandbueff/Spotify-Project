@@ -182,7 +182,7 @@ async function getToken(theCode) {
 }
 
 async function sendToSQL(data) { //profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, refreshToken: refreshToken, accessToken: accessToken}
-  let username = JSON.parse(data.profileData).display_name;
+  let username = JSON.parse(data.profileData).id;
   let image = null;
   if (JSON.parse(data.profileData).images != undefined) {
     image = JSON.parse(data.profileData).images[0].url;
