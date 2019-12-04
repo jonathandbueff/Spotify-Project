@@ -45,8 +45,6 @@ const MetricsChart = (props) => {
             // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
             // pointRadius: 1,
             // spanGaps: true,
-            fontSize: 28,
-
             label: "Playlist Analysis",
     fill: false,
     radius: 6,
@@ -73,6 +71,10 @@ const MetricsChart = (props) => {
             stepSize: 0.2
           },
           pointLabels: {
+            fontSize: 18,
+            fontColor: "#A9A9A9"
+          },
+          labels: {
             fontSize: 18,
             fontColor: "#A9A9A9"
           },
