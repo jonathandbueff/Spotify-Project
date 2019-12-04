@@ -281,7 +281,7 @@ async function insertDataHelper(jsonToken) {
     let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
     let tracksInPlaylist = tracksInPlaylistTemp.result;
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
-    console.log(track_array);
+    console.log(tracksInPlaylist);
     let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
     let playlistName = playlist.title;
     let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" + playlist.creator +"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" + playlist.creator + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
