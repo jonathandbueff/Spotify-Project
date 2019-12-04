@@ -397,6 +397,7 @@ app.get("/getOtherUsers", async (req, res) => {
 
 async function getFriendData(usernameObject, callback){
   let username = usernameObject.username;
+  console.log(username);
   let sql = "select * from users where username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
