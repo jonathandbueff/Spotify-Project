@@ -1,7 +1,6 @@
 const HomeHeadImage = props => (
   <div>
     <div className="homeHeadImageBackground">
-      {/* style={{backgroundImage: "url("+props.data.image+")"}}> */}
     </div>
     <style jsx>{`
     .homeHeadImageBackground{

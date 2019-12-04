@@ -109,19 +109,23 @@ const PlaylistDisplay = props => (
   </div>
   );
   PlaylistDisplay.getInitialProps = async function(req){
+    let accessToken= req.query.accessToken;
+    let playlistID = req.query.id;
     let playlist = req.query.playlist;
     let creator =req.query.creator;
     let username = creator;
-    let accessToken="none";
-    const result = await fetch(awsinstance+':3456/getPlaylistData?username='+username+'&title='+playlist);
+    const result = await fetch(encodeURI(awsinstance+':3456/getPlaylistData?username='+username+'&title='+playlist));
     const dataAll = await result.json();
     const result2 = await fetch(awsinstance+':3456/getOtherUsers?token='+accessToken+'&username='+username);
     const allUsers = await result2.json();
-    // console.log(JSON.parse(dataAll.metrics));
     let metricsArray = JSON.parse(dataAll.metrics).audio_features;
     let imageArray = dataAll.image;
     let playlistTitle = dataAll.playlist;
-    let tracksArray = JSON.parse(dataAll.tracks);
+    let tracksArray=null;
+    if(dataAll.tracks != undefined){
+      tracksArray = JSON.parse(dataAll.tracks);}
+
+
     let image = JSON.parse(imageArray)[0].url;
 
     return {data:{
@@ -130,10 +134,10 @@ const PlaylistDisplay = props => (
     playlist: playlistTitle,
     creator: dataAll.creator,
     tracks: tracksArray,
-    metrics: metricsArray
-    // tracks: JSON.parse(dataAll.tracks)
+    metrics: metricsArray,
+    id: playlistID,
+    accessToken: accessToken
     }};
-    // return data 
   }
   
   export default PlaylistDisplay;

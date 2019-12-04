@@ -410,12 +410,41 @@ app.get("/getFriendData", async (req,res)=> {
   });
 })
 
-// app.get("/getCurrentSong", async (req,res)=> {
-//   let friendUsername = req.query.friendUsername;
-//   getFriendData({username: friendUsername}, function(result){
+
+// //FOLLOW PLAYList
+// async function followPlaylist(object) {
+//   let accessToken = object.accessToken;
+//   let id = object.id;
+//   console.log(id);
+//   console.log(accessToken);
+//   return new Promise((resolve, reject) => {
+//     let options = {
+//       method: "PUT",
+//       url: 
+//         "https://api.spotify.com/v1/playlists/"+id+"/followers",
+//       headers: {
+//         "content-type": "application/json",
+//         authorization: "Bearer " + accessToken
+//       }
+//     };
+//     request(options, function(error, response, body) {
+//       if (error) return reject(error);
+//       let returnValue = {success: "true"}
+//       return resolve(returnValue);
+//     });
+//   });
+// }
+
+// app.get("/followPlaylist", async (req,res)=> {
+//   let playlistID = req.query.playlistID;
+//   let accessToken = req.query.accessToken;
+  
+//   console.log(accessToken);
+//   followPlaylist({id: playlistID, accessToken: accessToken}, function(result){
 //     res.send(result);
 //   });
 // })
+
 
 //START SERVER
 app.listen(port, () =>

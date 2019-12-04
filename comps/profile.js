@@ -4,8 +4,8 @@ import Song from './song';
 import Playlist from './playlist';
 import Search from './search';
 
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
+// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 
 
 
@@ -15,7 +15,6 @@ const Profile = (props) => (
       {/* <img id="profileImageHere"></img> */}
       <div className="profileHeadText">
       <h3 id="usernameHere">{props.data.user}</h3>
-      <p id="playlistLikesHere">{"Total Playlist Likes: " +props.data.totalLikes }</p>
       {/* <button className="createBtn">Create Playlist</button> */}
     </div>
     </div>
@@ -121,7 +120,7 @@ const Profile = (props) => (
     }
     .playlist{
       margin:0px;
-      padding-bottom: 10px;
+      padding-bottom: 20px;
       // padding: 8px 0px 8px  10px;
       color: white;
       // border: 1px solid grey;

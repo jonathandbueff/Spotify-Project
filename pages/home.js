@@ -108,9 +108,12 @@ Home.getInitialProps = async function(req){
 
   let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
+
+    // console.log(playlist);
     // sum = sum +ratings[index].rating;
     // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
-    playlistObject.push({playlist: playlist});
+    playlistObject.push({playlist: playlist, accessToken: accessToken});
+
   });
 
 
@@ -120,6 +123,7 @@ Home.getInitialProps = async function(req){
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allUsers: allUsers,
+    accessToken: accessToken,
     // allPlaylists: JSON.parse(dataAll[0].playlists),
     allPlaylists: playlistObject,
     user: username,

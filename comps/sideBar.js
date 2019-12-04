@@ -9,7 +9,7 @@ const SideBar = props => (
         {/* <Search className="seachBarMain"/> */}
         <h3>Other Users</h3>
         <ul className="otherUsersList">
-        {props.data.allUsers.map(p => (<li className ="userListItem" key={p.username+"userItem"}><UserLink key={p.username} {...p}/></li>))}
+        {props.data.allUsers.map(p => (<li className ="userListItem" key={p.username+"userItem"}><UserLink key={p.username} {...p} {...props.data.accessToken}/></li>))}
         </ul>
     </div>
 

@@ -20,19 +20,11 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/friendProfile": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/home": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
     "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/playlistDisplay": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

@@ -3,7 +3,6 @@ const Footer = props => (
     <div className="footerBox">
       <p className="footerTitle">CSE 330 Creative Project</p>
       <p className="footerBody"> Created By: Jon Bueff and Joe Frazier</p>
-      
     </div>
   <style jsx>{`
     .footerBox{
@@ -29,7 +28,5 @@ const Footer = props => (
   </style>
   </div>
 );
-
-
 
 export default Footer;
