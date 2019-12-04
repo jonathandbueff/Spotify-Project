@@ -34,7 +34,7 @@ const PlaylistPage = (props) => (
       {/* </div> */}
       <style jsx>{`
       .hiddenMetrics{
-        display: none;
+        display: block;
       }
       .playlistListTitle{
         margin:0;
