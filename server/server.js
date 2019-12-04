@@ -221,14 +221,17 @@ async function getMetrics(trackAccess){
 
   let accessToken=trackAccess.accessToken;
   let track_array=trackAccess.tracks;
+  let arrayOfIDs=[];
+  let index = 0;
   let ids="";
   let track_array_iterable = JSON.parse(track_array).items;
 
   track_array_iterable.forEach((song, index) => {
-    console.log(song.track.id)
-    // let id = song.track.id;
-    // ids= ids + id+ ",";
+    arrayOfIDs[index] ={
+      id: song.track.id
+    }
   });
+  console.log(arrayOfIDs);
   let metrics = await getMetricsData({ids: ids, accessToken: accessToken})
   return metrics;
 }
