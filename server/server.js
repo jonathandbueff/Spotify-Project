@@ -218,10 +218,11 @@ async function getMetricsData(idAccessToken){
   });
 }
 async function getMetrics(trackAccess){
+
   let accessToken=trackAccess.accessToken;
   let track_array=trackAccess.tracks;
   let ids="";
-  // console.log(track_array.length);
+  console.log(track_array.length);
   track_array.forEach((song, index) => {
     let id = song.track.id;
     ids= ids + id+ ",";
@@ -281,9 +282,7 @@ async function insertDataHelper(jsonToken) {
     let tracksInPlaylistTemp = await listOfTracks({tracks_JSON: tracks_JSON, accessToken: accessToken});
     let tracksInPlaylist = tracksInPlaylistTemp.result;
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
-    console.log(JSON.parse(tracksInPlaylist));
-    // console.log(track_array);
-    let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
+    let metrics = await getMetrics({tracks: tracksInPlaylist, accessToken: accessToken});
     let playlistName = playlist.title;
     let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" + playlist.creator +"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" + playlist.creator + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
