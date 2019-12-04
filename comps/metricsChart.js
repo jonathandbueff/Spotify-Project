@@ -40,11 +40,13 @@ const MetricsChart = (props) => {
         datasets: [
           {
             
-            backgroundColor: 'green',
+            backgroundColor: 'rgba(255, 255, 153, 0.2)',
             borderColor:  '#1DB954',
-
+            // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
+            // pointRadius: 1,
+            // spanGaps: true,
             label: "Playlist Analysis",
-    fillOpacity: .3,
+    // fillOpacity: .3,
     radius: 6,
     pointRadius: 6,
     pointBorderWidth: 3,
@@ -67,7 +69,7 @@ const MetricsChart = (props) => {
             min: 0,
             max: 1,
             stepSize: 0.2,
-            fontSize: 10
+            fontSize: 12
           },
           pointLabels: {
             fontSize: 18,
