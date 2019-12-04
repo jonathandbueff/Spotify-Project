@@ -46,7 +46,7 @@ const MetricsChart = (props) => {
             // pointRadius: 1,
             // spanGaps: true,
             label: "Playlist Analysis",
-    fill: false,
+    fillOpacity: .3,
     radius: 6,
     pointRadius: 6,
     pointBorderWidth: 3,
