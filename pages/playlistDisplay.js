@@ -38,7 +38,7 @@ const PlaylistDisplay = props => (
 	<Header className="homeHeader"/>
   <div className="metricsChartBoxWrapper">
   <div className="metricsChartBox">
-    <MetricsChart {...console.log(props.allPlaylists)}/>
+    <MetricsChart {...props}/>
   </div>
   </div>
   <ul className ="mainPlaylistBox" style={mainPlaylistBoxStyle}>
