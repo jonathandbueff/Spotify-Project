@@ -19,7 +19,7 @@ const PlaylistPage = (props) => (
       <ol className = "songList">
         {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}> <Song {...p.track}/> 
         <div className ="hiddenMetrics">
-        {console.log(props.data.metrics[i])}
+        {props.data.metrics[i]}
         </div>
         </li>))}
       </ol>
@@ -33,6 +33,9 @@ const PlaylistPage = (props) => (
         {/* </a> */}
       {/* </div> */}
       <style jsx>{`
+      .hiddenMetrics{
+        display: none;
+      }
       .playlistListTitle{
         margin:0;
         padding-bottom: 5px;
