@@ -182,7 +182,7 @@ async function getToken(theCode) {
 }
 
 async function sendToSQL(data) { //profileData: profileData, userTopArtist: userTopArtist, userTopTracks: userTopTracks, refreshToken: refreshToken, accessToken: accessToken}
-  let username = JSON.parse(data.profileData).id;
+  let username = JSON.parse(data.profileData).display_name;
   let image = null;
   if (JSON.parse(data.profileData).images != undefined) {
     image = JSON.parse(data.profileData).images[0].url;
@@ -283,8 +283,7 @@ async function insertDataHelper(jsonToken) {
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
     let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
     let playlistName = playlist.title;
-    console.log(JSON.parse(profileData));
-    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
+    let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).display_name;+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).display_name; + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
     });
