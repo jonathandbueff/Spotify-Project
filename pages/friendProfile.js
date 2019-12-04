@@ -97,7 +97,9 @@ FriendProfile.getInitialProps = async function(req){
 let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
     sum = sum +ratings[index].rating;
-    playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+    playlistObject.push({playlist: playlist});
+
   });
 // console.log(JSON.parse(dataAll[0].playlists));s
 
