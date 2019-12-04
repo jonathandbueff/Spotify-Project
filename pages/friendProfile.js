@@ -82,7 +82,6 @@ let count = 0;
 let accessToken;
 FriendProfile.getInitialProps = async function(req){
   let friendUsername = req.query.user;
-  console.log(friendUsername);
   let image;
   let topTracks;
   let topArtist;
