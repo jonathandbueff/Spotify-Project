@@ -46,7 +46,7 @@ const MetricsChart = (props) => {
             // pointRadius: 1,
             // spanGaps: true,
             label: "Playlist Analysis",
-    fillOpacity: .3,
+    // fillOpacity: .3,
     radius: 6,
     pointRadius: 6,
     pointBorderWidth: 3,
@@ -68,7 +68,8 @@ const MetricsChart = (props) => {
             beginAtZero: true,
             min: 0,
             max: 1,
-            stepSize: 0.2
+            stepSize: 0.2,
+            fontSize: 30
           },
           pointLabels: {
             fontSize: 18,
