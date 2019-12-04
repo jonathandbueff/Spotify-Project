@@ -4,6 +4,7 @@ import Song from './song';
 import Playlist from './playlist';
 import Search from './search';
 
+
 const PlaylistPage = (props) => (
     <div>
     <div className="playlistHead">
@@ -55,20 +56,18 @@ const PlaylistPage = (props) => (
       // background: lightgrey;
       position: absolute;
       left:0;
-      top: 50px;
+      top: 0px;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayed{
       background: black;
       color: #1DB954;
       // min-width:75v;
-      width: 75%;
+      width: 100%;
       position: absolute;
-      top: calc(35vh + 50px);
+      top: calc(35vh);
       left:0;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayedHead{
       margin: 0;

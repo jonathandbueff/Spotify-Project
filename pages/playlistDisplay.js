@@ -8,11 +8,12 @@ import Header from '../comps/header';
 import SideBar from '../comps/sideBar';
 import Footer from '../comps/footer';
 import PlaylistPage from '../comps/playlistPage';
+import MetricsChart from '../comps/metricsChart';
 // let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
 const homeStyle ={
   position: "absolute",
-  background: "url('/12.png') no-repeat center fixed",
+  background: "url('/12.png') repeat center fixed",
   backgroundSize: "cover",
   left: "0",
   top: "0",
@@ -20,13 +21,30 @@ const homeStyle ={
   height: "100%",
   width: "100%"
 }
+const mainPlaylistBoxStyle={
+  margin:"0",
+  listStyleType: "none",
+  position: "relative",
+  background: "url('/12.png') repeat center fixed",
+  backgroundSize: "cover",
+  left: "0",
+  top: "52px",
+  right: "0",
+  height: "100%",
+  width: "calc( 75% - 40px)"
+}
 const PlaylistDisplay = props => (
   <div style={homeStyle}>
 	<Header className="homeHeader"/>
-  <ul className ="mainPlaylistBox">
+  <div className="metricsChartBoxWrapper">
+  <div className="metricsChartBox">
+    <MetricsChart {...props}/>
+  </div>
+  </div>
+  <ul className ="mainPlaylistBox" style={mainPlaylistBoxStyle}>
   <img className="playlistImage" src={props.data.image} alt="playlistimage"/>
   <div>
-    <h2>{console.log(props.data.metrics)}</h2>
+    {/* <h2>{console.log(props.data.metrics)}</h2> */}
   </div>
   {/* <img className="artistImage" src={props.data.topArtistUrl} alt="profileimage"/> */}
   <li className="playlistPage" ><PlaylistPage {...props} /></li>
@@ -34,9 +52,18 @@ const PlaylistDisplay = props => (
   </ul>
   <Footer className="homeFooter"/>
   <style jsx>{`
+  .metricsChartBoxWrapper{
+    position: relative;
+    background: black;
+    width:75%;
+    left:0px;
+    top: 52px;
+    // height: 45vh;
+    // max-height: 45vh;
+  }
   .playlistImage{
     position: absolute;
-    top: 50px;
+    top: 0px;
     left: 0px;
     max-width: calc( 75vw /2 );
     max-height: 35vh;
@@ -48,11 +75,13 @@ const PlaylistDisplay = props => (
     max-width: calc( 75vw /2 );
     max-height: 35vh;
   }
-  .mainPlaylistBox{
-    max-width: 75%;
-    margin:0;
-    list-style-type: none;
-  }
+  // .mainPlaylistBox{
+  //  
+  //   margin:0;
+  //   list-style-type: none;
+  //   position: relative;
+  //   // top: calc( 35vh + 52px);
+  // }
   .homeHeader{
     margin:0;
     position:fixed;
