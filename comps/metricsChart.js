@@ -65,6 +65,9 @@ const MetricsChart = (props) => {
       }
       var chartOptions = {
         scale: {
+          pointLabels:{
+            fontColor: "white"
+          },
           ticks: {
             beginAtZero: true,
             min: 0,
