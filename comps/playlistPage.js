@@ -35,7 +35,7 @@ const PlaylistPage = (props) => (
       <style jsx>{`
       .hiddenMetrics{
         color: #1DB954;
-        display: block;
+        display: none;
       }
       .playlistListTitle{
         margin:0;
@@ -133,7 +133,13 @@ const PlaylistPage = (props) => (
   </style>
     </div>
   );
+  document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
+    document.getElementsByClassName("hiddenMetrics").style.display='block';
+  });
 
+  document.getElementsByClassName("songListItem").addEventListener("mouseout", function(){
+    document.getElementsByClassName("hiddenMetrics").style.display='none';
+  });
 
     
   export default PlaylistPage;
