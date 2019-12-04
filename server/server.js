@@ -202,21 +202,23 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 async function getMetricsData(idAccessToken){
   let arrayOfIDs = idAccessToken.arrayOfIDs;
   let accessToken = idAccessToken.accessToken;
-  // arrayOfIDs.forEach*
-  return new Promise((resolve, reject) => {
-    let options = {
-      method: "GET",
-      url: "https://api.spotify.com/v1/audio-features/?ids="+ids,
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + accessToken
-      }
-    };
-    request(options, function(error, response, body) {
-      if (error) return reject(error);
-      return resolve(body);
-    });
-  });
+  arrayOfIDs.forEach(id =>{
+    console.log(id);
+    // return new Promise((resolve, reject) => {
+    //   let options = {
+    //     method: "GET",
+    //     url: "https://api.spotify.com/v1/audio-features/?ids="+id,
+    //     headers: {
+    //       "content-type": "application/json",
+    //       authorization: "Bearer " + accessToken
+    //     }
+    //   };
+    //   request(options, function(error, response, body) {
+    //     if (error) return reject(error);
+    //     return resolve(body);
+    //   });
+    // });
+  })
 }
 async function getMetrics(trackAccess){
 
