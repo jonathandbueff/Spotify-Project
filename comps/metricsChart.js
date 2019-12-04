@@ -36,7 +36,7 @@ const MetricsChart = (props) => {
     speechiness=speechiness/numSongs;
     console.log(props.data.playlist);
     const radarData = {
-        labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acouticness', 'Instrumentalness', 'Speechiness'],
+        labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acoutiscness', 'Instrumentalness', 'Speechiness'],
         datasets: [
           {
             
@@ -69,13 +69,14 @@ const MetricsChart = (props) => {
             beginAtZero: true,
             min: 0,
             max: 1,
-            stepSize: .2
+            stepSize: 0.2,
+            display: true
           },
           pointLabels: {
             fontSize: 18
           },
           angleLines: {
-            display: true,
+            display: false,
             color: 'white'
         },
         }
