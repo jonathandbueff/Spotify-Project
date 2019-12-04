@@ -40,8 +40,8 @@ const MetricsChart = (props) => {
         datasets: [
           {
             
-            backgroundColor: 'white',
-            borderColor:  '#1DB954',
+            backgroundColor: 'rgba(255, 255, 153, 0.2)',
+            borderColor:  'white',
             pointBorderColor: 'rgba(255, 255, 153, 1)',
             // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
             pointRadius: 1,
