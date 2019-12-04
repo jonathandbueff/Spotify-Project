@@ -227,9 +227,10 @@ async function getMetrics(trackAccess){
   let arrayOfMetrics =[];
   track_array_iterable.forEach(async song => {
     let metrics = await getMetricsData({song_id: song.track.id, accessToken: accessToken});
-    console.log(metrics);
+    let blah = metrics.result;
+    arrayOfMetrics[index] = blah;
   });
-  // console.log(arrayOfMetrics)
+  console.log(arrayOfMetrics)
   return arrayOfMetrics;
 }
 
