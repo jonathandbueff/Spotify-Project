@@ -40,8 +40,8 @@ const MetricsChart = (props) => {
         datasets: [
           {
             
-            backgroundColor: 'rgba(255, 255, 153, 0.5)',
-            borderColor:  '#1DB954',
+            backgroundColor: '#1DB954',
+            borderColor:  '#white',
             // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
             // pointRadius: 1,
             // spanGaps: true,
@@ -49,8 +49,8 @@ const MetricsChart = (props) => {
     radius: 6,
     pointRadius: 6,
     pointBorderWidth: 3,
-    pointBackgroundColor: "green",
-    pointBorderColor: "#1DB954",
+    pointBackgroundColor: "#1DB954",
+    pointBorderColor: "white",
     pointHoverRadius: 10,
 
             data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness],
