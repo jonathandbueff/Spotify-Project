@@ -117,7 +117,6 @@ Home.getInitialProps = async function(req){
   });
 
 
-  // console.log(playlistObject);
 
   return{data: {
     image: dataAll[0].image,
