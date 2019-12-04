@@ -54,7 +54,7 @@ const PlaylistDisplay = props => (
   <style jsx>{`
   .metricsChartBoxWrapper{
     position: relative;
-    background: white;
+    background: black;
     width:75%;
     left:0px;
     top: 52px;

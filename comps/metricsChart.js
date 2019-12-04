@@ -75,7 +75,7 @@ const MetricsChart = (props) => {
           pointLabels: {
             fontSize: 18
           },
-          angleLines: {
+          gridLines: {
             display: true,
             color: 'white'
         },
