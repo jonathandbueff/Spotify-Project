@@ -229,7 +229,7 @@ async function getMetrics(trackAccess){
     let metrics = await getMetricsData({song_id: song.track.id, accessToken: accessToken});
     console.log(metrics);
   });
-  console.log(arrayOfMetrics)
+  // console.log(arrayOfMetrics)
   return arrayOfMetrics;
 }
 
