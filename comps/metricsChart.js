@@ -44,7 +44,7 @@ const MetricsChart = (props) => {
             borderColor:  '#1DB954',
 
             label: "Playlist Analysis",
-    // fillOpacity: .3,
+    fillOpacity: .3,
     radius: 6,
     pointRadius: 6,
     pointBorderWidth: 3,
@@ -67,7 +67,7 @@ const MetricsChart = (props) => {
             min: 0,
             max: 1,
             stepSize: 0.2,
-            fontSize: 30
+            fontSize: 10
           },
           pointLabels: {
             fontSize: 18,
