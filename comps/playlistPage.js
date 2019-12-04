@@ -19,10 +19,10 @@ const PlaylistPage = (props) => (
       <ol className = "songList">
         {props.data.tracks.map((p, i)=> (<li className ="songListItem" key={p.track.name + i}> <Song {...p.track}/> 
         <div className ="hiddenMetrics">
-        Danceability: {props.data.metrics[i].danceability}
-        Energy: {props.data.metrics[i].energy}
-        Loudness: {props.data.metrics[i].loudness}
-        Speechiness: {props.data.metrics[i].speechiness}
+        Danceability: {props.data.metrics[i].danceability}   
+        Energy: {props.data.metrics[i].energy}   
+        Loudness: {props.data.metrics[i].loudness}   
+        Speechiness: {props.data.metrics[i].speechiness}   
         Acousticness: {props.data.metrics[i].acousticness}
         </div>
         </li>))}
