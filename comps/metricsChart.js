@@ -54,7 +54,13 @@ const MetricsChart = (props) => {
     pointBorderColor: "#1DB954",
     pointHoverRadius: 10,
 
-            data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness]
+            data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness],
+            options:{
+              labels: {
+                fontSize: 18,
+                fontColor: "#A9A9A9"
+              },
+            }
           }
         ],
         options: {
@@ -71,10 +77,6 @@ const MetricsChart = (props) => {
             stepSize: 0.2
           },
           pointLabels: {
-            fontSize: 18,
-            fontColor: "#A9A9A9"
-          },
-          labels: {
             fontSize: 18,
             fontColor: "#A9A9A9"
           },
