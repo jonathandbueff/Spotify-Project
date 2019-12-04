@@ -344,10 +344,7 @@ async function getPlaylistData(usernameObject, callback){
   let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
-    // let returnValue = playlists.title[playlist];
-    // console.log(returnValue);
-    // console.log(JSON.parse(result[0].tracks)[0]);
-    // console.log(JSON.parse(result[0].metrics).audio_features[index]) //GIVES ARRAY OF METRICS OF ALL SONGS
+
     return callback(result[0]);
   })
 }
@@ -356,7 +353,6 @@ app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    // console.log(result);
     res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
@@ -397,7 +393,6 @@ app.get("/getOtherUsers", async (req, res) => {
 
 async function getFriendData(usernameObject, callback){
   let username = usernameObject.username;
-  console.log(username);
   let sql = "select * from users where username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};

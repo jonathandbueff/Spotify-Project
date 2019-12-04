@@ -123,11 +123,10 @@ const PlaylistDisplay = props => (
     let playlistTitle = dataAll.playlist;
     let tracksArray = JSON.parse(dataAll.tracks);
     let image = JSON.parse(imageArray)[0].url;
-    console.log(playlistTitle);
-    // console.log(tracksArray[1]);
-    // console.log(image);
-    // console.log(metricsArray);
-    // console.log(dataAll.tracks);
+    console.log(tracksArray[1]);
+    console.log(image);
+    console.log(metricsArray);
+    console.log(dataAll.tracks);
     return {data:{
     image: image,
     allUsers: allUsers,
