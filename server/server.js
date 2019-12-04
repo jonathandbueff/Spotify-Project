@@ -202,6 +202,7 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 async function getMetricsData(idAccessToken){
   let arrayOfIDs = idAccessToken.arrayOfIDs;
   let accessToken = idAccessToken.accessToken;
+  arrayOfIDs.forEach*
   return new Promise((resolve, reject) => {
     let options = {
       method: "GET",
@@ -225,7 +226,7 @@ async function getMetrics(trackAccess){
   let index = 0;
   let track_array_iterable = JSON.parse(track_array).items;
 
-  track_array_iterable.forEach((song, index) => {
+  track_array_iterable.forEach(song => {
     arrayOfIDs[index] =song.track.id;
     index++;
   });
