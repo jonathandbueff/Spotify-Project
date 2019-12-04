@@ -11,8 +11,8 @@ import Footer from '../comps/footer';
 
 
 
-// let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
-let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joes
+let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
+// let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joes
 
 const homeStyle ={
   position: "absolute",
@@ -108,10 +108,12 @@ Home.getInitialProps = async function(req){
 
   let playlistObject=[];
   JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
+
     // console.log(playlist);
     // sum = sum +ratings[index].rating;
     // playlistObject.push({playlist: playlist, rating: ratings[index].rating});
     playlistObject.push({playlist: playlist, accessToken: accessToken});
+
   });
 
 

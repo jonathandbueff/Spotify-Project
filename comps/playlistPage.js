@@ -51,9 +51,11 @@ export default function PlaylistPage (props)  {
       .hiddenMetrics:hover {
         color: #1DB954;
       }
+
       .songListItem:hover .hiddenMetrics{
         color: #1DB954;
       }
+
 
       .playlistListTitle{
         margin:0;
@@ -150,9 +152,11 @@ export default function PlaylistPage (props)  {
   `}
   </style>
     </div>
+
  )
   }
   // );
+
   // document.getElementsByClassName("songListItem").addEventListener("mouseover", function(){
   //   document.getElementsByClassName("hiddenMetrics").style.display='block';
   // });
@@ -161,6 +165,3 @@ export default function PlaylistPage (props)  {
   //   document.getElementsByClassName("hiddenMetrics").style.display='none';
   // });
 
-
-
-  // export default PlaylistPage;
