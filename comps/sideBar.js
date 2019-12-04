@@ -5,8 +5,8 @@ import UserLink from '../comps/userLink';
 const SideBar = props => (
   <div>
     <div className="sideBarBox">
-        <h3>Search</h3>
-        <Search className="seachBarMain"/>
+        {/* <h3>Search</h3> */}
+        {/* <Search className="seachBarMain"/> */}
         <h3>Other Users</h3>
         <ul className="otherUsersList">
         {props.data.allUsers.map(p => (<li className ="userListItem" key={p.username+"userItem"}><UserLink key={p.username} {...p}/></li>))}

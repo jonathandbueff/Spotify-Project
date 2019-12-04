@@ -43,11 +43,12 @@ const FriendProfile = (props) => (
   .artistImage{
     position: absolute;
     top: 50px;
-    right: 25vw;
+    right: 25%;
     max-width: calc( 75vw /2 );
     max-height: 35vh;
   }
   .mainProfileBox{
+    max-width: 75%;
     margin:0;
     list-style-type: none;
   }
@@ -61,10 +62,11 @@ const FriendProfile = (props) => (
   }
   .sideBarProfile{
     display: inline-block;
-    width: 25vw;
+    width: 25%;
     position:fixed;
     right: 0;
     top: 51px;
+    padding: 0;
   }
   .homefooter{
     position: fixed;
@@ -89,17 +91,26 @@ FriendProfile.getInitialProps = async function(req){
   const dataAll = await res.json();
   const result2 = await fetch(awsinstance+':3456/getOtherUsers');
   const allUsers = await result2.json();
+  const ratingsData = await fetch(awsinstance+':3456/getRatings?token='+accessToken+'&username='+friendUsername);
+  const ratings = await ratingsData.json();
+  let sum=0;
 //   console.log(friendData[0].image);
-
+let playlistObject=[];
+  JSON.parse(dataAll[0].playlists).forEach((playlist,index)=>{
+    sum = sum +ratings[index].rating;
+    playlistObject.push({playlist: playlist, rating: ratings[index].rating});
+  });
 // console.log(JSON.parse(dataAll[0].playlists));s
 
 
   return{data: {
+    user: friendUsername,
     image: dataAll[0].image,
     topArtistUrl: dataAll[0].topArtistUrl,
     topTracks: JSON.parse(dataAll[0].topTracks).items,
     allUsers: allUsers,
-    allPlaylists: JSON.parse(dataAll[0].playlists)
+    allPlaylists: playlistObject,
+    totalLikes: sum
   }};
 }
 export default FriendProfile;
