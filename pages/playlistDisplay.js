@@ -127,7 +127,7 @@ const PlaylistDisplay = props => (
     console.log(image);
     console.log(metricsArray);
     console.log(dataAll.tracks);
-    console.log("hi");
+
     return {data:{
     image: image,
     allUsers: allUsers,
