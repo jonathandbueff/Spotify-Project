@@ -63,9 +63,22 @@ const MetricsChart = (props) => {
             responsive: true,
         }
       }
+      var chartOptions = {
+        scale: {
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 1,
+            stepSize: .2
+          },
+          pointLabels: {
+            fontSize: 18
+          }
+        }
+      }
     return (
       <div>
-          <Radar data={radarData} />
+          <Radar data={radarData} options = {chartOptions}/>
       </div>
     )
   }
