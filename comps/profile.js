@@ -63,7 +63,6 @@ const Profile = (props) => (
       left:0;
       top: 50px;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayed{
       background: black;
@@ -74,7 +73,6 @@ const Profile = (props) => (
       top: calc(35vh + 50px);
       left:0;
       font-family: console, monospace;
-
     }
     .recentlyMostPlayedHead{
       margin: 0;

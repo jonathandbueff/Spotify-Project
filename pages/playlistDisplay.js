@@ -11,7 +11,6 @@ import PlaylistPage from '../comps/playlistPage';
 import MetricsChart from '../comps/metricsChart';
 let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //Jon
 // let awsinstance = 'http://ec2-18-234-109-238.compute-1.amazonaws.com'; //Joe
-
 const homeStyle ={
   position: "absolute",
   background: "url('/12.png') repeat center fixed",

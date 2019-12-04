@@ -115,4 +115,3 @@ Home.getInitialProps = async function(req){
   }};
 }
 export default Home;
-
