@@ -70,7 +70,8 @@ const MetricsChart = (props) => {
             min: 0,
             max: 1,
             stepSize: 0.2,
-            display: true
+            display: true,
+            backdropColor: 'white'
           },
           pointLabels: {
             fontSize: 18
