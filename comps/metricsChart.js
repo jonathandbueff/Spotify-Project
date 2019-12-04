@@ -42,10 +42,19 @@ const MetricsChart = (props) => {
             
             backgroundColor: 'rgba(255, 255, 153, 0.2)',
             borderColor:  '#1DB954',
-            pointBorderColor: 'rgba(255, 255, 153, 1)',
-            // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
-            pointRadius: 1,
-            spanGaps: true,
+            // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
+            // pointRadius: 1,
+            // spanGaps: true,
+
+            label: "Playlist Analysis",
+    fill: false,
+    radius: 6,
+    pointRadius: 6,
+    pointBorderWidth: 3,
+    pointBackgroundColor: "green",
+    pointBorderColor: "#1DB954",
+    pointHoverRadius: 10,
+
             data: [danceability, energy, liveness, valence, acousticness, instrumentalness, speechiness]
           }
         ],
