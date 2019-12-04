@@ -13,7 +13,6 @@ const MetricsChart = (props) => {
     let instrumentalness=0;
     let speechiness=0;
     let numSongs = props.data.metrics.length;
-    console.log(numSongs);
     props.data.metrics.forEach((song, index) => {
         danceability += song.danceability;
         energy += song.energy;
@@ -25,7 +24,7 @@ const MetricsChart = (props) => {
         instrumentalness+=song.instrumentalness;
         speechiness+=song.speechiness;
     });
-    danceability = 0;
+    danceability = danceability/numSongs;
     energy=energy/numSongs;
     liveness=liveness/numSongs;
     loudness=loudness/numSongs;
