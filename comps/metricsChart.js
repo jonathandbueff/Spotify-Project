@@ -73,7 +73,11 @@ const MetricsChart = (props) => {
           },
           pointLabels: {
             fontSize: 18
-          }
+          },
+          angleLines: {
+            display: false,
+            color: 'white'
+        },
         }
       }
     return (
