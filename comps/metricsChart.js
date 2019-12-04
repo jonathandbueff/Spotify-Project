@@ -3,6 +3,7 @@ import {Radar} from "react-chartjs-2";
 
 const MetricsChart = (props) => {
     console.log(props.data.playlist);//ARRAY OF SONG METRICS
+    console.log(props.data.metrics);
     let danceability=0;
     let energy=0;
     let liveness=0;
