@@ -13,6 +13,7 @@ const MetricsChart = (props) => {
     let instrumentalness=0;
     let speechiness=0;
     let numSongs = props.data.metrics.length;
+    console.log(numSongs);
     props.data.metrics.forEach((song, index) => {
         danceability += song.danceability;
         energy += song.energy;
@@ -35,7 +36,7 @@ const MetricsChart = (props) => {
     speechiness=speechiness/numSongs;
 
     const radarData = {
-        labels: ['Danceability', 'fuckthis', 'Liveness', 'Valence', 'Acoutiscness', 'Instrumentalness', 'Speechiness'],
+        labels: ['Danceability', 'Energy', 'Liveness', 'Valence', 'Acoutiscness', 'Instrumentalness', 'Speechiness'],
         datasets: [
           {
             
