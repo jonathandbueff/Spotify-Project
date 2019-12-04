@@ -69,8 +69,7 @@ const MetricsChart = (props) => {
             beginAtZero: true,
             min: 0,
             max: 1,
-            stepSize: 0.2,
-            drawTicks: true
+            stepSize: 0.2
           },
           pointLabels: {
             fontSize: 18,
