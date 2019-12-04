@@ -14,9 +14,9 @@ const Profile = (props) => (
     <div className="profileHead">
       {/* <img id="profileImageHere"></img> */}
       <div className="profileHeadText">
-      <h3 id="usernameHere">{props.data.username}</h3>
-      <p id="playlistLikesHere">Playlist likes</p>
-      <button className="createBtn">Create Playlist</button>
+      <h3 id="usernameHere">{props.data.user}</h3>
+      <p id="playlistLikesHere">{"Total Playlist Likes: " +props.data.totalLikes }</p>
+      {/* <button className="createBtn">Create Playlist</button> */}
     </div>
     </div>
     <div className="recentlyMostPlayed">
@@ -28,8 +28,8 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         {/* <a href = {redirect_uri} > */}
-        <ol className="playlist">
-          {props.data.allPlaylists.map(p => (<li className ="playlistListItem" key={p.title+"PlaylistItem"}> <Playlist className={p.title} {...p}/></li>))}
+        <ol className="playlist"> {console.log(props.data.allPlaylists[0].playlist)}
+          {props.data.allPlaylists.map((p,index) => (<li className ="playlistListItem" key={p.playlist.title+"PlaylistItem"+index}> <Playlist className={p.playlist.title + index} {...p}/></li>))}
         </ol>
         {/* </a> */}
       </div>
@@ -56,7 +56,7 @@ const Profile = (props) => (
       color:#FFF;
     }
     .profileHead{
-      width: 75vw;
+      width: 75%;
       height: 35vh;
       // background: lightgrey;
       position: absolute;
@@ -131,6 +131,6 @@ const Profile = (props) => (
   `}
   </style>
     </div>
-  );
+);
     
   export default Profile;
