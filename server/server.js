@@ -200,24 +200,21 @@ async function sendToSQL(data) { //profileData: profileData, userTopArtist: user
 }
 
 async function getMetricsData(idAccessToken){
-  let arrayOfIDs = idAccessToken.arrayOfIDs;
+  let song_id = idAccessToken.song_id;
   let accessToken = idAccessToken.accessToken;
-  arrayOfIDs.forEach(id =>{
-    console.log(id);
-    // return new Promise((resolve, reject) => {
-    //   let options = {
-    //     method: "GET",
-    //     url: "https://api.spotify.com/v1/audio-features/?ids="+id,
-    //     headers: {
-    //       "content-type": "application/json",
-    //       authorization: "Bearer " + accessToken
-    //     }
-    //   };
-    //   request(options, function(error, response, body) {
-    //     if (error) return reject(error);
-    //     return resolve(body);
-    //   });
-    // });
+  return new Promise((resolve, reject) => {
+      let options = {
+        method: "GET",
+        url: "https://api.spotify.com/v1/audio-features/?ids="+song_id,
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer " + accessToken
+        }
+      };
+      request(options, function(error, response, body) {
+        if (error) return reject(error);
+        return resolve(body);
+      });
   })
 }
 async function getMetrics(trackAccess){
@@ -227,12 +224,11 @@ async function getMetrics(trackAccess){
   let arrayOfIDs=[];
   let index = 0;
   let track_array_iterable = JSON.parse(track_array).items;
-
+  let arrayOfMetrics =[];
   track_array_iterable.forEach(song => {
-    arrayOfIDs[index] =song.track.id;
-    index++;
+    let metrics = await getMetricsData({song_id: song.track.id, accessToken: accessToken});
+    arrayOfMetrics[index] = metrics;
   });
-  console.log(arrayOfIDs);
   let metrics = await getMetricsData({arrayOfIDs: arrayOfIDs, accessToken: accessToken})
   return metrics;
 }
