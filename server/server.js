@@ -351,8 +351,9 @@ async function getPlaylistData(usernameObject, callback){
 app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
+  console.log(playlist);
+  console.log(username);
   getPlaylistData({username: username, playlist: playlist}, function(result){
-    console.log(result);
     res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
