@@ -110,7 +110,6 @@ const PlaylistDisplay = props => (
   );
   PlaylistDisplay.getInitialProps = async function(req){
     let playlist = req.query.playlist;
-    console.log(playlist);
     let creator =req.query.creator;
     let username = creator;
     let accessToken="none";
@@ -124,7 +123,7 @@ const PlaylistDisplay = props => (
     let playlistTitle = dataAll.playlist;
     let tracksArray = JSON.parse(dataAll.tracks);
     let image = JSON.parse(imageArray)[0].url;
-    // console.log(dataAll.playlist);
+    console.log(playlistTitle);
     // console.log(tracksArray[1]);
     // console.log(image);
     // console.log(metricsArray);
