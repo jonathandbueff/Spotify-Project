@@ -222,7 +222,7 @@ async function getMetrics(trackAccess){
   let accessToken=trackAccess.accessToken;
   let track_array=trackAccess.tracks;
   let ids="";
-  console.log(JSON.stringify(tracks_array));
+  console.log(JSON.stringify(track_array));
   track_array.forEach((song, index) => {
     let id = song.track.id;
     ids= ids + id+ ",";
