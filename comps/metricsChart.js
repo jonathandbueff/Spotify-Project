@@ -74,11 +74,11 @@ const MetricsChart = (props) => {
           },
           pointLabels: {
             fontSize: 18,
-            fontColor: "rgb(211,211,211)"
+            fontColor: "#A9A9A9"
           },
           gridLines: {
             display: true,
-            color: 'rgb(211,211,211)'
+            color: '#A9A9A9'
         },
         }
       }
