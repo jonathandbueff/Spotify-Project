@@ -45,8 +45,6 @@ const MetricsChart = (props) => {
             // // pointBackgroundColor: 'rgba(255, 255, 153, 1)',
             // pointRadius: 1,
             // spanGaps: true,
-
-            label: "Playlist Analysis",
     fill: false,
     radius: 6,
     pointRadius: 6,
