@@ -7,7 +7,7 @@ const Playlist = props => (
     <div className="container playlistBox">
         <p className="titleHere">{props.playlist.title}</p>
         <p className="creatorHere">{props.playlist.creator}</p>
-        <p className="ratingHere">Likes: {props.rating}</p>
+        {/* <p className="ratingHere">Likes: {props.rating}</p> */}
         {/* <button onClick={} className="like">Like</button> */}
     </div>
     </Link>
