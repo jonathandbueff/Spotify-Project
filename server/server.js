@@ -337,6 +337,7 @@ app.get("/getData", async (req, res) => {
 async function getPlaylistData(usernameObject, callback){
   let username = usernameObject.username;
   let playlist = usernameObject.playlist;
+  console.log(usernameObject);
   let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
