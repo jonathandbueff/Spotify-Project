@@ -34,8 +34,8 @@ const PlaylistPage = (props) => (
       {/* </div> */}
       <style jsx>{`
       .hiddenMetrics{
-        color: #1DB954;
-        display: none;
+        color: black;
+        display: block;
       }
       .playlistListTitle{
         margin:0;
@@ -141,5 +141,6 @@ const PlaylistPage = (props) => (
   //   document.getElementsByClassName("hiddenMetrics").style.display='none';
   // });
 
-    
+  // color: #1DB954;
+
   export default PlaylistPage;
