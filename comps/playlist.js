@@ -1,11 +1,14 @@
 import Link from "next/link";
+// async function
+
 const Playlist = props => (
     <div className="playlistMain">
-    <Link href={"/playlistDisplay?playlist="+props.title+"&creator="+props.creator}>
+    <Link href={"/playlistDisplay?playlist="+props.playlist.title+"&creator="+props.playlist.creator}>
     <div className="container playlistBox">
-        <p className="titleHere">{props.title}</p>
-        <p className="creatorHere">{props.creator}</p>
-        <p className="ratingHere">Rating</p>
+        <p className="titleHere">{props.playlist.title}</p>
+        <p className="creatorHere">{props.playlist.creator}</p>
+        <p className="ratingHere">Likes: {props.rating}</p>
+        {/* <button onClick={} className="like">Like</button> */}
     </div>
     </Link>
     <style jsx>{`
@@ -52,6 +55,25 @@ const Playlist = props => (
     .playlistBox{
         font-family: console, monospace;
         padding-bottom: 5px;
+    }
+    .like{
+      // position: absolute;
+        font-family: console, monospace;
+        float: right;
+        margin-right: 5px;
+        background:#1DB954;
+        color: #FFF;
+        // font-size: 14px;
+        border: none;
+        border-radius: 500px;
+        margin-top: 2px;
+        -webkit-transition: background 0.4s;
+        transition-duration: background 0.4s;
+
+    }
+    .like:hover {
+      background: black;
+      color: #1DB954;  
     }
     `}
     </style>

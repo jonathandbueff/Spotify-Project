@@ -109,7 +109,7 @@ async function getPlaylists(accessToken) {
   });
 }
 
-function getPlaylistHelper(playlists, accessToken) { //TODO
+function getPlaylistHelper(playlists, accessToken) {
   
   let parsedPlaylists = JSON.parse(playlists.body).items;
   let listOfPlaylists = [];
@@ -283,6 +283,7 @@ async function insertDataHelper(jsonToken) {
     let playlistImageArray = await getPlaylistImageURL({id: id, accessToken: accessToken});
     let metrics = await getMetrics({tracks: track_array, accessToken: accessToken});
     let playlistName = playlist.title;
+    console.log(JSON.parse(profileData).id);
     let sqlPlaylist ="insert INTO playlists (playlist, image, username, tracks, metrics) VALUES ('" + playlistName + "','"+ playlistImageArray+ "','" +JSON.parse(profileData).id+"','" + tracksInPlaylist +"','"+ metrics +"') ON DUPLICATE KEY UPDATE playlist = '" + playlistName + "', image = '"+playlistImageArray+"', username = '" +JSON.parse(profileData).id + "', tracks = '" + tracksInPlaylist +"', metrics ='"+metrics+"'";
     con.query(sqlPlaylist, function (err, result) {
       if (err) console.log(err);
@@ -319,7 +320,8 @@ app.get("/getCode", async (req, res) => {
 
 async function getSQLData(usernameToken, callback){
   let username = usernameToken.username;
-  let sql = "select * from users where username ='"+username+"'";
+  let sql = "select * from users  where username ='"+username+"'";
+  // let sql = "select username, image, accessToken, refreshToken, topArtistUrl, topTracks, playlists, playlists.rating from users join playlists on (users.username=playlists.username) where username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
     return callback(result);
@@ -334,10 +336,12 @@ app.get("/getData", async (req, res) => {
   });
 });
 
+
+
+
 async function getPlaylistData(usernameObject, callback){
   let username = usernameObject.username;
   let playlist = usernameObject.playlist;
-  console.log(usernameObject);
   let sql = "select * from playlists where playlist ='"+playlist+"' and username ='"+username+"'";
   con.query(sql, async function(err,result, fields){
     if(err){console.log(err)};
@@ -352,9 +356,8 @@ async function getPlaylistData(usernameObject, callback){
 app.get("/getPlaylistData", async (req, res) => {
   let playlist = req.query.title;
   let username = req.query.username;
-  console.log(playlist);
-  console.log(username);
   getPlaylistData({username: username, playlist: playlist}, function(result){
+    // console.log(result);
     res.send({image: result.image, tracks: result.tracks, creator: result.username, playlist: result.playlist, metrics: result.metrics});
   });
 });
@@ -372,6 +375,22 @@ app.get("/getOtherUsers", async (req, res) => {
   // let username = req.query.username;
   let blank = "none";
   getOtherUserData(blank, function(result){
+    res.send(result);
+  });
+});
+
+async function getRatings(username, callback){
+  let sql = "select rating from playlists where username ='"+username+"'";
+  con.query(sql, async function(err,result, fields){
+    if(err){console.log(err)};
+    return callback(result);
+  })
+}
+
+app.get("/getRatings", async (req, res) => {
+  // let accessToken = req.query.token;
+  let username = req.query.username;
+  getRatings(username, function(result){
     res.send(result);
   });
 });
