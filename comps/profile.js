@@ -28,7 +28,7 @@ const Profile = (props) => (
       <div className="playlistContainer">
         <h4 className="playlistListTitle">Playlists</h4>
         {/* <a href = {redirect_uri} > */}
-        <ol className="playlist"> {console.log(props.data.allPlaylists[0].playlist)}
+        <ol className="playlist">
           {props.data.allPlaylists.map((p,index) => (<li className ="playlistListItem" key={p.playlist.title+"PlaylistItem"+index}> <Playlist className={p.playlist.title + index} {...p}/></li>))}
         </ol>
         {/* </a> */}
