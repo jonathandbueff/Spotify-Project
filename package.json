@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/cse330-fall-2019/creativeproject-7joe-jon#readme",
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "location-href": "^1.0.0",
