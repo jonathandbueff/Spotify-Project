@@ -11,8 +11,6 @@ let con = mysql.createConnection({
   database: "spotify"
 });
 
-let awsinstance = 'http://ec2-18-191-11-49.us-east-2.compute.amazonaws.com'; //JON
-// let awsinstance = "http://ec2-18-234-109-238.compute-1.amazonaws.com"; //JOE
 
 // CONNECT TO MYSQL DATABASE
 con.connect(function (err) {
